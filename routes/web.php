@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/dashboard', function(){
+        return Inertia\Inertia::render('Dashboard');
+    })->name('dashboard');
+
+    Route::get('/secoes-cardapio', function(){
+        return Inertia\Inertia::render('Dashboard');
+    })->name('secoes-cardapio');
+});
