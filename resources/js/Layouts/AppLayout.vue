@@ -18,7 +18,7 @@
                                 Dashboard
                             </jet-nav-link>
                              <jet-nav-link :href="route('secoes-cardapio')" :active="$page.currentRouteName == 'secoes-cardapio'">
-                                Seções Cardápio
+                                Seções do Cardápio
                             </jet-nav-link>
                         </div>
                     </div>

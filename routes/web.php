@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SecoesCardapioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     })->name('dashboard');
 
     Route::get('/secoes-cardapio', function(){
-        return Inertia\Inertia::render('Dashboard');
+        return Inertia\Inertia::render('SecoesCardapio');
     })->name('secoes-cardapio');
+
+    //   Route::get('/secoes-cardapio', [SecoesCardapioController::class, 'index'])->name('secoes-cardapio');
 });
