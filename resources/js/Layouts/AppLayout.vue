@@ -17,8 +17,8 @@
                             <jet-nav-link :href="route('dashboard')" :active="$page.currentRouteName == 'dashboard'">
                                 Dashboard
                             </jet-nav-link>
-                             <jet-nav-link :href="route('secoes-cardapio')" :active="$page.currentRouteName == 'secoes-cardapio'">
-                                Seções do Cardápio
+                             <jet-nav-link :href="route('cardapio')" :active="$page.currentRouteName == 'cardapio'">
+                                Cardápio
                             </jet-nav-link>
                         </div>
                     </div>
