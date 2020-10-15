@@ -8,7 +8,7 @@ class CategoriaCardapioController extends Controller
 {
     public function index(){
         $categorias = CategoriaCardapio::all();
-        return Inertia::render('CategoriaCardapio', [
+        return Inertia::render('Cardapio/CategoriaCardapio', [
             'categorias' => $categorias
         ]);
     }

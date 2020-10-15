@@ -1,5 +1,6 @@
 require('./bootstrap');
-
+require('bootstrap');
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Vue from 'vue';
 
 import { InertiaApp } from '@inertiajs/inertia-vue';
