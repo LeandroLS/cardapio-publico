@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import Cardapio from "./Cardapio";
+
 export default {
   data() {
     return {
@@ -72,9 +72,7 @@ export default {
       });
     },
   },
-  components: {
-    Cardapio,
-  },
+
   props: {
     categorias: Array,
     errors: Object,

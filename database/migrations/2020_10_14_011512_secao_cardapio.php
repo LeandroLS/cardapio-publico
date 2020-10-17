@@ -13,7 +13,7 @@ class SecaoCardapio extends Migration
      */
     public function up()
     {
-        Schema::create('categoria_cardapios', function (Blueprint $table) {
+        Schema::create('cardapio_categorias', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('nome');
             $table->timestamps();
@@ -27,6 +27,6 @@ class SecaoCardapio extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categoria_cardapios');
+        Schema::dropIfExists('cardapio_categorias');
     }
 }

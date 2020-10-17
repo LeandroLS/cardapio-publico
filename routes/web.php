@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{CategoriaCardapioController, CardapioController};
+use App\Http\Controllers\{CardapioCategoriaController, CardapioController};
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +24,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     })->name('dashboard');
 
     Route::get('/cardapio', [CardapioController::class, 'index'])->name('cardapio');
-    Route::post('/categoria-cardapio', [CategoriaCardapioController::class, 'store'])->name('cardapio.store');
-    Route::post('/categoria-cardapio/destroy', [CategoriaCardapioController::class, 'destroy'])->name('cardapio.destroy');
+    Route::post('/categoria-cardapio', [CardapioCategoriaController::class, 'store'])->name('cardapio.store');
+    Route::post('/categoria-cardapio/destroy', [CardapioCategoriaController::class, 'destroy'])->name('cardapio.destroy');
 
 });

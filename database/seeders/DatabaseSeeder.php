@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\CategoriaCardapio::factory(10)->create();
+        \App\Models\CardapioCategoria::factory()->times(10)
+            ->hasItens(3)
+            ->create();
     }
 }

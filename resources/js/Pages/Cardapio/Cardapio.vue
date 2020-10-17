@@ -8,16 +8,16 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4">
-          <categoria-cardapio
+          <cardapio-categoria
             :categorias="categorias"
             :errors="errors"
-          ></categoria-cardapio>
+          ></cardapio-categoria>
         </div>
         <div class="col-md-8">
-          <itens-categoria-cardapio
+          <categoria-itens
             :categorias="categorias"
             :errors="errors"
-          ></itens-categoria-cardapio>
+          ></categoria-itens>
         </div>
       </div>
     </div>
@@ -26,14 +26,14 @@
 
 <script>
 import AppLayout from "./../../Layouts/AppLayout";
-import CategoriaCardapio from "./CategoriaCardapio";
-import ItensCategoriaCardapio from "./ItensCategoriaCardapio";
+import CardapioCategoria from "./CardapioCategoria";
+import CategoriaItens from "./CategoriaItens";
 
 export default {
   components: {
     AppLayout,
-    CategoriaCardapio,
-    ItensCategoriaCardapio,
+    CardapioCategoria,
+    CategoriaItens,
   },
   props: {
     categorias: Array,

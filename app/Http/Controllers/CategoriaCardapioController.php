@@ -2,15 +2,15 @@
 namespace App\Http\Controllers;
 use Inertia\Inertia;
 use Redirect;
-use App\Models\CategoriaCardapio;
+use App\Models\CardapioCategoria;
 use Illuminate\Http\Request;
 
-class CategoriaCardapioController extends Controller
+class CardapioCategoriaController extends Controller
 {
     public function index()
     {
-        $categorias = CategoriaCardapio::all();
-        return Inertia::render('Cardapio/CategoriaCardapio', [
+        $categorias = CardapioCategoria::all();
+        return Inertia::render('Cardapio/CardapioCategoria', [
             'categorias' => $categorias
         ]);
     }
@@ -20,7 +20,7 @@ class CategoriaCardapioController extends Controller
         $request->validate([
             'nome' => ['required'],
         ]);
-        CategoriaCardapio::create($request->all());
+        CardapioCategoria::create($request->all());
         return Redirect::route('cardapio');
     }
 
@@ -29,7 +29,7 @@ class CategoriaCardapioController extends Controller
         $request->validate([
             'id' => ['required'],
         ]);
-        $categoria = CategoriaCardapio::find($request->id);
+        $categoria = CardapioCategoria::find($request->id);
         $categoria->delete();
         return Redirect::route('cardapio')->with('success', 'aa');
 

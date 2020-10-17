@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\CardapioCategoria;
+use App\Models\{CategoriaItem, CardapioCategoria};
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class CardapioCategoriaFactory extends Factory
+class CategoriaItemFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = CardapioCategoria::class;
+    protected $model = CategoriaItem::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,10 @@ class CardapioCategoriaFactory extends Factory
     public function definition()
     {
         return [
-            'nome' => $this->faker->name
+            'nome' => $this->faker->name,
+            'descricao' => $this->faker->sentence,
+            'cardapio_categoria_id' => CardapioCategoria::factory(),
+            'preco' => 10.10
         ];
     }
 }
