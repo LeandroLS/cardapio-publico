@@ -15,19 +15,27 @@
         </p>
         <ul class="list-group list-group-flush">
           <li
+            data-toggle="modal"
+            data-target="#modalCategoriaItem"
             class="list-group-item"
             v-for="item in categoria.itens"
             :key="item.id"
+            @click="choseEditItem(item)"
           >
-            {{ item.nome }} - {{ item.preco }}
+            {{ item.nome }} - {{ item.preco }} -
+            <form @submit.prevent="destroy(item.id)">
+              <button type="submit" class="text-sm text-grey-dark">
+                Excluir
+              </button>
+            </form>
           </li>
         </ul>
-        <button @click="item.cardapio_categoria_id = categoria.id"
+        <button @click="addCategoriaItem(categoria)"
           type="button"
           href="#"
           class="card-link"
           data-toggle="modal"
-          data-target="#exampleModal"
+          data-target="#modalCategoriaItem"
         >
           Add
         </button>
@@ -39,7 +47,7 @@
     <!-- Modal -->
     <div
       class="modal fade"
-      id="exampleModal"
+      id="modalCategoriaItem"
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
@@ -47,7 +55,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Modal title a</h5>
             <button
               type="button"
               class="close"
@@ -57,8 +65,12 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form @submit.prevent="store" method="post">
-            <input type="hidden" name="cardapio_categoria_id" v-model="item.cardapio_categoria_id">
+          <form @submit.prevent="storeOrUpdate" method="post">
+            <input
+              type="hidden"
+              name="cardapio_categoria_id"
+              v-model="item.cardapio_categoria_id"
+            />
             <div class="modal-body">
               <div class="container">
                 <div class="row">
@@ -119,19 +131,46 @@
 export default {
   data() {
     return {
+      adding: null,
       item: {
         nome: null,
         cardapio_categoria_id: null,
         descricao: null,
-        preco: null
+        preco: null,
       },
     };
   },
   methods: {
-    store() {
-      // this.$inertia.visit(url, )
-      this.$inertia.post("/categoria-item", this.item, {
-        preserveScroll: true,
+    choseEditItem(item){
+      this.item = item;
+      this.adding = false;
+    },
+    addCategoriaItem(categoria){
+      this.item.cardapio_categoria_id = categoria.id;
+      this.adding = true;
+    },
+    storeOrUpdate() {
+      if(this.adding){
+        this.$inertia.post("/categoria-item", this.item, {
+          preserveScroll: true,
+        });
+      } else {
+        this.$inertia.post("/categoria-item/update", this.item, {
+          preserveScroll: true,
+        });
+      }
+
+    },
+    destroy(id) {
+      this.$inertia.post(
+        "/categoria-item/destroy",
+        { id: id },
+        { preserveScroll: true }
+      );
+      this.$toasted.show("Categoria removida!", {
+        theme: "toasted-primary",
+        position: "top-left",
+        duration: 5000,
       });
     },
   },

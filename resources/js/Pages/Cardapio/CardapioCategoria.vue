@@ -14,7 +14,12 @@
             <p class="text-3xl p-0 text-green-dark">&bull;</p>
           </div>
           <div class="w-4/5 h-10 py-3 px-1">
-            <p class="hover:text-blue-dark">{{ categoria.nome }}</p>
+            <p class="hover:text-blue-dark">
+              <click-edit-input
+                @update="update(categoria, $event)"
+                :title="categoria.nome"
+              ></click-edit-input>
+            </p>
           </div>
           <div class="w-1/5 h-10 text-right p-3">
             <form @submit.prevent="destroy(categoria.id)">
@@ -43,8 +48,11 @@
 </template>
 
 <script>
-
+import ClickEditInput from "../../Components/ClickEditInput";
 export default {
+  components: {
+    ClickEditInput,
+  },
   data() {
     return {
       categoria: {
@@ -53,6 +61,15 @@ export default {
     };
   },
   methods: {
+    update(categoria, novoNome) {
+      this.$inertia.post(
+        "/categoria-cardapio/update",
+        { novoNome: novoNome, id: categoria.id },
+        {
+          preserveScroll: true,
+        }
+      );
+    },
     store() {
       // this.$inertia.visit(url, )
       this.$inertia.post("/categoria-cardapio", this.categoria, {

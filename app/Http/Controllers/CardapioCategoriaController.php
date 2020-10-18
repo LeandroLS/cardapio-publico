@@ -23,7 +23,17 @@ class CardapioCategoriaController extends Controller
         CardapioCategoria::create($request->all());
         return Redirect::route('cardapio');
     }
+    public function update(Request $request){
+        $request->validate([
+            'novoNome' => ['required'],
+            'id' => ['required'],
 
+        ]);
+        $categoria = CardapioCategoria::find($request->id);
+        $categoria->nome = $request->novoNome;
+        $categoria->save();
+        return Redirect::route('cardapio');
+    }
     public function destroy(Request $request)
     {
         $request->validate([
@@ -31,7 +41,7 @@ class CardapioCategoriaController extends Controller
         ]);
         $categoria = CardapioCategoria::find($request->id);
         $categoria->delete();
-        return Redirect::route('cardapio')->with('success', 'aa');
+        return Redirect::route('cardapio');
 
     }
 }

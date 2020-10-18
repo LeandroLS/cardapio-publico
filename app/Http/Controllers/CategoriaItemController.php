@@ -15,4 +15,21 @@ class CategoriaItemController extends Controller
         CategoriaItem::create($request->all());
         return Redirect::route('cardapio');
     }
+
+    public function destroy(Request $request){
+        $request->validate(['id' => 'required']);
+        $categoriaItem = CategoriaItem::find($request->id);
+        $categoriaItem->delete();
+        return Redirect::route('cardapio');
+    }
+
+    public function update(Request $request){
+        $request->validate(['id' => 'required']);
+        $categoriaItem = CategoriaItem::find($request->id);
+        $categoriaItem->preco = $request->preco;
+        $categoriaItem->nome = $request->nome;
+        $categoriaItem->descricao = $request->descricao;
+        $categoriaItem->save();
+        return Redirect::route('cardapio');
+    }
 }
