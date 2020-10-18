@@ -22,7 +22,7 @@
             {{ item.nome }} - {{ item.preco }}
           </li>
         </ul>
-        <button
+        <button @click="item.cardapio_categoria_id = categoria.id"
           type="button"
           href="#"
           class="card-link"
@@ -57,49 +57,58 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-6">
-                  <label for="">Nome </label>
-                  <input
-                    class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    type="text"
-                    placeholder="Ex: Bolos"
-                    name="nome"
-                  />
+          <form @submit.prevent="store" method="post">
+            <input type="hidden" name="cardapio_categoria_id" v-model="item.cardapio_categoria_id">
+            <div class="modal-body">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="">Nome </label>
+                    <input
+                      class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      type="text"
+                      placeholder="Ex: Bolos"
+                      name="nome"
+                      v-model="item.nome"
+                      required
+                    />
 
-                  <label for="">Descrição </label>
-                  <input
-                    class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    type="text"
-                    placeholder="Ex: Bolos"
-                    name="desscricao"
-                  />
-                  <label for="">Preço </label>
-                  <input
-                    class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    type="text"
-                    placeholder="Ex: Bolos"
-                    name="preco"
-                  />
-                </div>
-                <div class="col-md-6">
-                  <h1>Foto</h1>
+                    <label for="">Descrição </label>
+                    <input
+                      class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      type="text"
+                      v-model="item.descricao"
+                      placeholder="Ex: Bolos"
+                      name="desscricao"
+                    />
+                    <label for="">Preço </label>
+                    <input
+                      class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      type="text"
+                      v-model="item.preco"
+                      placeholder="Ex: Bolos"
+                      name="preco"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <h1>Foto</h1>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" class="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -110,12 +119,22 @@
 export default {
   data() {
     return {
-      categoria: {
+      item: {
         nome: null,
+        cardapio_categoria_id: null,
+        descricao: null,
+        preco: null
       },
     };
   },
-  methods: {},
+  methods: {
+    store() {
+      // this.$inertia.visit(url, )
+      this.$inertia.post("/categoria-item", this.item, {
+        preserveScroll: true,
+      });
+    },
+  },
   props: {
     categorias: Array,
     errors: Object,
