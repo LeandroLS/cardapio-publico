@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{CardapioCategoriaController, CardapioController, CategoriaItemController};
+use App\Http\Controllers\{CardapioCategoriaController, CardapioController, CategoriaItemController, EstabelecimentoController};
 
 /*
 |--------------------------------------------------------------------------
@@ -24,11 +24,19 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     })->name('dashboard');
 
     Route::get('/cardapio', [CardapioController::class, 'index'])->name('cardapio');
+
+    Route::get('/estabelecimento', [EstabelecimentoController::class, 'index'])->name('estabelecimento');
+    Route::post('/estabelecimento', [EstabelecimentoController::class, 'store'])->name('estabelecimento.store');
+
+    
     Route::post('/categoria-cardapio', [CardapioCategoriaController::class, 'store'])->name('cardapio.store');
     Route::post('/categoria-cardapio/destroy', [CardapioCategoriaController::class, 'destroy'])->name('cardapio.destroy');
     Route::post('/categoria-cardapio/update', [CardapioCategoriaController::class, 'update'])->name('cardapio.update');
+    
     Route::post('/categoria-item', [CategoriaItemController::class, 'store'])->name('categoria.item');
     Route::post('/categoria-item/destroy', [CategoriaItemController::class, 'destroy'])->name('categoria.item.destroy');
     Route::post('/categoria-item/update', [CategoriaItemController::class, 'update'])->name('categoria.item.update');
+
+
 
 });
