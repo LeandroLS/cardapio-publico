@@ -57,14 +57,15 @@
           >
             Cidade
           </label>
-          <input
+            <v-select @search="getMunicipios" label="nome" v-model="municipioSelected" :options="municipios" :get-option-label="municipios => municipios.nome + ' - ' + municipios.estado.uf" :reduce="nome => nome.codigo_ibge">  <span slot="no-options">Digite 3 ou mais caracteres. </span></v-select>
+
+          <!-- <input
             v-model="viaCepResponse.localidade"
             class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             id="password"
-          />
+          /> -->
         </div>
         <jet-button>Salvar</jet-button>
-        <v-select label="nome" :options="municipios" :get-option-label="municipio => municipio.nome + ' - ' + municipio.estado.uf" :reduce="nome => nome.codigo_ibge"></v-select>
       </form>
     </div>
   </form>
@@ -75,17 +76,24 @@ import JetButton from "../Jetstream/Button";
 import vSelect from "vue-select";
 import "vue-select/dist/vue-select.css";
 export default {
-  props: {
-    municipios: {
-        type: Array
-    },
-  },
   components: {
     JetButton,
     vSelect,
   },
   directives: { mask },
   methods: {
+    async getMunicipios(text, loading){
+        if(text.length >= 3){
+            loading(true);
+            await axios.get(`/municipio?nome=${text}`).then(res => {
+                this.municipios = res.data;
+                loading(false);
+            });
+        }
+    },
+    async getMunicipioByCodIBGE(cod){
+        await axios.get(`/municipio?codigo_ibge=${cod}`).then(res => this.municipioSelected = res.data);
+    },
     async getCep(cep) {
       const resposta = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
       return resposta;
@@ -97,6 +105,8 @@ export default {
         cep: "",
       },
       viaCepResponse: {},
+      municipios: [],
+      municipioSelected: ''
     };
   },
   watch: {
@@ -104,6 +114,7 @@ export default {
       if (newLocalizacao.length == 9) {
         this.getCep(newLocalizacao).then((res) => {
           this.viaCepResponse = res.data;
+          this.getMunicipioByCodIBGE(res.data.ibge);
         });
       }
     },

@@ -9,7 +9,7 @@
           <jet-input v-model="estabelecimentoData.descricao"></jet-input>
           <jet-button>Salvar</jet-button>
         </form>
-        <estabelecimento-localizacao :municipios="municipios"></estabelecimento-localizacao>
+        <estabelecimento-localizacao></estabelecimento-localizacao>
       </div>
     </div>
   </app-layout>
@@ -34,9 +34,6 @@ export default {
       type: Object,
       default: null,
     },
-    municipios: {
-      type: Array
-    }
   },
 
   data() {

@@ -9,10 +9,10 @@ class EstabelecimentoController extends Controller
 {
     public function index(){
         $estabelecimento = Estabelecimento::where('user_id', \Auth::user()->id)->first();
-        $municipios = Municipio::with('estado')->get();
+        // $municipios = Municipio::with('estado')->get();
         return Inertia::render('Estabelecimento', [
             'estabelecimento' => $estabelecimento,
-            'municipios' => $municipios
+            // 'municipios' => $municipios
         ]);
     }
 

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{CardapioCategoriaController, CardapioController, CategoriaItemController, EstabelecimentoController};
+use App\Http\Controllers\{CardapioCategoriaController, CardapioController, CategoriaItemController, EstabelecimentoController, MunicipioController};
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +24,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     })->name('dashboard');
 
     Route::get('/cardapio', [CardapioController::class, 'index'])->name('cardapio');
+
+    Route::get('/municipio', [MunicipioController::class, 'getMunicipio'])->name('municipio');
+
 
     Route::get('/estabelecimento', [EstabelecimentoController::class, 'index'])->name('estabelecimento');
     Route::post('/estabelecimento', [EstabelecimentoController::class, 'store'])->name('estabelecimento.store');
