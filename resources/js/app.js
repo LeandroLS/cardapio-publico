@@ -1,8 +1,8 @@
 require('./bootstrap');
-require('bootstrap');
-import 'bootstrap/dist/css/bootstrap.min.css';
+require('bootstrap'); //framewrokcss
+import 'bootstrap/dist/css/bootstrap.min.css'; //framewrokcss
 import Vue from 'vue';
-import Toasted from 'vue-toasted';
+import Toasted from 'vue-toasted'; //lib terceira de toast
 import { InertiaApp } from '@inertiajs/inertia-vue';
 import { InertiaForm } from 'laravel-jetstream';
 import PortalVue from 'portal-vue';

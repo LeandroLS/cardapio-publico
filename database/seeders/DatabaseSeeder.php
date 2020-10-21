@@ -13,6 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call([
+            EstadosSeeder::class,
+            MunicipiosSeeder::class
+        ]);
         \App\Models\CardapioCategoria::factory()->times(10)
             ->hasItens(3)
             ->create();

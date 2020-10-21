@@ -9,6 +9,7 @@
           <jet-input v-model="estabelecimentoData.descricao"></jet-input>
           <jet-button>Salvar</jet-button>
         </form>
+        <estabelecimento-localizacao :municipios="municipios"></estabelecimento-localizacao>
       </div>
     </div>
   </app-layout>
@@ -18,18 +19,24 @@
 import AppLayout from "../Layouts/AppLayout";
 import JetButton from "../Jetstream/Button";
 import JetInput from "../Jetstream/Input";
+import EstabelecimentoLocalizacao from './EstabelecimentoLocalizacao';
 
 export default {
   components: {
     AppLayout,
     JetButton,
     JetInput,
+    EstabelecimentoLocalizacao
   },
+
   props: {
     estabelecimento: {
       type: Object,
       default: null,
     },
+    municipios: {
+      type: Array
+    }
   },
 
   data() {
@@ -37,11 +44,12 @@ export default {
       estabelecimentoData: {},
     };
   },
+
   created() {
     if (!this.estabelecimento) {
       this.estabelecimentoData = { nome: "", descricao: "" };
     } else {
-        this.estabelecimentoData = this.estabelecimento;
+      this.estabelecimentoData = this.estabelecimento;
     }
   },
   methods: {

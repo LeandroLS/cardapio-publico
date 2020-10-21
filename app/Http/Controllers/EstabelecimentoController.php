@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use Redirect;
 use Illuminate\Http\Request;
-use App\Models\Estabelecimento;
+use App\Models\{Estabelecimento, Municipio};
 class EstabelecimentoController extends Controller
 {
     public function index(){
         $estabelecimento = Estabelecimento::where('user_id', \Auth::user()->id)->first();
+        $municipios = Municipio::with('estado')->get();
         return Inertia::render('Estabelecimento', [
-            'estabelecimento' => $estabelecimento
+            'estabelecimento' => $estabelecimento,
+            'municipios' => $municipios
         ]);
     }
 
