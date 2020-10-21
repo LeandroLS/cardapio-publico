@@ -9,26 +9,32 @@ class EstabelecimentoController extends Controller
 {
     public function index(){
         $estabelecimento = Estabelecimento::where('user_id', \Auth::user()->id)->first();
-        // $municipios = Municipio::with('estado')->get();
-        return Inertia::render('Estabelecimento', [
-            'estabelecimento' => $estabelecimento,
-            // 'municipios' => $municipios
-        ]);
+        if($estabelecimento){
+            return Inertia::render('Estabelecimento', [
+                'estabelecimento' => $estabelecimento,
+            ]);
+        } else {
+            return Inertia::render('Estabelecimento');
+        }
+       
     }
 
     public function store(Request $request){
-        $request->validate(
-            [
-                'nome' => 'required',
-            ]
-        );
+        $request->validate(['nome' => 'required']);
         Estabelecimento::updateOrCreate(
-            [ 'user_id' => \Auth::user()->id],
+            ['user_id' => \Auth::user()->id],
             [
                 'nome' => $request->nome,
-                'descricao' => $request->descricao
+                'descricao' => $request->descricao,
+                'cep' => $request->cep,
+                'endereco' => $request->endereco,
+                'numero' => $request->numero,
+                'codigo_ibge' => $request->codigo_ibge,
+                'bairro' => $request->bairro,
+
             ]
         );
         return Redirect::route('estabelecimento');
     }
+
 }

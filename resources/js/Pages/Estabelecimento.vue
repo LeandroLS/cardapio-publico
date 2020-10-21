@@ -4,12 +4,13 @@
       <div class="container">
         <form @submit.prevent="store()">
           <label for="">Nome do Estabelecimento</label>
-          <jet-input v-model="estabelecimentoData.nome"></jet-input>
+          <input type="text" required v-model="estabelecimento.nome">
+          <div v-if="errors.nome">{{ errors.nome }}</div>
           <label for="">Descrição do Estabelecimento</label>
-          <jet-input v-model="estabelecimentoData.descricao"></jet-input>
+          <jet-input v-model="estabelecimento.descricao"></jet-input>
           <jet-button>Salvar</jet-button>
         </form>
-        <estabelecimento-localizacao></estabelecimento-localizacao>
+        <estabelecimento-localizacao :localizacao="estabelecimento"></estabelecimento-localizacao>
       </div>
     </div>
   </app-layout>
@@ -19,20 +20,26 @@
 import AppLayout from "../Layouts/AppLayout";
 import JetButton from "../Jetstream/Button";
 import JetInput from "../Jetstream/Input";
-import EstabelecimentoLocalizacao from './EstabelecimentoLocalizacao';
+import EstabelecimentoLocalizacao from "./EstabelecimentoLocalizacao";
 
 export default {
   components: {
     AppLayout,
     JetButton,
     JetInput,
-    EstabelecimentoLocalizacao
+    EstabelecimentoLocalizacao,
   },
 
   props: {
+    errors: Object,
     estabelecimento: {
       type: Object,
-      default: null,
+      default: function () {
+        return {
+          nome: "",
+          descricao: "",
+        };
+      },
     },
   },
 
@@ -42,16 +49,9 @@ export default {
     };
   },
 
-  created() {
-    if (!this.estabelecimento) {
-      this.estabelecimentoData = { nome: "", descricao: "" };
-    } else {
-      this.estabelecimentoData = this.estabelecimento;
-    }
-  },
   methods: {
     store() {
-      this.$inertia.post("/estabelecimento", this.estabelecimentoData, {
+      this.$inertia.post("/estabelecimento", this.estabelecimento, {
         preserveScroll: true,
       });
     },

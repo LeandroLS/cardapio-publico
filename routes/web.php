@@ -30,7 +30,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/estabelecimento', [EstabelecimentoController::class, 'index'])->name('estabelecimento');
     Route::post('/estabelecimento', [EstabelecimentoController::class, 'store'])->name('estabelecimento.store');
-
     
     Route::post('/categoria-cardapio', [CardapioCategoriaController::class, 'store'])->name('cardapio.store');
     Route::post('/categoria-cardapio/destroy', [CardapioCategoriaController::class, 'destroy'])->name('cardapio.destroy');

@@ -27,7 +27,6 @@ class CardapioCategoriaController extends Controller
         $request->validate([
             'novoNome' => ['required'],
             'id' => ['required'],
-
         ]);
         $categoria = CardapioCategoria::find($request->id);
         $categoria->nome = $request->novoNome;
