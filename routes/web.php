@@ -27,6 +27,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/municipio', [MunicipioController::class, 'getMunicipio'])->name('municipio');
 
     Route::post('/estabelecimento/contato', [EstabelecimentoContatoController::class, 'store'])->name('estabelecimento.contato');
+    Route::post('/estabelecimento/contato/destroy', [EstabelecimentoContatoController::class, 'destroy'])->name('estabelecimento.contato.destroy');
+    
     Route::get('/estabelecimento', [EstabelecimentoController::class, 'index'])->name('estabelecimento');
     Route::post('/estabelecimento', [EstabelecimentoController::class, 'store'])->name('estabelecimento.store');
     

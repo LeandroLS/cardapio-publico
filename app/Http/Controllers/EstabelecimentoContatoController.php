@@ -20,4 +20,11 @@ class EstabelecimentoContatoController extends Controller
         $contato->save();
         return Redirect::route('estabelecimento');
     }
+
+    public function destroy(Request $request){
+        $request->validate(['id' => 'required']);
+        $contato = EstabelecimentoContato::find($request->id);
+        $contato->delete();
+        return Redirect::route('estabelecimento');
+    }
 }

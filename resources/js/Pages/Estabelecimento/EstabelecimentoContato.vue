@@ -1,10 +1,11 @@
 <template>
   <div class="w-full">
-    <div v-if="contatos.length >= 1" >
-        <div v-for="(contato, index) in contatos" :key="index">
-            <input type="text" :value="contato.contato">
-            <input type="text" :value="contato.tipo_contato">
-        </div>
+    <div v-if="contatos.length >= 1">
+      <div v-for="(contato, index) in contatos" :key="index">
+        <input type="text" :value="contato.contato" />
+        <input type="text" :value="contato.tipo_contato" />
+        <button @click="remove(contato.id)">Remove</button>
+      </div>
     </div>
     <form
       @submit.prevent="store()"
@@ -29,7 +30,7 @@
 export default {
   props: {
     contatos: {
-        type: Array
+      type: Array,
     },
   },
   data() {
@@ -46,6 +47,15 @@ export default {
       this.$inertia.post("/estabelecimento/contato", this.contato, {
         preserveScroll: true,
       });
+    },
+    remove(id) {
+      this.$inertia.post(
+        "/estabelecimento/contato/destroy",
+        { id: id },
+        {
+          preserveScroll: true,
+        }
+      );
     },
   },
 };
