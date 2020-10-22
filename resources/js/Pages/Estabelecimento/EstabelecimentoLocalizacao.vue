@@ -77,7 +77,7 @@
 </template>
 <script>
 import { mask } from "vue-the-mask";
-import JetButton from "../Jetstream/Button";
+import JetButton from "../../Jetstream/Button";
 import vSelect from "vue-select";
 import "vue-select/dist/vue-select.css";
 export default {
@@ -107,7 +107,6 @@ export default {
   },
   methods: {
     store() {
-      console.log("aqui");
       this.localizacao.codigo_ibge = this.municipios[0].codigo_ibge;
       this.$inertia.post("/estabelecimento", this.localizacao, {
         preserveScroll: true,
@@ -146,10 +145,10 @@ export default {
       }
     },
   },
-  created(){
-    if(this.localizacao.codigo_ibge){
+  created() {
+    if (this.localizacao.codigo_ibge) {
       this.getMunicipioByCodIBGE(this.localizacao.codigo_ibge);
     }
-  }
+  },
 };
 </script>

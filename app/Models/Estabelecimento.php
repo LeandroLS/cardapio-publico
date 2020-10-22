@@ -9,4 +9,8 @@ class Estabelecimento extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+
+    public function contatos(){
+        return $this->hasMany('App\Models\EstabelecimentoContato');
+    }
 }

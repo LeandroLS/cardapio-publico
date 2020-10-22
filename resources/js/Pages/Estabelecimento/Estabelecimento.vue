@@ -11,16 +11,20 @@
           <jet-button>Salvar</jet-button>
         </form>
         <estabelecimento-localizacao :localizacao="estabelecimento"></estabelecimento-localizacao>
+        <estabelecimento-contato :contatos="estabelecimento.contatos"></estabelecimento-contato>
+
       </div>
     </div>
   </app-layout>
 </template>
 
 <script>
-import AppLayout from "../Layouts/AppLayout";
-import JetButton from "../Jetstream/Button";
-import JetInput from "../Jetstream/Input";
+import AppLayout from "../../Layouts/AppLayout";
+import JetButton from "../../Jetstream/Button";
+import JetInput from "../../Jetstream/Input";
 import EstabelecimentoLocalizacao from "./EstabelecimentoLocalizacao";
+import EstabelecimentoContato from "./EstabelecimentoContato";
+
 
 export default {
   components: {
@@ -28,10 +32,12 @@ export default {
     JetButton,
     JetInput,
     EstabelecimentoLocalizacao,
+    EstabelecimentoContato
   },
 
   props: {
     errors: Object,
+    contatos: [],
     estabelecimento: {
       type: Object,
       default: function () {
@@ -41,12 +47,6 @@ export default {
         };
       },
     },
-  },
-
-  data() {
-    return {
-      estabelecimentoData: {},
-    };
   },
 
   methods: {
