@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{CardapioCategoriaController, CardapioController, CategoriaItemController, EstabelecimentoContatoController, EstabelecimentoController, MunicipioController};
+use App\Http\Controllers\{CardapioCategoriaController, CardapioController, EstabelecimentoAtendimentoController, CategoriaItemController, EstabelecimentoContatoController, EstabelecimentoController, MunicipioController};
 
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +26,18 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/cardapio', [CardapioController::class, 'index'])->name('cardapio');
     Route::get('/municipio', [MunicipioController::class, 'getMunicipio'])->name('municipio');
 
-    Route::post('/estabelecimento/contato', [EstabelecimentoContatoController::class, 'store'])->name('estabelecimento.contato');
-    Route::post('/estabelecimento/contato/destroy', [EstabelecimentoContatoController::class, 'destroy'])->name('estabelecimento.contato.destroy');
+  
     
     Route::get('/estabelecimento', [EstabelecimentoController::class, 'index'])->name('estabelecimento');
     Route::post('/estabelecimento', [EstabelecimentoController::class, 'store'])->name('estabelecimento.store');
     
+    Route::post('/estabelecimento/contato', [EstabelecimentoContatoController::class, 'store'])->name('estabelecimento.contato');
+    Route::post('/estabelecimento/contato/destroy', [EstabelecimentoContatoController::class, 'destroy'])->name('estabelecimento.contato.destroy');
+
+    Route::post('/estabelecimento/horario-atendimento', [EstabelecimentoAtendimentoController::class, 'store'])->name('estabelecimento.horario-atendimento');
+    Route::post('/estabelecimento/horario-atendimento/destroy', [EstabelecimentoAtendimentoController::class, 'destroy'])->name('estabelecimento.horario-atendimento.destroy');
+
+
     Route::post('/categoria-cardapio', [CardapioCategoriaController::class, 'store'])->name('cardapio.store');
     Route::post('/categoria-cardapio/destroy', [CardapioCategoriaController::class, 'destroy'])->name('cardapio.destroy');
     Route::post('/categoria-cardapio/update', [CardapioCategoriaController::class, 'update'])->name('cardapio.update');

@@ -8,7 +8,10 @@ use App\Models\{Estabelecimento, Municipio};
 class EstabelecimentoController extends Controller
 {
     public function index(){
-        $estabelecimento = Estabelecimento::where('user_id', \Auth::user()->id)->with('contatos')->first();
+        $estabelecimento = Estabelecimento::where('user_id', \Auth::user()->id)
+        ->with('contatos')
+        ->with('diasAtendimento')
+        ->first();
         if($estabelecimento){
             return Inertia::render('Estabelecimento/Estabelecimento', [
                 'estabelecimento' => $estabelecimento,

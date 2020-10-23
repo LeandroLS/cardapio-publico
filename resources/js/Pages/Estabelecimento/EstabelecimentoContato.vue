@@ -31,6 +31,9 @@ export default {
   props: {
     contatos: {
       type: Array,
+      default: function () {
+        return [];
+      }
     },
   },
   data() {

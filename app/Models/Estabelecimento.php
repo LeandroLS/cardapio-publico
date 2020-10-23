@@ -13,4 +13,12 @@ class Estabelecimento extends Model
     public function contatos(){
         return $this->hasMany('App\Models\EstabelecimentoContato');
     }
+
+    public function horarios(){
+        return $this->hasMany('App\Models\EstabelecimentoDiasAtendimento');
+    }
+
+    public function diasAtendimento(){
+        return $this->hasMany('App\Models\EstabelecimentoDiasAtendimento');
+    }
 }

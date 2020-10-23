@@ -2,7 +2,7 @@
   <app-layout>
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Categoria do Cardápio
+        Categorias e Pratos do Cardápio
       </h2>
     </template>
     <div class="container">
