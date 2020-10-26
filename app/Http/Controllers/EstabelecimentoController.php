@@ -8,8 +8,7 @@ use App\Models\{Estabelecimento, Municipio};
 class EstabelecimentoController extends Controller
 {
     public function index(){
-        $estabelecimento = Estabelecimento::where('user_id', \Auth::user()->id)
-        ->with('contatos')
+        $estabelecimento = Estabelecimento::with('contatos')
         ->with('diasAtendimento')
         ->first();
         if($estabelecimento){

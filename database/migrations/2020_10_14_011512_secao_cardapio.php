@@ -15,6 +15,8 @@ class SecaoCardapio extends Migration
     {
         Schema::create('cardapio_categorias', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('estabelecimento_id');
+            $table->foreign('estabelecimento_id')->references('id')->on('estabelecimentos')->onDelete('cascade');
             $table->text('nome');
             $table->timestamps();
         });

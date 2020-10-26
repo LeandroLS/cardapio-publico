@@ -17,6 +17,9 @@
                             <jet-nav-link :href="route('dashboard')" :active="$page.currentRouteName == 'dashboard'">
                                 Dashboard
                             </jet-nav-link>
+                            <jet-nav-link>
+                                Visualizar Cardapio
+                            </jet-nav-link>
                              <jet-nav-link :href="route('estabelecimento')" :active="$page.currentRouteName == 'estabelecimento'">
                                 Estabelecimento
                             </jet-nav-link>
@@ -224,6 +227,8 @@
     import JetDropdownLink from './../Jetstream/DropdownLink'
     import JetNavLink from './../Jetstream/NavLink'
     import JetResponsiveNavLink from './../Jetstream/ResponsiveNavLink'
+    import JetButton from './../Jetstream/Button'
+
 
     export default {
         components: {
@@ -233,6 +238,7 @@
             JetDropdownLink,
             JetNavLink,
             JetResponsiveNavLink,
+            JetButton
         },
 
         data() {

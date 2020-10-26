@@ -17,8 +17,12 @@ class DatabaseSeeder extends Seeder
             EstadosSeeder::class,
             MunicipiosSeeder::class
         ]);
-        \App\Models\CardapioCategoria::factory()->times(10)
-            ->hasItens(3)
-            ->create();
+        \App\Models\User::factory()->times(10)
+            ->has(
+                \App\Models\Estabelecimento::factory()->has(
+                    \App\Models\CardapioCategoria::factory()->count(10)
+                    ->hasItens(3)
+                )->count(1)
+            )->create();
     }
 }

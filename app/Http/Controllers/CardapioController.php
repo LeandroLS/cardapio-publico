@@ -11,6 +11,9 @@ class CardapioController extends Controller
 {
     public function index()
     {
+        if(!\Auth::user()->estabelecimento()->exists()){
+            dd('preencha o estabelecimento primeiro');
+        }
         $categorias = CardapioCategoria::with('itens')->get();
         return Inertia::render('Cardapio/Cardapio', [
             'categorias' => $categorias

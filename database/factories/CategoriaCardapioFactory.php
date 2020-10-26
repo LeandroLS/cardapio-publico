@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\CardapioCategoria;
+use App\Models\{CardapioCategoria, Estabelecimento};
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CardapioCategoriaFactory extends Factory
@@ -22,7 +22,8 @@ class CardapioCategoriaFactory extends Factory
     public function definition()
     {
         return [
-            'nome' => $this->faker->name
+            'nome' => $this->faker->name,
+            'estabelecimento_id' => Estabelecimento::factory()
         ];
     }
 }

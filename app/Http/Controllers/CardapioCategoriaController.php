@@ -7,20 +7,16 @@ use Illuminate\Http\Request;
 
 class CardapioCategoriaController extends Controller
 {
-    public function index()
-    {
-        $categorias = CardapioCategoria::all();
-        return Inertia::render('Cardapio/CardapioCategoria', [
-            'categorias' => $categorias
-        ]);
-    }
 
-     public function store(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'nome' => ['required'],
         ]);
-        CardapioCategoria::create($request->all());
+        $cardapioCategoria = new CardapioCategoria();
+        $cardapioCategoria->nome = $request->nome;
+        $cardapioCategoria->estabelecimento_id = \Auth::user()->estabelecimento->id;
+        $cardapioCategoria->save();
         return Redirect::route('cardapio');
     }
     public function update(Request $request){

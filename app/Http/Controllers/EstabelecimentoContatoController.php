@@ -12,7 +12,6 @@ class EstabelecimentoContatoController extends Controller
             'contato' => 'required',
             'tipo_contato' => 'required',
         ]);
-        // dd(\Auth::user()->estabelecimento->id);
         $contato = new EstabelecimentoContato;
         $contato->estabelecimento_id = \Auth::user()->estabelecimento->id;
         $contato->contato = $request->contato;
