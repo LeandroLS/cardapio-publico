@@ -24,9 +24,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     })->name('dashboard');
 
     Route::get('/cardapio', [CardapioController::class, 'index'])->name('cardapio');
-    // Route::get('/{estabelecimento?}', function(){
-    //     return 'aqui';
-    // });
+    Route::get('/{?}', function(){
+        return 'aqui';
+    });
     Route::get('/cardapio', [CardapioController::class, 'index'])->name('cardapio');
     
     Route::get('/municipio', [MunicipioController::class, 'getMunicipio'])->name('municipio');

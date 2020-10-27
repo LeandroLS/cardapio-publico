@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\{Estabelecimento, User, Municipio};
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Http\Controllers\EstabelecimentoController;
 
 class EstabelecimentoFactory extends Factory
 {
@@ -23,6 +24,7 @@ class EstabelecimentoFactory extends Factory
     {
         return [
             'nome' => $this->faker->name,
+            'url' => EstabelecimentoController::nameToUrl($this->faker->name),
             'descricao' => $this->faker->sentence,
             'user_id' => User::factory(),
             'codigo_ibge' => Municipio::inRandomOrder()->first()->codigo_ibge,
