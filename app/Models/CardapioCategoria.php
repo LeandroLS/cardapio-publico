@@ -15,8 +15,9 @@ class CardapioCategoria extends Model
         static::addGlobalScope('estabelecimento_id', function (Builder $builder) {
             if(\Auth::user()->estabelecimento()->exists()){
                 $builder->where('estabelecimento_id', '=', \Auth::user()->estabelecimento->id);
+            } else {
+                $builder->where('estabelecimento_id', '=', null);
             }
-            $builder->where('estabelecimento_id', '=', null);
         });
     }
      public function itens()

@@ -7,7 +7,10 @@
     </template>
     <div>
       <div class="container">
-        <form @submit.prevent="store()">
+        <form @submit.prevent="store()" enctype="multipart/form-data">
+          <label for="">Imagem</label>
+          <input type="file" name="logo">
+          <input type="text" required v-model="estabelecimento.nome" />
           <label for="">Nome do Estabelecimento</label>
           <input type="text" required v-model="estabelecimento.nome" />
           <div v-if="errors.nome">{{ errors.nome }}</div>

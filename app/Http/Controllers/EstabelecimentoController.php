@@ -29,21 +29,35 @@ class EstabelecimentoController extends Controller
     }
 
     public function store(Request $request){
-        $request->validate(['nome' => 'required']);
-        $url = $this->nameToUrl($request->nome);
-        Estabelecimento::updateOrCreate(
-            ['user_id' => \Auth::user()->id],
-            [
+        $request->validate([
+            'nome' => 'required',
+            'logo' => 'mimes:jpeg,jpg,png'
+        ]);
+        $estabelecimento = Estabelecimento::where('user_id', \Auth::user()->id)->first();
+        if($estabelecimento){
+            $estabelecimento->nome = $request->nome;
+            $estabelecimento->descricao = $request->descricao;
+            $estabelecimento->cep = $request->cep;
+            $estabelecimento->endereco = $request->endereco;
+            $estabelecimento->numero = $request->numero;
+            $estabelecimento->codigo_ibge = $request->codigo_ibge;
+            $estabelecimento->bairro = $request->bairro;
+            $estabelecimento->save();
+        } else {
+            $url = $this->nameToUrl($request->nome);
+            Estabelecimento::create([
                 'nome' => $request->nome,
                 'descricao' => $request->descricao,
-                'url' => $url,
                 'cep' => $request->cep,
+                'user_id' => \Auth::user()->id,
+                'url' => $url,
                 'endereco' => $request->endereco,
                 'numero' => $request->numero,
                 'codigo_ibge' => $request->codigo_ibge,
                 'bairro' => $request->bairro,
-            ]
-        );
+            ]);
+        }
+       
         return Redirect::route('estabelecimento');
     }
 
