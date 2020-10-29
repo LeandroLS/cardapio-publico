@@ -1,65 +1,52 @@
 <template>
-  <div class="w-full">
-    <form
-      @submit.prevent="store()"
-      class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-    >
-      <div class="mb-4">
-        <label
-          class="block text-gray-700 text-sm font-bold mb-2"
-          for="username"
-        >
-          CEP
-        </label>
-        <input
+  <jet-form-section>
+    <template #title> Localização </template>
+
+    <template #description>
+      Informe a localização do seu estabelecimento
+    </template>
+    <template #form>
+      <div class="col-span-6 sm:col-span-4">
+        <jet-label for="name" value="CEP" />
+        <jet-input
+          id="cep"
           v-mask="'#####-###'"
           v-model="localizacao.cep"
-          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="username"
           type="text"
-          placeholder=""
+          class="mt-1 block w-full"
         />
       </div>
-      <div class="mb-6">
-        <label
-          class="block text-gray-700 text-sm font-bold mb-2"
-          for="password"
-        >
-          Endereço
-        </label>
-        <input
+
+      <div class="col-span-6 sm:col-span-4">
+        <jet-label for="endereco" value="Endereço" />
+        <jet-input
+          id="endereco"
+          type="text"
+          class="mt-1 block w-full"
           v-model="localizacao.endereco"
-          class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-          id="password"
         />
-        <label
-          class="block text-gray-700 text-sm font-bold mb-2"
-          for="password"
-        >
-          Número
-        </label>
-        <input
+      </div>
+      <div class="col-span-6 sm:col-span-4">
+        <jet-label for="numero" value="Número" />
+        <jet-input
+          id="numero"
+          type="text"
+          class="mt-1 block w-full"
           v-model="localizacao.numero"
-          class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-          id="password"
         />
-        <label
-          class="block text-gray-700 text-sm font-bold mb-2"
-          for="password"
-        >
-          Bairro
-        </label>
-        <input
+      </div>
+      <div class="col-span-6 sm:col-span-4">
+        <jet-label for="bairro" value="Bairro" />
+        <jet-input
+          id="bairro"
+          type="text"
+          class="mt-1 block w-full"
           v-model="localizacao.bairro"
-          class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-          id="password"
         />
-        <label
-          class="block text-gray-700 text-sm font-bold mb-2"
-          for="password"
-        >
-          Cidade
-        </label>
+      </div>
+      <div class="col-span-6 sm:col-span-4">
+        <jet-label for="bairro" value="Cidade" />
+
         <v-select
           @search="getMunicipios"
           v-model="municipios[0]"
@@ -71,19 +58,27 @@
           <span slot="no-options">Digite 3 ou mais caracteres. </span></v-select
         >
       </div>
-      <jet-button>Salvar</jet-button>
-    </form>
-  </div>
+    </template>
+    <template #actions>
+      <jet-button> Salvar </jet-button>
+    </template>
+  </jet-form-section>
 </template>
 <script>
-import { mask } from "vue-the-mask";
+import JetFormSection from "./../../Jetstream/FormSection";
 import JetButton from "../../Jetstream/Button";
+import JetInput from "./../../Jetstream/Input";
+import JetLabel from "./../../Jetstream/Label";
+import { mask } from "vue-the-mask";
 import vSelect from "vue-select";
 import "vue-select/dist/vue-select.css";
 export default {
   components: {
     JetButton,
     vSelect,
+    JetFormSection,
+    JetInput,
+    JetLabel,
   },
   directives: { mask },
   data() {
