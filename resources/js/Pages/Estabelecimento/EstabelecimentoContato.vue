@@ -22,25 +22,21 @@
           <jet-button @click="remove(contato.id)"> Remover </jet-button>
         </div>
 
-        <select
-          class="mt-1 block w-full"
-          v-model="contato.tipo_contato"
-        >
-          <option value="">Selecione</option>
+        <!-- Name -->
+      </div>
+      <div class="col-span-6 sm:col-span-2">
+        <select class="px-3 py-2 w-full border rounded-md shadow-sm" v-model="contato.tipo_contato">
+          <option value="" selected>Selecione</option>
           <option v-for="(tipo, index) in tiposContato" :key="index">
             {{ tipo }}
           </option>
         </select>
-        <jet-input
-          type="text"
-          class="mt-1 block w-full"
-          v-model="contato.contato"
-        />
-
-        <jet-button> Adicionar </jet-button>
-
-        <!-- Name -->
       </div>
+      <div class="col-span-6 sm:col-span-2">
+        <jet-input type="text" v-model="contato.contato"/>
+      </div>
+
+      <jet-button> Salvar </jet-button>
     </template>
   </jet-form-section>
 </template>
