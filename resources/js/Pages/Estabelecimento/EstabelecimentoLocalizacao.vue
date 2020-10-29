@@ -1,7 +1,6 @@
 <template>
   <jet-form-section>
     <template #title> Localização </template>
-
     <template #description>
       Informe a localização do seu estabelecimento
     </template>
