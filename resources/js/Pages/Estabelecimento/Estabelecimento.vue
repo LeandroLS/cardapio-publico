@@ -5,21 +5,26 @@
         Informações do Estabelecimento
       </h2>
     </template>
-    <div>
-      <div class="container">
-        <estabelecimento-informacoes
-          :user="$page.user" :estabelecimento="estabelecimento"
-        ></estabelecimento-informacoes>
-        <estabelecimento-localizacao
-          :localizacao="estabelecimento"
-        ></estabelecimento-localizacao>
-        <estabelecimento-contato
-          :contatos="estabelecimento.contatos"
-        ></estabelecimento-contato>
-        <estabelecimento-dias-atendimento
-          :diasAtendimento="estabelecimento.dias_atendimento"
-        ></estabelecimento-dias-atendimento>
-      </div>
+
+    <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+      <estabelecimento-informacoes
+        :user="$page.user"
+        :estabelecimento="estabelecimento"
+        :errors="errors"
+
+      ></estabelecimento-informacoes>
+      <jet-section-border />
+      <estabelecimento-localizacao class="mt-10"
+        :localizacao="estabelecimento"
+      ></estabelecimento-localizacao>
+      <jet-section-border />
+      <estabelecimento-contato class="mt-10"
+        :contatos="estabelecimento.contatos"
+      ></estabelecimento-contato>
+      <jet-section-border />
+      <estabelecimento-dias-atendimento class="mt-10"
+        :diasAtendimento="estabelecimento.dias_atendimento"
+      ></estabelecimento-dias-atendimento>
     </div>
   </app-layout>
 </template>
@@ -32,6 +37,7 @@ import EstabelecimentoLocalizacao from "./EstabelecimentoLocalizacao";
 import EstabelecimentoContato from "./EstabelecimentoContato";
 import EstabelecimentoDiasAtendimento from "./EstabelecimentoDiasAtendimento";
 import EstabelecimentoInformacoes from "./EstabelecimentoInformacoes.vue";
+import JetSectionBorder from "./../../Jetstream/SectionBorder";
 
 export default {
   components: {
@@ -42,10 +48,11 @@ export default {
     EstabelecimentoContato,
     EstabelecimentoDiasAtendimento,
     EstabelecimentoInformacoes,
+    JetSectionBorder,
   },
 
   props: {
-    contatos: [],
+    errors: Object,
     estabelecimento: {
       type: Object,
       default: function () {
