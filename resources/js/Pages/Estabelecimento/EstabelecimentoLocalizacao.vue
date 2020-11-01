@@ -1,5 +1,5 @@
 <template>
-  <jet-form-section>
+  <jet-form-section @submitted="updateEstabelecimentoLocalizacao">
     <template #title> Localização </template>
     <template #description>
       Informe a localização do seu estabelecimento
@@ -71,6 +71,7 @@ import JetLabel from "./../../Jetstream/Label";
 import { mask } from "vue-the-mask";
 import vSelect from "vue-select";
 import "vue-select/dist/vue-select.css";
+import VueToastedOptions from '../../Modules/vue-toasted-options';
 export default {
   components: {
     JetButton,
@@ -100,10 +101,13 @@ export default {
     },
   },
   methods: {
-    store() {
+    updateEstabelecimentoLocalizacao() {
       this.localizacao.codigo_ibge = this.municipios[0].codigo_ibge;
       this.$inertia.post("/estabelecimento", this.localizacao, {
         preserveScroll: true,
+        onSuccess: (page) => {
+          this.$toasted.show("Informações Salvas.", VueToastedOptions.success);
+        },
       });
     },
     async getMunicipios(text, loading) {

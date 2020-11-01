@@ -113,6 +113,7 @@ import JetInputError from "./../../Jetstream/InputError";
 import JetLabel from "./../../Jetstream/Label";
 import JetActionMessage from "./../../Jetstream/ActionMessage";
 import JetSecondaryButton from "./../../Jetstream/SecondaryButton";
+import VueToastedOptions from '../../Modules/vue-toasted-options';
 
 export default {
   components: {
@@ -157,9 +158,11 @@ export default {
       if (this.$refs.photo) {
         this.form.photo = this.$refs.photo.files[0];
       }
-
       this.form.post(route("estabelecimento.store"), {
         preserveScroll: true,
+        onSuccess: (page) => {
+          this.$toasted.show("Informações Salvas.", VueToastedOptions.success);
+        },
       });
     },
 

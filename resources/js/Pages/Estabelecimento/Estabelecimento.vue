@@ -11,18 +11,20 @@
         :user="$page.user"
         :estabelecimento="estabelecimento"
         :errors="errors"
-
       ></estabelecimento-informacoes>
       <jet-section-border />
-      <estabelecimento-localizacao class="mt-10"
+      <estabelecimento-localizacao
+        class="mt-10"
         :localizacao="estabelecimento"
       ></estabelecimento-localizacao>
       <jet-section-border />
-      <estabelecimento-contato class="mt-10"
+      <estabelecimento-contato
+        class="mt-10"
         :contatos="estabelecimento.contatos"
       ></estabelecimento-contato>
       <jet-section-border />
-      <estabelecimento-dias-atendimento class="mt-10"
+      <estabelecimento-dias-atendimento
+        class="mt-10"
         :diasAtendimento="estabelecimento.dias_atendimento"
       ></estabelecimento-dias-atendimento>
     </div>

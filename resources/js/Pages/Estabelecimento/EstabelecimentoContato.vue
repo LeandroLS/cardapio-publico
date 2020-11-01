@@ -1,20 +1,12 @@
 <template>
-  <jet-form-section>
+  <jet-form-section @submitted="updateEstabelecimentoContato">
     <template #title> Informações de Contato </template>
 
     <template #description> Atualize as informações de contato </template>
 
     <template #form>
       <template v-if="contatos.length >= 1">
-        <template v-for="(contato, index) in contatos" >
-          <div class="col-span-6 sm:col-span-2">
-            <jet-input
-              type="text"
-              class="mt-1 block w-full"
-              :value="contato.contato"
-              :disabled="true"
-            />
-          </div>
+        <template v-for="(contato, index) in contatos">
           <div class="col-span-6 sm:col-span-2">
             <jet-input
               type="text"
@@ -24,7 +16,17 @@
             />
           </div>
           <div class="col-span-6 sm:col-span-2">
-            <jet-button @click="remove(contato.id)"> Remover </jet-button>
+            <jet-input
+              type="text"
+              class="mt-1 block w-full"
+              :value="contato.contato"
+              :disabled="true"
+            />
+          </div>
+          <div class="col-span-6 sm:col-span-2">
+            <jet-button :type="'button'" @clicked="remove(contato.id)">
+              Remover
+            </jet-button>
           </div>
         </template>
       </template>
@@ -53,6 +55,7 @@ import JetFormSection from "./../../Jetstream/FormSection";
 import JetButton from "../../Jetstream/Button";
 import JetInput from "./../../Jetstream/Input";
 import JetLabel from "./../../Jetstream/Label";
+import VueToastedOptions from "../../Modules/vue-toasted-options";
 
 export default {
   components: {
@@ -79,17 +82,27 @@ export default {
     };
   },
   methods: {
-    store() {
+    updateEstabelecimentoContato() {
       this.$inertia.post("/estabelecimento/contato", this.contato, {
         preserveScroll: true,
+        onSuccess: (page) => {
+          this.$toasted.show("Informações Salvas.", VueToastedOptions.success);
+        },
       });
     },
     remove(id) {
+      console.log("aqui");
       this.$inertia.post(
         "/estabelecimento/contato/destroy",
         { id: id },
         {
           preserveScroll: true,
+          onSuccess: (page) => {
+            this.$toasted.show(
+              "Informação de contato excluída.",
+              VueToastedOptions.success
+            );
+          },
         }
       );
     },
