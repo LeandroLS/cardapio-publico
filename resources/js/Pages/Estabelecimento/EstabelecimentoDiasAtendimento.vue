@@ -7,13 +7,20 @@
     <template #form>
       <template v-if="diasAtendimento.length >= 1">
         <template v-for="(dia, index) in diasAtendimento">
-          <input type="text" :value="dia.dia_semana" />
-          <input type="text" :value="dia.abre" />
-          <input type="text" :value="dia.fecha" />
-          <button @click="remove(dia.id)">Remove</button>
+          <div
+            class="flex items-center border-b border-grey-500 py-2 col-span-6 sm:col-span-6"
+            :key="index"
+          >
+            <input type="text" class="appearance-none bg-transparent border-none smt-1 block w-full" disabled :value="dia.dia_semana" />
+            <input type="text" class="appearance-none bg-transparent border-none smt-1 block w-full" disabled :value="dia.abre" />
+            <input type="text" class="appearance-none bg-transparent border-none smt-1 block w-full" disabled :value="dia.fecha" />
+            <jet-button :type="'button'" @clicked="remove(dia.id)">
+              del
+            </jet-button>
+          </div>
         </template>
       </template>
-      <div class="col-span-6 sm:col-span-2">
+      <div class="col-span-6 sm:col-span-2 mt-3">
         <jet-label>Dia Semana</jet-label>
         <select
           class="px-3 py-2 w-full border rounded-md shadow-sm"
@@ -24,17 +31,17 @@
             {{ dia }}
           </option>
         </select>
-        <jet-input-error :message="form.error('dia_semana')" class="mt-2" />
+        <jet-input-error :message="errors.dia_semana" class="mt-2" />
       </div>
-      <div class="col-span-6 sm:col-span-2">
+      <div class="col-span-6 sm:col-span-2 mt-3">
         <jet-label>Abre às</jet-label>
         <jet-input type="text" v-model="form.abre" />
-        <jet-input-error :message="form.error('abre')" class="mt-2" />
+        <jet-input-error :message="errors.abre" class="mt-2" />
       </div>
-      <div class="col-span-6 sm:col-span-2">
+      <div class="col-span-6 sm:col-span-2 mt-3">
         <jet-label>Fecha às</jet-label>
         <jet-input type="text" v-model="form.fecha" />
-        <jet-input-error :message="form.error('fecha')" class="mt-2" />
+        <jet-input-error :message="errors.fecha" class="mt-2" />
       </div>
     </template>
     <template #actions>
@@ -57,6 +64,7 @@ export default {
         return [];
       },
     },
+    errors: Object,
   },
   components: {
     JetFormSection,
@@ -96,7 +104,7 @@ export default {
       this.form.post("/estabelecimento/horario-atendimento", {
         preserveScroll: true,
         onSuccess: (page) => {
-          if (!this.form.errors()) {
+          if (Object.keys(this.errors).length == 0) {
             this.$toasted.show(
               "Informações Salvas.",
               VueToastedOptions.success
@@ -112,12 +120,10 @@ export default {
         {
           preserveScroll: true,
           onSuccess: (page) => {
-            if (!this.form.errors()) {
-              this.$toasted.show(
-                "Informações Salvas.",
-                VueToastedOptions.success
-              );
-            }
+            this.$toasted.show(
+              "Dia de atendimento removido.",
+              VueToastedOptions.success
+            );
           },
         }
       );

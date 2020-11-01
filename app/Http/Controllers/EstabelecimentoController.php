@@ -31,7 +31,7 @@ class EstabelecimentoController extends Controller
     public function store(Request $request){
         $request->validate([
             'nome' => 'required',
-            'logo' => 'mimes:jpeg,jpg,png'
+            'photo' => ['nullable','image', 'max:2048']
         ]);
         $estabelecimento = Estabelecimento::where('user_id', \Auth::user()->id)->first();
         if($estabelecimento){
@@ -56,6 +56,9 @@ class EstabelecimentoController extends Controller
                 'codigo_ibge' => $request->codigo_ibge,
                 'bairro' => $request->bairro,
             ]);
+        }
+        if($request->hasFile('photo')){
+            \Auth::user()->updateProfilePhoto($request->file('photo'));
         }
        
         return Redirect::route('estabelecimento');

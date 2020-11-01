@@ -21,11 +21,13 @@
       <estabelecimento-contato
         class="mt-10"
         :contatos="estabelecimento.contatos"
+        :errors="errors"
       ></estabelecimento-contato>
       <jet-section-border />
       <estabelecimento-dias-atendimento
         class="mt-10"
         :diasAtendimento="estabelecimento.dias_atendimento"
+        :errors="errors"
       ></estabelecimento-dias-atendimento>
     </div>
   </app-layout>
