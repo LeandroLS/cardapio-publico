@@ -20,7 +20,7 @@
           @change="updatePhotoPreview"
         />
 
-        <jet-label for="photo" value="Photo" />
+        <jet-label for="photo" value="Logo" />
 
         <!-- Current Profile Photo -->
         <div class="mt-2" v-show="!photoPreview">
@@ -49,7 +49,7 @@
           type="button"
           @click.native.prevent="selectNewPhoto"
         >
-          Selecionar uma nova foto
+          Nova Foto
         </jet-secondary-button>
 
         <jet-secondary-button
