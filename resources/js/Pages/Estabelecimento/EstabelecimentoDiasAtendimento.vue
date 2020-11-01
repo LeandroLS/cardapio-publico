@@ -1,7 +1,6 @@
 <template>
-  <jet-form-section>
+  <jet-form-section @submitted="updateDiasAtendimento">
     <template #title> Dias de Atendimento </template>
-
     <template #description>
       Atualize os dias de atendimento do estabelecimento
     </template>
@@ -14,24 +13,28 @@
           <button @click="remove(dia.id)">Remove</button>
         </template>
       </template>
-
       <div class="col-span-6 sm:col-span-2">
+        <jet-label>Dia Semana</jet-label>
         <select
           class="px-3 py-2 w-full border rounded-md shadow-sm"
-          v-model="atendimento.dia_semana"
+          v-model="form.dia_semana"
         >
           <option value="">Selecione</option>
           <option v-for="(dia, index) in diasSemana" :key="index">
             {{ dia }}
           </option>
         </select>
-      </div>
-
-      <div class="col-span-6 sm:col-span-2">
-        <jet-input type="text" v-model="atendimento.abre" />
+        <jet-input-error :message="form.error('dia_semana')" class="mt-2" />
       </div>
       <div class="col-span-6 sm:col-span-2">
-        <jet-input type="text" v-model="atendimento.fecha" />
+        <jet-label>Abre às</jet-label>
+        <jet-input type="text" v-model="form.abre" />
+        <jet-input-error :message="form.error('abre')" class="mt-2" />
+      </div>
+      <div class="col-span-6 sm:col-span-2">
+        <jet-label>Fecha às</jet-label>
+        <jet-input type="text" v-model="form.fecha" />
+        <jet-input-error :message="form.error('fecha')" class="mt-2" />
       </div>
     </template>
     <template #actions>
@@ -39,12 +42,13 @@
     </template>
   </jet-form-section>
 </template>
-
 <script>
 import JetFormSection from "./../../Jetstream/FormSection";
 import JetButton from "../../Jetstream/Button";
 import JetInput from "./../../Jetstream/Input";
 import JetLabel from "./../../Jetstream/Label";
+import VueToastedOptions from "../../Modules/vue-toasted-options";
+import JetInputError from "./../../Jetstream/InputError";
 export default {
   props: {
     diasAtendimento: {
@@ -59,14 +63,20 @@ export default {
     JetInput,
     JetLabel,
     JetButton,
+    JetInputError,
   },
   data() {
     return {
-      atendimento: {
-        dia_semana: null,
-        abre: null,
-        fecha: null,
-      },
+      form: this.$inertia.form(
+        {
+          dia_semana: "",
+          abre: null,
+          fecha: null,
+        },
+        {
+          resetOnSuccess: true,
+        }
+      ),
       diasSemana: [
         "Segunda-feira",
         "Terça-feira",
@@ -82,14 +92,18 @@ export default {
     };
   },
   methods: {
-    store() {
-      this.$inertia.post(
-        "/estabelecimento/horario-atendimento",
-        this.atendimento,
-        {
-          preserveScroll: true,
-        }
-      );
+    updateDiasAtendimento() {
+      this.form.post("/estabelecimento/horario-atendimento", {
+        preserveScroll: true,
+        onSuccess: (page) => {
+          if (!this.form.errors()) {
+            this.$toasted.show(
+              "Informações Salvas.",
+              VueToastedOptions.success
+            );
+          }
+        },
+      });
     },
     remove(id) {
       this.$inertia.post(
@@ -97,6 +111,14 @@ export default {
         { id: id },
         {
           preserveScroll: true,
+          onSuccess: (page) => {
+            if (!this.form.errors()) {
+              this.$toasted.show(
+                "Informações Salvas.",
+                VueToastedOptions.success
+              );
+            }
+          },
         }
       );
     },

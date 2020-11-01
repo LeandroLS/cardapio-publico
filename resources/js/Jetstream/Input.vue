@@ -1,17 +1,12 @@
 <template>
-    <input class="form-input w-full rounded-md shadow-sm" :value="value" @input="$emit('input', $event.target.value)" ref="input">
+    <input class="form-input w-full rounded-md shadow-sm" :placeholder="placeholder" :value="value" @input="$emit('input', $event.target.value)" ref="input">
 </template>
 
 <script>
     export default {
         props: {
             value: [String, Number],
-            disabled: {
-                type: Boolean,
-                default: function(){
-                    return false;
-                }
-            }
+            placeholder: String
         },
 
         methods: {

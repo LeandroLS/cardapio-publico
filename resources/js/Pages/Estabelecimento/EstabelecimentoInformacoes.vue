@@ -69,12 +69,12 @@
         <jet-label for="nome" value="Nome do Estabelecimento" />
         <jet-input
           id="nome"
-          required
           type="text"
           class="mt-1 block w-full"
           v-model="form.nome"
           autocomplete="nome"
         />
+        <!-- <jet-input-error :message="form.error('nome')" class="mt-2" /> -->
         <jet-input-error :message="errors.nome" class="mt-2" />
       </div>
 
@@ -91,10 +91,6 @@
     </template>
 
     <template #actions>
-      <jet-action-message :on="form.recentlySuccessful" class="mr-3">
-        Salvo.
-      </jet-action-message>
-
       <jet-button
         :class="{ 'opacity-25': form.processing }"
         :disabled="form.processing"
@@ -132,7 +128,6 @@ export default {
     return {
       form: this.$inertia.form(
         {
-          _method: "POST",
           nome: this.estabelecimento.nome,
           descricao: this.estabelecimento.descricao,
           photo: null,
@@ -146,13 +141,7 @@ export default {
       photoPreview: null,
     };
   },
-  watch: {
-    form: function () {
-      if (this.form.recentlySuccessful) {
-        console.log("acabou de dar certo");
-      }
-    },
-  },
+
   methods: {
     updateProfileInformation() {
       if (this.$refs.photo) {
@@ -161,7 +150,9 @@ export default {
       this.form.post(route("estabelecimento.store"), {
         preserveScroll: true,
         onSuccess: (page) => {
-          this.$toasted.show("Informações Salvas.", VueToastedOptions.success);
+          if(Object.keys(this.errors).length == 0){
+            this.$toasted.show("Informações Salvas.", VueToastedOptions.success);
+          }
         },
       });
     },
