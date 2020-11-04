@@ -34,7 +34,6 @@
         >
           Add
         </button>
-        <a href="#" class="card-link">Another link</a>
       </div>
     </div>
     <!-- Button trigger modal -->

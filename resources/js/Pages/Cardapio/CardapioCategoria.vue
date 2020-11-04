@@ -1,8 +1,8 @@
 <template>
-  <div class="w-full mt-4 bg-white">
+  <div class="w-full bg-white">
     <form @submit.prevent="updateCardapioCategoria">
       <div class="rounded-md overflow-hidden shadow-lg">
-        <div class="my-3 mx-3 text-center">
+        <div class="my-3 mx-3 text-center border-b border-grey-500 cursor-pointer mx-2 my-2">
           <div class="font-bold text-xl mb-2">Categorias do Cardápio</div>
         </div>
 

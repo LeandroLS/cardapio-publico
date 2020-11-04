@@ -5,14 +5,14 @@
         Categorias e Pratos do Cardápio
       </h2>
     </template>
-    <div class="flex mx-4 my-4">
-      <div class="w-2/6">
+    <div class="flex">
+      <div class="w-2/6 mx-4 my-4">
         <cardapio-categoria
           :categorias="categorias"
           :errors="errors"
         ></cardapio-categoria>
       </div>
-      <div class="w-4/6  mx-4 my-4">
+      <div class="w-4/6 mx-4 my-4">
         <categoria-itens
           :categorias="categorias"
           :errors="errors"
