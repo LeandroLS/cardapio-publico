@@ -1,63 +1,101 @@
 <template>
-  <div class="w-full bg-white shadow-lg mt-4 p-3 rounded">
-    <div class="flex-grow">
-      <h3 class="font-normal px-2 py-3 leading-tight">
-        Categorias do Cardápio
-      </h3>
-      <div class="w-full">
+  <div class="w-full mt-4 bg-white">
+    <form @submit.prevent="updateCardapioCategoria">
+      <div class="rounded-md overflow-hidden shadow-lg">
+        <div class="my-3 mx-3 text-center">
+          <div class="font-bold text-xl mb-2">Categorias do Cardápio</div>
+        </div>
+
         <div
           v-for="categoria in categorias"
           :key="categoria.id"
-          class="flex cursor-pointer my-1 hover:bg-blue-lightest rounded"
+          class="flex border-b border-grey-500 cursor-pointer mx-2 my-2"
         >
-          <div class="w-8 h-10 text-center py-1">
-            <p class="text-3xl p-0 text-green-dark">&bull;</p>
+          <div class="w-4/5 mx-2 mx-2 my-2">
+            <click-edit-input
+              @update="update(categoria, $event)"
+              :title="categoria.nome"
+            ></click-edit-input>
           </div>
-          <div class="w-4/5 h-10 py-3 px-1">
-            <p class="hover:text-blue-dark">
-              <click-edit-input
-                @update="update(categoria, $event)"
-                :title="categoria.nome"
-              ></click-edit-input>
-            </p>
-          </div>
-          <div class="w-1/5 h-10 text-right p-3">
+          <div class="w-1/5 text-right mx-2 mx-2 my-2">
             <form @submit.prevent="destroy(categoria.id)">
-              <button type="submit" class="text-sm text-grey-dark">
-                Excluir
-              </button>
+              <jet-button>
+                <svg
+                  class="h-5 w-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                  /></svg
+              ></jet-button>
             </form>
           </div>
         </div>
+
+        <div class="flex">
+          <div class="w-3/4">
+            <div class="mx-2 pt-2 pb-2">
+              <jet-input
+                v-model="form.nome"
+                :placeholder="'Ex: Bebidas, Doces'"
+              ></jet-input>
+              <jet-input-error :message="errors.nome" class="mt-2" />
+            </div>
+          </div>
+          <div class="w-1/4">
+            <div class="mx-2 pt-2 pb-2 h-5">
+              <jet-button
+                ><svg
+                  class="h-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  /></svg
+              ></jet-button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="w-full">
-        <form @submit.prevent="store">
-          <input
-            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            type="text"
-            placeholder="Ex: Bolos"
-            name="nome"
-            v-model="categoria.nome"
-          />
-          <div v-if="errors.nome">{{ errors.nome }}</div>
-          <button type="submit" class="btn btn-danger">Adicionar</button>
-        </form>
-      </div>
-    </div>
+    </form>
   </div>
 </template>
 
 <script>
 import ClickEditInput from "../../Components/ClickEditInput";
+import JetInput from "../../Jetstream/Input";
+import JetButton from "./../../Jetstream/Button";
+import VueToastedOptions from "../../Modules/vue-toasted-options";
+import JetInputError from "./../../Jetstream/InputError";
 export default {
   components: {
     ClickEditInput,
+    JetInput,
+    JetButton,
+    JetInputError,
   },
   data() {
     return {
-      categoria: {
-        nome: null,
-      },
+      form: this.$inertia.form(
+        {
+          nome: "",
+        },
+        {
+          resetOnSuccess: true,
+        }
+      ),
     };
   },
   methods: {
@@ -70,23 +108,40 @@ export default {
         }
       );
     },
-    store() {
-      // this.$inertia.visit(url, )
-      this.$inertia.post("/categoria-cardapio", this.categoria, {
+    updateCardapioCategoria() {
+      this.form.post("/categoria-cardapio", {
         preserveScroll: true,
+        onSuccess: (page) => {
+          if (Object.keys(this.errors).length == 0) {
+            this.$toasted.show(
+              "Categoria do cardápio salva.",
+              VueToastedOptions.success
+            );
+          } else {
+            this.$toasted.show(
+              "Verifique os campos obrigatórios.",
+              VueToastedOptions.danger
+            );
+          }
+        },
       });
     },
     destroy(id) {
       this.$inertia.post(
         "/categoria-cardapio/destroy",
         { id: id },
-        { preserveScroll: true }
+        {
+          preserveScroll: true,
+          onSuccess: (page) => {
+            if (Object.keys(this.errors).length == 0) {
+              this.$toasted.show(
+                "Categoria do cardápio removida.",
+                VueToastedOptions.success
+              );
+            }
+          },
+        }
       );
-      this.$toasted.show("Categoria removida!", {
-        theme: "toasted-primary",
-        position: "top-left",
-        duration: 5000,
-      });
     },
   },
 

@@ -5,20 +5,18 @@
         Categorias e Pratos do Cardápio
       </h2>
     </template>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <cardapio-categoria
-            :categorias="categorias"
-            :errors="errors"
-          ></cardapio-categoria>
-        </div>
-        <div class="col-md-8">
-          <categoria-itens
-            :categorias="categorias"
-            :errors="errors"
-          ></categoria-itens>
-        </div>
+    <div class="flex mx-4 my-4">
+      <div class="w-2/6">
+        <cardapio-categoria
+          :categorias="categorias"
+          :errors="errors"
+        ></cardapio-categoria>
+      </div>
+      <div class="w-4/6  mx-4 my-4">
+        <categoria-itens
+          :categorias="categorias"
+          :errors="errors"
+        ></categoria-itens>
       </div>
     </div>
   </app-layout>

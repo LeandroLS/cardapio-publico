@@ -49,7 +49,7 @@
           type="button"
           @click.native.prevent="selectNewPhoto"
         >
-          Nova Foto
+          Novo logo
         </jet-secondary-button>
 
         <jet-secondary-button
@@ -58,7 +58,7 @@
           @click.native.prevent="deletePhoto"
           v-if="user.profile_photo_path"
         >
-          Remover foto
+          Remover logo
         </jet-secondary-button>
 
         <jet-input-error :message="form.error('photo')" class="mt-2" />

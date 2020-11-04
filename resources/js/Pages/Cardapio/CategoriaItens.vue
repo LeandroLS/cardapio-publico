@@ -3,16 +3,10 @@
     <div
       v-for="categoria in categorias"
       :key="categoria.id"
-      class="card mt-4 shadow-lg"
-      style="width: 18rem"
+      class="card shadow-lg"
     >
       <div class="card-body">
         <h5 class="card-title">{{ categoria.nome }}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
         <ul class="list-group list-group-flush">
           <li
             data-toggle="modal"
@@ -30,7 +24,8 @@
             </form>
           </li>
         </ul>
-        <button @click="addCategoriaItem(categoria)"
+        <button
+          @click="addCategoriaItem(categoria)"
           type="button"
           href="#"
           class="card-link"
@@ -141,16 +136,16 @@ export default {
     };
   },
   methods: {
-    choseEditItem(item){
+    choseEditItem(item) {
       this.item = item;
       this.adding = false;
     },
-    addCategoriaItem(categoria){
+    addCategoriaItem(categoria) {
       this.item.cardapio_categoria_id = categoria.id;
       this.adding = true;
     },
     storeOrUpdate() {
-      if(this.adding){
+      if (this.adding) {
         this.$inertia.post("/categoria-item", this.item, {
           preserveScroll: true,
         });
@@ -159,7 +154,6 @@ export default {
           preserveScroll: true,
         });
       }
-
     },
     destroy(id) {
       this.$inertia.post(
