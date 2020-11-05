@@ -6,46 +6,23 @@
     </template>
     <template #form>
       <div class="col-span-6 sm:col-span-4">
-        <jet-label for="name" value="CEP" />
-        <jet-input
-          id="cep"
-          v-mask="'#####-###'"
-          v-model="localizacao.cep"
-          type="text"
-          class="mt-1 block w-full"
-        />
-      </div>
-
-      <div class="col-span-6 sm:col-span-4">
-        <jet-label for="endereco" value="Endereço" />
-        <jet-input
-          id="endereco"
-          type="text"
-          class="mt-1 block w-full"
-          v-model="localizacao.endereco"
-        />
+        <jet-label value="CEP" />
+        <jet-input v-mask="'#####-###'" v-model="localizacao.cep" />
       </div>
       <div class="col-span-6 sm:col-span-4">
-        <jet-label for="numero" value="Número" />
-        <jet-input
-          id="numero"
-          type="text"
-          class="mt-1 block w-full"
-          v-model="localizacao.numero"
-        />
+        <jet-label value="Endereço" />
+        <jet-input v-model="localizacao.endereco" />
       </div>
       <div class="col-span-6 sm:col-span-4">
-        <jet-label for="bairro" value="Bairro" />
-        <jet-input
-          id="bairro"
-          type="text"
-          class="mt-1 block w-full"
-          v-model="localizacao.bairro"
-        />
+        <jet-label value="Número" />
+        <jet-input v-model="localizacao.numero" />
       </div>
       <div class="col-span-6 sm:col-span-4">
-        <jet-label for="bairro" value="Cidade" />
-
+        <jet-label value="Bairro" />
+        <jet-input v-model="localizacao.bairro" />
+      </div>
+      <div class="col-span-6 sm:col-span-4">
+        <jet-label value="Cidade" />
         <v-select
           @search="getMunicipios"
           v-model="municipios[0]"
@@ -71,7 +48,7 @@ import JetLabel from "./../../Jetstream/Label";
 import { mask } from "vue-the-mask";
 import vSelect from "vue-select";
 import "vue-select/dist/vue-select.css";
-import VueToastedOptions from '../../Modules/vue-toasted-options';
+import VueToastedOptions from "../../Modules/vue-toasted-options";
 export default {
   components: {
     JetButton,

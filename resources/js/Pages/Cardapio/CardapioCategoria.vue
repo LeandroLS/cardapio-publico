@@ -48,7 +48,7 @@
               <jet-input-error :message="errors.nome" class="mt-2" />
             </div>
           </div>
-          <div class="w-1/4">
+          <div class="w-1/4 mr-1 text-right">
             <div class="mx-2 pt-2 pb-2 h-5">
               <jet-button
                 ><svg
@@ -114,7 +114,7 @@ export default {
         onSuccess: (page) => {
           if (Object.keys(this.errors).length == 0) {
             this.$toasted.show(
-              "Categoria do cardápio salva.",
+              "Nova categoria do cardápio inserida.",
               VueToastedOptions.success
             );
           } else {

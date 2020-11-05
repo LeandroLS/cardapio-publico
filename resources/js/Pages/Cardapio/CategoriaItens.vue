@@ -8,16 +8,20 @@
       <div class="my-3 mx-3 flex justify-between border-b border-grey-500">
         <div class="font-bold text-xl mb-2 w-3/4">{{ categoria.nome }}</div>
       </div>
-      <button @click="showModal = true"
-        class="w-full mb-2 mx-2 border border-transparent bg-gray-300 rounded-md font-semibold text-black uppercase tracking-widest hover:bg-gray-700 hover:text-white active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150"
-      >
-        Adicionar Item
-      </button>
+      <div class="mx-2">
+        <button
+          @click="showModal = true; form.cardapio_categoria_id = categoria.id"
+          class="w-full mb-2 border border-transparent bg-gray-300 rounded-md font-semibold text-black uppercase tracking-widest hover:bg-gray-700 hover:text-white active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150"
+        >
+          Adicionar Item
+        </button>
+      </div>
+
       <div
         class="w-full mx-2 my-2"
         data-toggle="modal"
         data-target="#modalCategoriaItem"
-        v-for="item in categoria.itens"
+        v-for="item in categorias.itens"
         :key="item.id"
         @click="choseEditItem(item)"
       >
@@ -26,73 +30,43 @@
           <button type="submit" class="text-sm text-grey-dark">Excluir</button>
         </form>
       </div>
-      <!-- <button
-        @click="addCategoriaItem(categoria)"
-        type="button"
-        href="#"
-        class="card-link"
-        data-toggle="modal"
-        data-target="#modalCategoriaItem"
-      >
-        Add
-      </button> -->
     </div>
     <jet-dialog-modal :show="showModal">
-      <template #title>Adicionar Item</template>
-      <template #content>
-        <form @submit.prevent="storeOrUpdate" method="post">
+        <template #title>Adicionar Item</template>
+        <template #content>
+          <div class="w-full">
+            <div class="mb-2">
+              <jet-label>Nome do Prato</jet-label>
+              <jet-input v-model="form.nome" :placeholder="'Ex: Frango empanado'"></jet-input>
+              <jet-input-error :message="errors.nome" class="mt-2" />
+            </div>
+            <div class="mb-2">
+              <jet-label>Valor</jet-label>
+              <jet-input></jet-input>
+            </div>
+            <div class="mb-2">
+              <jet-label>Descrição</jet-label>
+              <textarea
+              v-model="form.descricao"
+                placeholder="Ex: Um frango empanado delicioso!"
+                class="form-input w-full rounded-md shadow-sm"
+                cols="10"
+                rows="4"
+              ></textarea>
+            </div>
+          </div>
           <input
             type="hidden"
             name="cardapio_categoria_id"
-            v-model="item.cardapio_categoria_id"
+            v-model="form.cardapio_categoria_id"
           />
-          <div class="modal-body">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-6">
-                  <label for="">Nome </label>
-                  <input
-                    class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    type="text"
-                    placeholder="Ex: Bolos"
-                    name="nome"
-                    v-model="item.nome"
-                    required
-                  />
-
-                  <label for="">Descrição </label>
-                  <input
-                    class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    type="text"
-                    v-model="item.descricao"
-                    placeholder="Ex: Bolos"
-                    name="desscricao"
-                  />
-                  <label for="">Preço </label>
-                  <input
-                    class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    type="text"
-                    v-model="item.preco"
-                    placeholder="Ex: Bolos"
-                    name="preco"
-                  />
-                </div>
-                <div class="col-md-6">
-                  <h1>Foto</h1>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer"></div></form
-      ></template>
-      <template #footer
-        ><button type="button" @click="showModal = false" class="btn btn-secondary" data-dismiss="modal">
-          Close
-        </button>
-        <button type="submit" class="btn btn-primary">
-          Save changes
-        </button></template
-      >
+        </template>
+        <template #footer>
+          <jet-secondary-button @clicked="showModal = false" type="button">
+            Fechar
+          </jet-secondary-button>
+          <jet-button @clicked="storeOrUpdate">Salvar</jet-button>
+        </template>
     </jet-dialog-modal>
     <!-- Button trigger modal -->
   </div>
@@ -102,48 +76,71 @@
 import ClickEditInput from "../../Components/ClickEditInput";
 import JetInput from "../../Jetstream/Input";
 import JetButton from "./../../Jetstream/Button";
+import JetSecondaryButton from "./../../Jetstream/SecondaryButton";
 import VueToastedOptions from "../../Modules/vue-toasted-options";
 import JetInputError from "./../../Jetstream/InputError";
 import JetDialogModal from "./../../Jetstream/DialogModal";
+import JetLabel from "./../../Jetstream/Label";
 export default {
   components: {
     ClickEditInput,
+    JetLabel,
     JetInput,
     JetButton,
     JetInputError,
     JetDialogModal,
+    JetSecondaryButton,
   },
   data() {
     return {
       showModal: false,
-      adding: null,
-      item: {
-        nome: null,
-        cardapio_categoria_id: null,
-        descricao: null,
-        preco: null,
-      },
+      form: this.$inertia.form(
+        {
+          nome: null,
+          cardapio_categoria_id: null,
+          descricao: null,
+          preco: null,
+        },
+        {
+          resetOnSuccess: true,
+        }
+      ),
     };
   },
   methods: {
-    choseEditItem(item) {
-      this.item = item;
-      this.adding = false;
-    },
-    addCategoriaItem(categoria) {
-      this.item.cardapio_categoria_id = categoria.id;
-      this.adding = true;
-    },
+    // choseEditItem(item) {
+    //   this.item = item;
+    // },
+    // addCategoriaItem(categoria) {
+    //   this.form.cardapio_categoria_id = categoria.id;
+    // },
     storeOrUpdate() {
-      if (this.adding) {
-        this.$inertia.post("/categoria-item", this.item, {
-          preserveScroll: true,
-        });
-      } else {
-        this.$inertia.post("/categoria-item/update", this.item, {
-          preserveScroll: true,
-        });
-      }
+      // if (this.adding) {
+      //   this.$inertia.post("/categoria-item", this.item, {
+      //     preserveScroll: true,
+      //   });
+      this.form.post("/categoria-item", {
+        preserveScroll: true,
+        onSuccess: (page) => {
+          if (Object.keys(this.errors).length == 0) {
+            this.$toasted.show(
+              "Novo prato adicionado na categoria.",
+              VueToastedOptions.success
+            );
+            this.showModal = false;
+          } else {
+            this.$toasted.show(
+              "Verifique os campos obrigatórios.",
+              VueToastedOptions.danger
+            );
+          }
+        },
+      });
+      // } else {
+      //   this.$inertia.post("/categoria-item/update", this.item, {
+      //     preserveScroll: true,
+      //   });
+      // }
     },
     destroy(id) {
       this.$inertia.post(
