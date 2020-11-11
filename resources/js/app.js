@@ -1,5 +1,5 @@
-require('bootstrap'); //framewrokcss
-import 'bootstrap/dist/css/bootstrap.min.css'; //framewrokcss
+// require('bootstrap'); //framewrokcss
+// import 'bootstrap/dist/css/bootstrap.min.css'; //framewrokcss
 import Toasted from 'vue-toasted'; //toast vue lib
 require('./bootstrap');
 import Vue from 'vue';

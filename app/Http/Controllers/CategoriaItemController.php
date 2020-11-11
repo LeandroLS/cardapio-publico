@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Redirect;
 use Illuminate\Http\Request;
 use App\Models\CategoriaItem;
+
 class CategoriaItemController extends Controller
 {
     public function store(Request $request)
@@ -31,5 +32,12 @@ class CategoriaItemController extends Controller
         $categoriaItem->descricao = $request->descricao;
         $categoriaItem->save();
         return Redirect::route('cardapio');
+    }
+
+    public function show(Request $request){
+        $request->validate([
+           'id' => 'required'
+        ]);
+        return CategoriaItem::find($request->id);
     }
 }

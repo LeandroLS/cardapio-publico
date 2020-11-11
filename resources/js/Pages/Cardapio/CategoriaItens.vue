@@ -8,16 +8,19 @@
       <div class="my-3 mx-3 flex justify-between border-b border-grey-500">
         <div class="font-bold text-xl mb-2 w-3/4">{{ categoria.nome }}</div>
       </div>
-      <div
-        class="my-3 mx-3"
-        v-for="item in categoria.itens"
-        :key="item.id"
-        @click="choseEditItem(item); showModal = true;"
-      >
-        <div
-          class="flex justify-between border-b border-grey-500"
-        >
-          <div class="mb-2 w-3/4">{{ item.nome }} - {{ item.preco }}</div>
+      <div class="my-3 mx-3" v-for="item in categoria.itens" :key="item.id">
+        <div class="flex justify-between border-b border-grey-500">
+          <div
+            @click="
+              getCategoriaItem(item.id);
+              showModal = true;
+            "
+            class="mb-2 w-3/4 flex"
+          >
+            <div class="flex-1">{{ item.nome }}</div>
+
+            <span v-if="item.preco"> R$ {{ item.preco }}</span>
+          </div>
           <form @submit.prevent="destroy(item.id)">
             <button type="submit" class="text-sm text-grey-dark">
               Excluir
@@ -51,7 +54,11 @@
           </div>
           <div class="mb-2">
             <jet-label>Valor</jet-label>
-            <jet-input></jet-input>
+            <money
+              class="form-input w-full rounded-md shadow-sm"
+              v-model="form.preco"
+              v-bind="money"
+            ></money>
           </div>
           <div class="mb-2">
             <jet-label>Descrição</jet-label>
@@ -90,6 +97,7 @@ import VueToastedOptions from "../../Modules/vue-toasted-options";
 import JetInputError from "./../../Jetstream/InputError";
 import JetDialogModal from "./../../Jetstream/DialogModal";
 import JetLabel from "./../../Jetstream/Label";
+import { Money } from "v-money";
 export default {
   components: {
     ClickEditInput,
@@ -99,16 +107,24 @@ export default {
     JetInputError,
     JetDialogModal,
     JetSecondaryButton,
+    Money,
   },
   data() {
     return {
       showModal: false,
+      money: {
+        decimal: ",",
+        thousands: ".",
+        prefix: "R$ ",
+        precision: 2,
+        masked: false,
+      },
       form: this.$inertia.form(
         {
           nome: null,
           cardapio_categoria_id: null,
           descricao: null,
-          preco: null,
+          preco: 0,
         },
         {
           resetOnSuccess: true,
@@ -117,17 +133,17 @@ export default {
     };
   },
   methods: {
-    choseEditItem(item) {
-      console.log('aqui');
+    getCategoriaItem(id) {
+      fetch(`/categoria-item?id=${id}`)
+        .then((res) => res.json())
+        .then((res) => {
+          this.form.nome = res.nome;
+          this.form.cardapio_categoria_id = res.cardapio_categoria_id;
+          this.form.descricao = res.descricao;
+          this.form.preco = res.preco ?? 0;
+        });
     },
-    // addCategoriaItem(categoria) {
-    //   this.form.cardapio_categoria_id = categoria.id;
-    // },
     storeOrUpdate() {
-      // if (this.adding) {
-      //   this.$inertia.post("/categoria-item", this.item, {
-      //     preserveScroll: true,
-      //   });
       this.form.post("/categoria-item", {
         preserveScroll: true,
         onSuccess: (page) => {
@@ -145,11 +161,6 @@ export default {
           }
         },
       });
-      // } else {
-      //   this.$inertia.post("/categoria-item/update", this.item, {
-      //     preserveScroll: true,
-      //   });
-      // }
     },
     destroy(id) {
       this.$inertia.post(
