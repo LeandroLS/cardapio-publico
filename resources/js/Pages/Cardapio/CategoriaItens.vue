@@ -78,7 +78,13 @@
         />
       </template>
       <template #footer>
-        <jet-secondary-button @clicked="showModal = false" type="button">
+        <jet-secondary-button
+          @clicked="
+            showModal = false;
+            form = emptyFormObject();
+          "
+          type="button"
+        >
           Fechar
         </jet-secondary-button>
         <jet-button @clicked="storeOrUpdate">Salvar</jet-button>
@@ -119,20 +125,23 @@ export default {
         precision: 2,
         masked: false,
       },
-      form: this.$inertia.form(
-        {
+      form: this.emptyFormObject()
+    };
+  },
+  methods: {
+    emptyFormObject(){
+      return this.$inertia.form(
+         {
           nome: null,
           cardapio_categoria_id: null,
           descricao: null,
-          preco: 0,
+          preco: 0.0,
         },
         {
           resetOnSuccess: true,
         }
-      ),
-    };
-  },
-  methods: {
+      );
+    },
     getCategoriaItem(id) {
       fetch(`/categoria-item?id=${id}`)
         .then((res) => res.json())

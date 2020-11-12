@@ -18,23 +18,30 @@
                 Visualizar Cardapio
               </jet-nav-link>
               <jet-nav-link
-                :href="route('dashboard')"
-                :active="$page.currentRouteName == 'dashboard'"
-              >
-                Dashboard
-              </jet-nav-link>
-
-              <jet-nav-link
                 :href="route('estabelecimento')"
                 :active="$page.currentRouteName == 'estabelecimento'"
               >
                 Estabelecimento
               </jet-nav-link>
+
               <jet-nav-link
                 :href="route('cardapio')"
                 :active="$page.currentRouteName == 'cardapio'"
               >
                 Cardápio
+              </jet-nav-link>
+              <jet-nav-link
+                :href="route('dashboard')"
+                :active="$page.currentRouteName == 'dashboard'"
+              >
+                Compartilhar
+              </jet-nav-link>
+
+              <jet-nav-link
+                :href="route('dashboard')"
+                :active="$page.currentRouteName == 'dashboard'"
+              >
+                Dashboard
               </jet-nav-link>
             </div>
           </div>
