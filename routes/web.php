@@ -1,7 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{CardapioCategoriaController, CardapioController, EstabelecimentoAtendimentoController, CategoriaItemController, EstabelecimentoContatoController, EstabelecimentoController, MunicipioController};
+use App\Http\Controllers\{
+    CardapioCategoriaController, 
+    CardapioController, 
+    EstabelecimentoAtendimentoController, 
+    CategoriaItemController, 
+    EstabelecimentoContatoController, 
+    EstabelecimentoController,
+    MunicipioController, 
+    CardapioLinksController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +37,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         return 'aqui';
     });
     Route::get('/cardapio', [CardapioController::class, 'index'])->name('cardapio');
+
+    Route::get('/cardapio/links', [CardapioLinksController::class, 'index'])->name('cardapio.links');
     
     Route::get('/municipio', [MunicipioController::class, 'getMunicipio'])->name('municipio');
 

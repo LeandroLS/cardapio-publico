@@ -39,7 +39,6 @@ export default {
   props: {
     categorias: Array,
     errors: Object,
-    success: Object,
   },
 };
 </script>

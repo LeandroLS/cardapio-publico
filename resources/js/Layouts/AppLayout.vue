@@ -31,8 +31,8 @@
                 Cardápio
               </jet-nav-link>
               <jet-nav-link
-                :href="route('dashboard')"
-                :active="$page.currentRouteName == 'dashboard'"
+                :href="route('cardapio.links')"
+                :active="$page.currentRouteName == 'cardapio.links'"
               >
                 Compartilhar
               </jet-nav-link>
