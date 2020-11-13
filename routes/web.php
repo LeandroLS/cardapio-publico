@@ -33,9 +33,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     })->name('dashboard');
 
     Route::get('/cardapio', [CardapioController::class, 'index'])->name('cardapio');
-    Route::get('/{?}', function(){
+    Route::get('/{cardapiourl?}', function(){
         return 'aqui';
-    });
+    })->name('cardapio.publico');
     Route::get('/cardapio', [CardapioController::class, 'index'])->name('cardapio');
 
     Route::get('/cardapio/links', [CardapioLinksController::class, 'index'])->name('cardapio.links');

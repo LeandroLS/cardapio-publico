@@ -213,12 +213,29 @@
         class="sm:hidden"
       >
         <div class="pt-2 pb-3 space-y-1">
-          <jet-responsive-nav-link
-            :href="route('dashboard')"
-            :active="$page.currentRouteName == 'dashboard'"
-          >
-            Dashboard
+          <jet-responsive-nav-link :href="route('estabelecimento')">
+            Visualizar Cardapio
           </jet-responsive-nav-link>
+          <jet-responsive-nav-link
+            :href="route('estabelecimento')"
+            :active="$page.currentRouteName == 'estabelecimento'"
+          >
+            Estabelecimento
+          </jet-responsive-nav-link>
+
+          <jet-responsive-nav-link
+            :href="route('cardapio')"
+            :active="$page.currentRouteName == 'cardapio'"
+          >
+            Cardápio
+          </jet-responsive-nav-link>
+          <jet-responsive-nav-link
+            :href="route('cardapio.links')"
+            :active="$page.currentRouteName == 'cardapio.links'"
+          >
+            Compartilhar
+          </jet-responsive-nav-link>
+
         </div>
 
         <!-- Responsive Settings Options -->
