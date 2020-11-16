@@ -2,40 +2,20 @@
   <div class="w-full bg-white">
     <form @submit.prevent="updateCardapioCategoria">
       <div class="rounded-md overflow-hidden shadow-lg">
-        <div class="my-3 mx-3 text-center border-b border-grey-500  mx-2 my-2">
+        <div class="my-3 mx-3 text-center border-b border-grey-500 mx-2 my-2">
           <div class="font-bold text-xl mb-2">Categorias do Cardápio</div>
         </div>
 
         <div
           v-for="categoria in categorias"
           :key="categoria.id"
-          class="flex border-b border-grey-500 cursor-pointer mx-2 my-2"
+          class=" border-b border-grey-500 cursor-pointer mx-2 my-2"
         >
-          <div class="w-4/5 mx-2 mx-2 my-2">
-            <click-edit-input
-              @update="update(categoria, $event)"
-              :title="categoria.nome"
-            ></click-edit-input>
-          </div>
-          <div class="w-1/5 text-right mx-2 my-2">
-            <form @submit.prevent="destroy(categoria.id)">
-              <jet-button>
-                <svg
-                  class="h-5 w-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                  /></svg
-              ></jet-button>
-            </form>
-          </div>
+          <click-edit-input
+            @updated="update(categoria, $event)"
+            @destroied="destroy($event)"
+            :categoria="categoria"
+          ></click-edit-input>
         </div>
 
         <div class="flex">
@@ -105,6 +85,14 @@ export default {
         { novoNome: novoNome, id: categoria.id },
         {
           preserveScroll: true,
+          onSuccess: (page) => {
+            if (Object.keys(this.errors).length == 0) {
+              this.$toasted.show(
+                "Categoria do cardápio editada.",
+                VueToastedOptions.success
+              );
+            }
+          },
         }
       );
     },
