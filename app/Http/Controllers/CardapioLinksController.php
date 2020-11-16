@@ -11,4 +11,12 @@ class CardapioLinksController extends Controller
             'cardapio_url' => \Auth::user()->estabelecimento->url
         ]);
     }
+
+    public function downloadQrCode(){
+        /** o link do cardapio deve ser do proprio restaurante, garantir isso */
+        $filename = 'qr-code-cardapio.jpg';
+        $tempImage = tempnam(sys_get_temp_dir(), $filename);
+        copy('https://chart.googleapis.com/chart?chs=300x300&cht=qr&%20chl=teste-estabelecimento', $tempImage);
+        return response()->download($tempImage, $filename);
+    }
 }

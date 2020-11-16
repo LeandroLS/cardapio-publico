@@ -9,13 +9,16 @@
       <jet-form-section>
         <template #title> QR-Code do Cardápio </template>
         <template #description>
-          Escanear o QR-Code retorna o link para acesso ao cardápio.
+          Facilite o acesso do seu cardápio compartilhando o QR Code em
+          adesivos, mesas, materiais publicitários e etc.
         </template>
         <template #form>
           <img :src="linkQrCode" alt="" />
         </template>
         <template #actions>
-          <jet-button> Imprimir </jet-button>
+          <form :action="route('cardapio.download-qrcode')" method="get">
+            <jet-button> Download QR Code </jet-button>
+          </form>
         </template>
       </jet-form-section>
       <jet-section-border />
@@ -23,12 +26,14 @@
         <template #title> Link do cardápio </template>
         <template #description>
           Com o link do cardápio qualquer um pode visualizar o cadápio do seu
-          estabelecimento
+          estabelecimento.
         </template>
         <template #form>
-          <label for=""
-            ><a :href="route('cardapio.publico', {'cardapiourl' : cardapio_url})">{{ cardapio_url }}</a></label
+          <jet-nav-link
+            :href="route('cardapio.publico', { cardapiourl: cardapio_url })"
           >
+            {{ route("cardapio.publico", { cardapiourl: cardapio_url }) }}
+          </jet-nav-link>
         </template>
         <template #actions>
           <jet-button> Copiar </jet-button>
@@ -45,6 +50,7 @@ import JetButton from "./../Jetstream/Button";
 import JetInput from "./../Jetstream/Input";
 import JetSectionBorder from "./../Jetstream/SectionBorder";
 import JetLabel from "./../Jetstream/Label";
+import JetNavLink from "./../Jetstream/NavLink";
 
 export default {
   components: {
@@ -53,6 +59,7 @@ export default {
     JetButton,
     JetInput,
     JetSectionBorder,
+    JetNavLink,
   },
   props: {
     errors: Object,

@@ -37,8 +37,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         return 'aqui';
     })->name('cardapio.publico');
     Route::get('/cardapio', [CardapioController::class, 'index'])->name('cardapio');
-
+    
     Route::get('/cardapio/links', [CardapioLinksController::class, 'index'])->name('cardapio.links');
+    Route::get('/cardapio/download/qrcode', [CardapioLinksController::class, 'downloadQrCode'])->name('cardapio.download-qrcode');
     
     Route::get('/municipio', [MunicipioController::class, 'getMunicipio'])->name('municipio');
 
