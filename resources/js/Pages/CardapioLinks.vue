@@ -13,7 +13,7 @@
           adesivos, mesas, materiais publicitários e etc.
         </template>
         <template #form>
-          <img :src="linkQrCode" alt="" />
+          <img class="col-start-3 col-span-2" :src="linkQrCode" alt="" />
         </template>
         <template #actions>
           <form :action="route('cardapio.download-qrcode')" method="get">
@@ -29,11 +29,25 @@
           estabelecimento.
         </template>
         <template #form>
-          <jet-nav-link
-            :href="route('cardapio.publico', { cardapiourl: cardapio_url })"
-          >
-            {{ route("cardapio.publico", { cardapiourl: cardapio_url }) }}
-          </jet-nav-link>
+          <a  class="col-span-4" :href="route('cardapio.publico', { cardapiourl: cardapio_url })">
+            <div
+              class="mt-3 flex items-center text-sm font-semibold text-indigo-700"
+            >
+              <div>
+                {{ route("cardapio.publico", { cardapiourl: cardapio_url }) }}
+              </div>
+
+              <div class="ml-1 text-indigo-500">
+                <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+          </a>
         </template>
         <template #actions>
           <jet-button> Copiar </jet-button>
@@ -72,7 +86,7 @@ export default {
   },
   created() {
     this.linkQrCode =
-      "https://chart.googleapis.com/chart?chs=300x300&cht=qr& chl=" +
+      "https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=" +
       this.cardapio_url;
   },
 };
