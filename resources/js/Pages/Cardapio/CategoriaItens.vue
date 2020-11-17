@@ -24,7 +24,7 @@
 
           <div class="flex-1" v-if="item.preco">R$ {{ item.preco }}</div>
         </div>
-        <div class="w-1/4">
+        <div class="w-1/4 text-right">
           <form @submit.prevent="destroy(item.id)">
             <jet-button>
               <svg
