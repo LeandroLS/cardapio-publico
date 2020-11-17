@@ -5,26 +5,42 @@
       :key="categoria.id"
       class="rounded-md overflow-hidden shadow-lg mb-2 bg-white"
     >
-      <div class="my-3 mx-3 flex justify-between border-b border-grey-500">
+      <div class="mt-2 mx-2 flex justify-between border-b border-grey-500">
         <div class="font-bold text-xl mb-2 w-3/4">{{ categoria.nome }}</div>
       </div>
-      <div class="my-3 mx-3" v-for="item in categoria.itens" :key="item.id">
-        <div class="flex justify-between border-b border-grey-500">
-          <div
-            @click="
-              getCategoriaItem(item.id);
-              showModal = true;
-            "
-            class="mb-2 w-3/4 flex"
-          >
-            <div class="flex-1">{{ item.nome }}</div>
+      <div
+        class=" mx-2 border-b border-grey-500 p-1 items-center flex justify-between  hover:bg-gray-100"
+        v-for="item in categoria.itens"
+        :key="item.id"
+      >
+        <div
+          class="w-3/4 flex"
+          @click="
+            getCategoriaItem(item.id);
+            showModal = true;
+          "
+        >
+          <div class="flex-1">{{ item.nome }}</div>
 
-            <span v-if="item.preco"> R$ {{ item.preco }}</span>
-          </div>
+          <div class="flex-1" v-if="item.preco">R$ {{ item.preco }}</div>
+        </div>
+        <div class="w-1/4">
           <form @submit.prevent="destroy(item.id)">
-            <button type="submit" class="text-sm text-grey-dark">
-              Excluir
-            </button>
+            <jet-button>
+              <svg
+                class="h-5 w-5"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                /></svg
+            ></jet-button>
           </form>
         </div>
       </div>
@@ -34,7 +50,7 @@
             showModal = true;
             form.cardapio_categoria_id = categoria.id;
           "
-          class="w-full mb-2 border border-transparent bg-gray-300 rounded-md font-semibold text-black uppercase tracking-widest hover:bg-gray-700 hover:text-white active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150"
+          class="w-full my-2 border border-transparent bg-gray-300 rounded-md font-semibold text-black uppercase tracking-widest hover:bg-gray-700 hover:text-white active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150"
         >
           Adicionar Item
         </button>
@@ -125,13 +141,13 @@ export default {
         precision: 2,
         masked: false,
       },
-      form: this.emptyFormObject()
+      form: this.emptyFormObject(),
     };
   },
   methods: {
-    emptyFormObject(){
+    emptyFormObject() {
       return this.$inertia.form(
-         {
+        {
           nome: null,
           cardapio_categoria_id: null,
           descricao: null,

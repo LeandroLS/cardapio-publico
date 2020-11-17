@@ -29,10 +29,7 @@
           estabelecimento.
         </template>
         <template #form>
-          <a
-            class="col-span-4"
-            :href="cardapio_url"
-          >
+          <a class="col-span-4" :href="cardapio_url">
             <div
               class="mt-3 flex items-center text-sm font-semibold text-indigo-700"
             >
@@ -53,10 +50,14 @@
           </a>
         </template>
         <template #actions>
-          <jet-button  :type="button"
+          <jet-button
+            :type="button"
             v-clipboard:copy="cardapio_url"
             v-clipboard:success="onCopy"
-            v-clipboard:error="onError"> Copiar </jet-button>
+            v-clipboard:error="onError"
+          >
+            Copiar
+          </jet-button>
         </template>
       </jet-form-section>
     </div>
@@ -92,10 +93,16 @@ export default {
   },
   methods: {
     onCopy: function (e) {
-      this.$toasted.show("Link copiado! Agora basta enviar esse link para seus clientes ou compartilhar nas redes sociais.", VueToastedOptions.success);
+      this.$toasted.show(
+        "Link copiado! Agora basta enviar esse link para seus clientes ou compartilhar nas redes sociais.",
+        VueToastedOptions.success
+      );
     },
     onError: function (e) {
-       this.$toasted.show("Não foi possível copiar o link.", VueToastedOptions.danger);
+      this.$toasted.show(
+        "Não foi possível copiar o link.",
+        VueToastedOptions.danger
+      );
     },
   },
   created() {
