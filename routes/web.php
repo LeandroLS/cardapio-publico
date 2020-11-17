@@ -33,9 +33,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     })->name('dashboard');
 
     Route::get('/cardapio', [CardapioController::class, 'index'])->name('cardapio');
-    Route::get('/{cardapiourl?}', function(){
-        return 'aqui';
-    })->name('cardapio.publico');
+
     Route::get('/cardapio', [CardapioController::class, 'index'])->name('cardapio');
     
     Route::get('/cardapio/links', [CardapioLinksController::class, 'index'])->name('cardapio.links');
@@ -60,5 +58,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/categoria-item', [CategoriaItemController::class, 'show'])->name('categoria.item.show');
     Route::post('/categoria-item/destroy', [CategoriaItemController::class, 'destroy'])->name('categoria.item.destroy');
     Route::post('/categoria-item/update', [CategoriaItemController::class, 'update'])->name('categoria.item.update');
-
+    /**
+     * Essa rota tem que ficar por último.
+     * Se ela ficar acima, por exemplo, se ela ficar acima de /cardapio, quando forem acessar /cardapio, vão acabar caindo nessa rota.
+     */
+    Route::get('/{cardapiourl?}', function(){
+        return 'aqui';
+    })->name('cardapio.publico');
 });

@@ -8,7 +8,7 @@ class CardapioLinksController extends Controller
 {
     public function index(){
         return Inertia::render('CardapioLinks', [
-            'cardapio_url' => \Auth::user()->estabelecimento->url
+            'cardapio_url' => route('cardapio.publico', ['cardapiourl' => \Auth::user()->estabelecimento->url])
         ]);
     }
 

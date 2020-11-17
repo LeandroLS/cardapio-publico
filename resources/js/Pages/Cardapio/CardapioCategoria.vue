@@ -9,7 +9,7 @@
         <div
           v-for="categoria in categorias"
           :key="categoria.id"
-          class=" border-b border-grey-500 cursor-pointer mx-2 my-2"
+          class="border-b border-grey-500 cursor-pointer mx-2"
         >
           <click-edit-input
             @updated="update(categoria, $event)"
@@ -18,7 +18,7 @@
           ></click-edit-input>
         </div>
 
-        <div class="flex">
+        <div class="flex p-1">
           <div class="w-3/4">
             <div class="mx-2 pt-2 pb-2">
               <jet-input

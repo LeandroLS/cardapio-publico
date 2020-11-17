@@ -29,12 +29,15 @@
           estabelecimento.
         </template>
         <template #form>
-          <a  class="col-span-4" :href="route('cardapio.publico', { cardapiourl: cardapio_url })">
+          <a
+            class="col-span-4"
+            :href="cardapio_url"
+          >
             <div
               class="mt-3 flex items-center text-sm font-semibold text-indigo-700"
             >
               <div>
-                {{ route("cardapio.publico", { cardapiourl: cardapio_url }) }}
+                {{ cardapio_url }}
               </div>
 
               <div class="ml-1 text-indigo-500">
@@ -50,7 +53,10 @@
           </a>
         </template>
         <template #actions>
-          <jet-button> Copiar </jet-button>
+          <jet-button  :type="button"
+            v-clipboard:copy="cardapio_url"
+            v-clipboard:success="onCopy"
+            v-clipboard:error="onError"> Copiar </jet-button>
         </template>
       </jet-form-section>
     </div>
@@ -65,7 +71,7 @@ import JetInput from "./../Jetstream/Input";
 import JetSectionBorder from "./../Jetstream/SectionBorder";
 import JetLabel from "./../Jetstream/Label";
 import JetNavLink from "./../Jetstream/NavLink";
-
+import VueToastedOptions from "../Modules/vue-toasted-options";
 export default {
   components: {
     AppLayout,
@@ -83,6 +89,14 @@ export default {
     return {
       linkQrCode: null,
     };
+  },
+  methods: {
+    onCopy: function (e) {
+      this.$toasted.show("Link copiado! Agora basta enviar esse link para seus clientes ou compartilhar nas redes sociais.", VueToastedOptions.success);
+    },
+    onError: function (e) {
+       this.$toasted.show("Não foi possível copiar o link.", VueToastedOptions.danger);
+    },
   },
   created() {
     this.linkQrCode =

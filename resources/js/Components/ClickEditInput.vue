@@ -1,6 +1,6 @@
 <template>
-  <div class="flex">
-    <div class="w-4/5 mx-2 mx-2 my-2" @click="edit = true">
+  <div class="flex items-center hover:bg-gray-100 p-1">
+    <div class="w-4/5 mx-2" @click="edit = true">
       <label v-if="edit == false"> {{ categoria.nome }} </label>
       <input
         class="w-full appearance-none border rounded text-gray-700 p-2 leading-tight focus:outline-none focus:shadow-outline"
@@ -28,7 +28,8 @@
       </form>
     </div>
     <div v-else class="w-1/5 text-right mx-2 my-2">
-      <jet-button :type="'button'"
+      <jet-button
+        :type="'button'"
         @clicked="
           edit = false;
           $emit('updated', categoria.nome);
