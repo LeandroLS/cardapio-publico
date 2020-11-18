@@ -4,32 +4,38 @@
       <input
         class="btn-sm"
         type="file"
-        @change="showImages"
+        @change="showImage"
         :name="`${inputFileName}`"
       />
     </div>
 
     <transition name="fade" tag="p">
-      <div v-if="imgUrl" style="margin-top: 4px; margin-bottom: 4px">
-        <img :src="imgUrl" style="max-width: 300px; max-height: 180px" />
+      <div v-if="image.imgUrl" style="margin-top: 4px; margin-bottom: 4px">
+        <img :src="image.imgUrl" style="max-width: 300px; max-height: 180px" />
       </div>
     </transition>
   </div>
 </template>
 <script>
+let emptyImgObj = {
+    selectedImage : null,
+    imgUrl : null,
+}
 export default {
   props: ["inputFileName"],
   data() {
     return {
-      selectedImage: null,
-      imgUrl: null,
+        image: emptyImgObj
     };
   },
   methods: {
-    showImages: function (e) {
-      this.selectedImage = e.target.files[0];
-      this.imgUrl = URL.createObjectURL(this.selectedImage);
-      this.$emit("image-selected", this.selectedImage);
+    showImage: function (e) {
+      if (e.target.files.length < 1) {
+        this.image = emptyImgObj
+      }
+      this.image.selectedImage = e.target.files[0];
+      this.image.imgUrl = URL.createObjectURL(this.selectedImage);
+      this.$emit("image-selected", this.image.selectedImage);
     },
   },
 };
