@@ -9,7 +9,7 @@
         <div class="font-bold text-xl mb-2 w-3/4">{{ categoria.nome }}</div>
       </div>
       <div
-        class=" mx-2 border-b border-grey-500 p-1 items-center flex justify-between  hover:bg-gray-100"
+        class="mx-2 border-b border-grey-500 p-1 items-center flex justify-between hover:bg-gray-100"
         v-for="item in categoria.itens"
         :key="item.id"
       >
@@ -60,6 +60,14 @@
       <template #title>Adicionar Item</template>
       <template #content>
         <div class="w-full">
+          <div class="mb-2">
+            <jet-label>Imagem do prato</jet-label>
+            <div class="h-2"></div>
+            <input-file-image
+              limite-imagens="1"
+              input-file-name="image-chamado"
+            ></input-file-image>
+          </div>
           <div class="mb-2">
             <jet-label>Nome do Prato</jet-label>
             <jet-input
@@ -120,6 +128,8 @@ import JetInputError from "./../../Jetstream/InputError";
 import JetDialogModal from "./../../Jetstream/DialogModal";
 import JetLabel from "./../../Jetstream/Label";
 import { Money } from "v-money";
+import InputFileImage from "./../../Components/InputFileImage";
+
 export default {
   components: {
     ClickEditInput,
@@ -130,6 +140,7 @@ export default {
     JetDialogModal,
     JetSecondaryButton,
     Money,
+    InputFileImage
   },
   data() {
     return {
@@ -168,6 +179,7 @@ export default {
           this.form.preco = res.preco ?? 0;
         });
     },
+
     storeOrUpdate() {
       this.form.post("/categoria-item", {
         preserveScroll: true,
