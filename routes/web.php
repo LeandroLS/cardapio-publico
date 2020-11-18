@@ -57,7 +57,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/categoria-item', [CategoriaItemController::class, 'store'])->name('categoria.item');
     Route::get('/categoria-item', [CategoriaItemController::class, 'show'])->name('categoria.item.show');
     Route::post('/categoria-item/destroy', [CategoriaItemController::class, 'destroy'])->name('categoria.item.destroy');
-    Route::post('/categoria-item/update', [CategoriaItemController::class, 'update'])->name('categoria.item.update');
     /**
      * Essa rota tem que ficar por último.
      * Se ela ficar acima, por exemplo, se ela ficar acima de /cardapio, quando forem acessar /cardapio, vão acabar caindo nessa rota.

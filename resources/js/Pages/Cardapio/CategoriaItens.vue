@@ -62,10 +62,16 @@
         <div class="w-full">
           <div class="mb-2">
             <jet-label>Imagem do prato</jet-label>
-            <div class="h-2"></div>
-            <input-file-image @image-selected="pegaFotoPrato"
+            <img
+              v-if="form.nome_foto_prato"
+              :src="form.nome_foto_prato"
+              alt=""
+            />
+            <input-file-image
+              @image-selected="pegaFotoPrato"
               input-file-name="image-chamado"
             ></input-file-image>
+            <jet-input-error :message="errors.foto_prato" class="mt-2" />
           </div>
           <div class="mb-2">
             <jet-label>Nome do Prato</jet-label>
@@ -162,14 +168,16 @@ export default {
           cardapio_categoria_id: null,
           descricao: null,
           preco: 0.0,
-          foto_prato: null
+          foto_prato: null,
+          nome_foto_prato: null,
+          id: null,
         },
         {
           resetOnSuccess: true,
         }
       );
     },
-    pegaFotoPrato(img){
+    pegaFotoPrato(img) {
       this.form.foto_prato = img;
     },
     getCategoriaItem(id) {
@@ -177,8 +185,11 @@ export default {
         .then((res) => res.json())
         .then((res) => {
           this.form.nome = res.nome;
+          this.form.id = res.id;
+
           this.form.cardapio_categoria_id = res.cardapio_categoria_id;
           this.form.descricao = res.descricao;
+          this.form.nome_foto_prato = res.nome_foto_prato;
           this.form.preco = res.preco ?? 0;
         });
     },
@@ -186,7 +197,12 @@ export default {
     storeOrUpdate() {
       var data = new FormData();
       data.append("nome", this.form.nome || "");
-      data.append("cardapio_categoria_id", this.form.cardapio_categoria_id || "");
+      data.append("id", this.form.id || "");
+
+      data.append(
+        "cardapio_categoria_id",
+        this.form.cardapio_categoria_id || ""
+      );
       data.append("descricao", this.form.descricao || "");
       data.append("preco", this.form.preco || "");
       data.append("foto_prato", this.form.foto_prato || "");

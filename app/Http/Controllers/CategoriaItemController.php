@@ -11,10 +11,13 @@ class CategoriaItemController extends Controller
     {
         $request->validate([
             'nome' => 'required',
-            'cardapio_categoria_id' => 'required'
+            'cardapio_categoria_id' => 'required',
+            'foto_prato' => 'exclude_if:foto_prato,null|mimes:jpeg,png,jpg|max:3240' 
         ]);
-        $request->file('foto_prato')->store('fotos_pratos');
-        CategoriaItem::create($request->all());
+        if($request->hasFile('foto_prato')){
+            $request['nome_foto_prato'] = $request->file('foto_prato')->store('fotos_pratos');
+        }
+        CategoriaItem::updateOrCreate(['id' => $request->id], $request->all());
         return Redirect::route('cardapio');
     }
 
@@ -22,16 +25,6 @@ class CategoriaItemController extends Controller
         $request->validate(['id' => 'required']);
         $categoriaItem = CategoriaItem::find($request->id);
         $categoriaItem->delete();
-        return Redirect::route('cardapio');
-    }
-
-    public function update(Request $request){
-        $request->validate(['id' => 'required']);
-        $categoriaItem = CategoriaItem::find($request->id);
-        $categoriaItem->preco = $request->preco;
-        $categoriaItem->nome = $request->nome;
-        $categoriaItem->descricao = $request->descricao;
-        $categoriaItem->save();
         return Redirect::route('cardapio');
     }
 
