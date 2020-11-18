@@ -5,54 +5,31 @@
         class="btn-sm"
         type="file"
         @change="showImages"
-        :name="`${inputFileName}[]`"
+        :name="`${inputFileName}`"
       />
     </div>
-    <div v-if="limiteAtingido">
-      <div class="">Limite de imagens atigindo</div>
-    </div>
-    <transition-group name="fade" tag="p">
-      <div
-        :key="image.name"
-        v-for="image in imagesUrls"
-        style="margin-top: 4px; margin-bottom: 4px"
-      >
-        <img :src="image.url" style="max-width: 300px; height: 200px" />
-        {{ image.name }}
+
+    <transition name="fade" tag="p">
+      <div v-if="imgUrl" style="margin-top: 4px; margin-bottom: 4px">
+        <img :src="imgUrl" style="max-width: 300px; max-height: 180px" />
       </div>
-    </transition-group>
+    </transition>
   </div>
 </template>
 <script>
 export default {
-  props: ["limiteImagens", "inputFileName"],
+  props: ["inputFileName"],
   data() {
     return {
-      imagesUrls: [],
-      limiteAtingido: false,
+      selectedImage: null,
+      imgUrl: null,
     };
   },
   methods: {
     showImages: function (e) {
-      this.imagesUrls = [];
-      if (!this.passouDoLimite(e)) {
-        this.limiteAtingido = false;
-        Array.from(e.target.files).forEach((element) => {
-          this.imagesUrls.push({
-            url: URL.createObjectURL(element),
-            name: element.name,
-          });
-        });
-      }
-    },
-    passouDoLimite: function (e) {
-      if (e.target.files.length > this.limiteImagens) {
-        this.limiteAtingido = true;
-        e.target.value = "";
-        return true;
-      } else {
-        return false;
-      }
+      this.selectedImage = e.target.files[0];
+      this.imgUrl = URL.createObjectURL(this.selectedImage);
+      this.$emit("image-selected", this.selectedImage);
     },
   },
 };

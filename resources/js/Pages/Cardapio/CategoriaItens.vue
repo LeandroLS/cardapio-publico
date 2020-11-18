@@ -63,8 +63,7 @@
           <div class="mb-2">
             <jet-label>Imagem do prato</jet-label>
             <div class="h-2"></div>
-            <input-file-image
-              limite-imagens="1"
+            <input-file-image @image-selected="pegaFotoPrato"
               input-file-name="image-chamado"
             ></input-file-image>
           </div>
@@ -140,7 +139,7 @@ export default {
     JetDialogModal,
     JetSecondaryButton,
     Money,
-    InputFileImage
+    InputFileImage,
   },
   data() {
     return {
@@ -163,11 +162,15 @@ export default {
           cardapio_categoria_id: null,
           descricao: null,
           preco: 0.0,
+          foto_prato: null
         },
         {
           resetOnSuccess: true,
         }
       );
+    },
+    pegaFotoPrato(img){
+      this.form.foto_prato = img;
     },
     getCategoriaItem(id) {
       fetch(`/categoria-item?id=${id}`)
@@ -181,7 +184,14 @@ export default {
     },
 
     storeOrUpdate() {
-      this.form.post("/categoria-item", {
+      var data = new FormData();
+      data.append("nome", this.form.nome || "");
+      data.append("cardapio_categoria_id", this.form.cardapio_categoria_id || "");
+      data.append("descricao", this.form.descricao || "");
+      data.append("preco", this.form.preco || "");
+      data.append("foto_prato", this.form.foto_prato || "");
+
+      this.$inertia.post("/categoria-item", data, {
         preserveScroll: true,
         onSuccess: (page) => {
           if (Object.keys(this.errors).length == 0) {

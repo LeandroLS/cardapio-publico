@@ -13,6 +13,7 @@ class CategoriaItemController extends Controller
             'nome' => 'required',
             'cardapio_categoria_id' => 'required'
         ]);
+        $request->file('foto_prato')->store('fotos_pratos');
         CategoriaItem::create($request->all());
         return Redirect::route('cardapio');
     }
