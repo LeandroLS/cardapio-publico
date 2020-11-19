@@ -63,18 +63,19 @@
           <div class="mb-2">
             <jet-label>Imagem do prato</jet-label>
             <template v-if="form.nome_foto_prato">
-              <img
-                :src="'/storage/' + form.nome_foto_prato"
-                class="object-cover rounded w-auto overflow-hidden"
-                style="width: 150px; height: 150px"
-              />
-              <jet-button @clicked="exluirImgPrato(form)">Excluir </jet-button>
+              <image-input
+                :url="'/storage/' + form.nome_foto_prato"
+              ></image-input>
+              <jet-button @clicked="exluirImgEResetarForm(form)"
+                >Excluir
+              </jet-button>
             </template>
-            <input-file-image
-              v-else
-              @image-selected="pegaFotoPrato"
-              input-file-name="image-chamado"
-            ></input-file-image>
+            <template v-else>
+              <input class="btn-sm" type="file" @change="showImage" />
+              <input-image-preview
+                :image="form.foto_prato"
+              ></input-image-preview>
+            </template>
             <jet-input-error :message="errors.foto_prato" class="mt-2" />
           </div>
           <div class="mb-2">
@@ -131,7 +132,8 @@ import JetInputError from "./../../Jetstream/InputError";
 import JetDialogModal from "./../../Jetstream/DialogModal";
 import JetLabel from "./../../Jetstream/Label";
 import { Money } from "v-money";
-import InputFileImage from "./../../Components/InputFileImage";
+import InputImagePreview from "./../../Components/InputImagePreview";
+import ImageInput from "./../../Components/ImageInput";
 
 export default {
   components: {
@@ -143,8 +145,10 @@ export default {
     JetDialogModal,
     JetSecondaryButton,
     Money,
-    InputFileImage,
+    InputImagePreview,
+    ImageInput,
   },
+
   data() {
     return {
       showModal: false,
@@ -175,19 +179,24 @@ export default {
         }
       );
     },
-    exluirImgPrato(form) {
-      axios
-        .post("/cardapio/categoria/item/imagem", { id: form.id })
-        //pega novamente a categoria que teve a imagem deletada pra refazer o form
-        .then(this.getCategoriaItem(form.id));
+    exluirImgEResetarForm(form) {
+      this.exluirImgPratoPromise(form.id).then((res) =>
+        this.getCategoriaItem(form.id)
+      );
+      this.$toasted.show(
+        "Imagem excluída com sucesso.",
+        VueToastedOptions.success
+      );
+    },
+
+    exluirImgPratoPromise(id) {
+      return axios.post("/cardapio/categoria/item/imagem", { id: id });
     },
     fecharModal() {
       this.showModal = false;
       this.form = this.emptyFormObject();
     },
-    pegaFotoPrato(img) {
-      this.form.foto_prato = img;
-    },
+
     getCategoriaItem(id) {
       fetch(`/cardapio/categoria/item?id=${id}`)
         .then((res) => res.json())
@@ -231,6 +240,9 @@ export default {
           }
         },
       });
+    },
+    showImage(e){
+      this.form.foto_prato = e.target.files[0];
     },
     destroy(id) {
       this.$inertia.post(
