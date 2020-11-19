@@ -14,7 +14,7 @@
         :key="item.id"
       >
         <div
-          class="w-3/4 flex cursor-pointer"
+          class="w-4/5 flex cursor-pointer text-sm"
           @click="
             getCategoriaItem(item.id);
             showModal = true;
@@ -24,7 +24,7 @@
 
           <div class="flex-1" v-if="item.preco">R$ {{ item.preco }}</div>
         </div>
-        <div class="w-1/4 flex justify-end">
+        <div class="w-1/5 flex justify-end">
           <form class="mr-2" @submit.prevent="destroy(item.id)">
             <!-- <jet-button :title="'Esconder'"> -->
             <button
