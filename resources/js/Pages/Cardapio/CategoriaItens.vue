@@ -64,10 +64,11 @@
             <jet-label>Imagem do prato</jet-label>
             <img
               v-if="form.nome_foto_prato"
-              :src="form.nome_foto_prato"
-              alt=""
+              :src="'/storage/' + form.nome_foto_prato"
+              style="max-width: 300px; max-height: 180px"
             />
             <input-file-image
+              v-else
               @image-selected="pegaFotoPrato"
               input-file-name="image-chamado"
             ></input-file-image>

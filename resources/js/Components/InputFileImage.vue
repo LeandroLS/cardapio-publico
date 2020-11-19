@@ -18,24 +18,25 @@
 </template>
 <script>
 let emptyImgObj = {
-    selectedImage : null,
-    imgUrl : null,
-}
+  selectedImage: null,
+  imgUrl: null,
+};
 export default {
   props: ["inputFileName"],
   data() {
     return {
-        image: emptyImgObj
+      image: emptyImgObj,
     };
   },
   methods: {
     showImage: function (e) {
       if (e.target.files.length < 1) {
-        this.image = emptyImgObj
+        this.image = emptyImgObj;
+      } else {
+        this.image.selectedImage = e.target.files[0];
+        this.image.imgUrl = URL.createObjectURL(this.image.selectedImage);
+        this.$emit("image-selected", this.image.selectedImage);
       }
-      this.image.selectedImage = e.target.files[0];
-      this.image.imgUrl = URL.createObjectURL(this.selectedImage);
-      this.$emit("image-selected", this.image.selectedImage);
     },
   },
 };
