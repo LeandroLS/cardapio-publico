@@ -14,7 +14,7 @@
         :key="item.id"
       >
         <div
-          class="w-3/4 flex"
+          class="w-3/4 flex cursor-pointer"
           @click="
             getCategoriaItem(item.id);
             showModal = true;
@@ -62,12 +62,14 @@
         <div class="w-full">
           <div class="mb-2">
             <jet-label>Imagem do prato</jet-label>
-            <img
-              v-if="form.nome_foto_prato"
-              :src="'/storage/' + form.nome_foto_prato"
-              class="object-cover rounded w-auto overflow-hidden"
-              style="width: 150px; height: 150px"
-            />
+            <template v-if="form.nome_foto_prato">
+              <img
+                :src="'/storage/' + form.nome_foto_prato"
+                class="object-cover rounded w-auto overflow-hidden"
+                style="width: 150px; height: 150px"
+              />
+              <jet-button @clicked="exluirImgPrato(form)">Excluir </jet-button>
+            </template>
             <input-file-image
               v-else
               @image-selected="pegaFotoPrato"
@@ -109,13 +111,7 @@
         />
       </template>
       <template #footer>
-        <jet-secondary-button
-          @clicked="
-            showModal = false;
-            form = emptyFormObject();
-          "
-          type="button"
-        >
+        <jet-secondary-button @clicked="fecharModal">
           Fechar
         </jet-secondary-button>
         <jet-button @clicked="storeOrUpdate">Salvar</jet-button>
@@ -179,16 +175,25 @@ export default {
         }
       );
     },
+    exluirImgPrato(form) {
+      axios
+        .post("/cardapio/categoria/item/imagem", { id: form.id })
+        //pega novamente a categoria que teve a imagem deletada pra refazer o form
+        .then(this.getCategoriaItem(form.id));
+    },
+    fecharModal() {
+      this.showModal = false;
+      this.form = this.emptyFormObject();
+    },
     pegaFotoPrato(img) {
       this.form.foto_prato = img;
     },
     getCategoriaItem(id) {
-      fetch(`/categoria-item?id=${id}`)
+      fetch(`/cardapio/categoria/item?id=${id}`)
         .then((res) => res.json())
         .then((res) => {
           this.form.nome = res.nome;
           this.form.id = res.id;
-
           this.form.cardapio_categoria_id = res.cardapio_categoria_id;
           this.form.descricao = res.descricao;
           this.form.nome_foto_prato = res.nome_foto_prato;
@@ -209,7 +214,7 @@ export default {
       data.append("preco", this.form.preco || "");
       data.append("foto_prato", this.form.foto_prato || "");
 
-      this.$inertia.post("/categoria-item", data, {
+      this.$inertia.post("/cardapio/categoria/item", data, {
         preserveScroll: true,
         onSuccess: (page) => {
           if (Object.keys(this.errors).length == 0) {
@@ -229,7 +234,7 @@ export default {
     },
     destroy(id) {
       this.$inertia.post(
-        "/categoria-item/destroy",
+        "/cardapio/categoria/item/destroy",
         { id: id },
         { preserveScroll: true }
       );

@@ -81,7 +81,7 @@ export default {
   methods: {
     update(categoria, novoNome) {
       this.$inertia.post(
-        "/categoria-cardapio/update",
+        "/cardapio/categoria/update",
         { novoNome: novoNome, id: categoria.id },
         {
           preserveScroll: true,
@@ -97,7 +97,7 @@ export default {
       );
     },
     updateCardapioCategoria() {
-      this.form.post("/categoria-cardapio", {
+      this.form.post("/cardapio/categoria", {
         preserveScroll: true,
         onSuccess: (page) => {
           if (Object.keys(this.errors).length == 0) {
@@ -116,7 +116,7 @@ export default {
     },
     destroy(id) {
       this.$inertia.post(
-        "/categoria-cardapio/destroy",
+        "/cardapio/categoria/destroy",
         { id: id },
         {
           preserveScroll: true,

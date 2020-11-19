@@ -5,7 +5,6 @@
         class="btn-sm"
         type="file"
         @change="showImage"
-        :name="`${inputFileName}`"
       />
     </div>
     <transition name="fade" tag="p">
@@ -21,7 +20,6 @@ let emptyImgObj = {
   imgUrl: null,
 };
 export default {
-  props: ["inputFileName"],
   data() {
     return {
       image: emptyImgObj,

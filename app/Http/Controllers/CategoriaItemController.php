@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Redirect;
 use Illuminate\Http\Request;
 use App\Models\CategoriaItem;
+use Illuminate\Support\Facades\Storage;
 
 class CategoriaItemController extends Controller
 {
@@ -33,5 +34,14 @@ class CategoriaItemController extends Controller
            'id' => 'required'
         ]);
         return CategoriaItem::find($request->id);
+    }
+
+    public function destroyImg(Request $request){
+        $request->validate(['id' => 'required']);
+        $categoriaItem = CategoriaItem::find($request->id);
+        Storage::disk('public')->delete($categoriaItem->nome_foto_prato);
+        $categoriaItem->nome_foto_prato = null;
+        $categoriaItem->save();
+
     }
 }
