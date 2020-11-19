@@ -65,7 +65,8 @@
             <img
               v-if="form.nome_foto_prato"
               :src="'/storage/' + form.nome_foto_prato"
-              style="max-width: 300px; max-height: 180px"
+              class="object-cover rounded w-auto overflow-hidden"
+              style="width: 150px; height: 150px"
             />
             <input-file-image
               v-else

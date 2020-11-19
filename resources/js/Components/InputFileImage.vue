@@ -8,10 +8,9 @@
         :name="`${inputFileName}`"
       />
     </div>
-
     <transition name="fade" tag="p">
-      <div v-if="image.imgUrl" style="margin-top: 4px; margin-bottom: 4px">
-        <img :src="image.imgUrl" style="max-width: 300px; max-height: 180px" />
+      <div v-if="image.imgUrl" class="my-2">
+        <img :src="image.imgUrl" class="object-cover rounded w-auto overflow-hidden" style="width: 150px; height: 150px" />
       </div>
     </transition>
   </div>
