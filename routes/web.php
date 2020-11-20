@@ -52,7 +52,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/cardapio/categoria/destroy', [CardapioCategoriaController::class, 'destroy']);
     Route::post('/cardapio/categoria/update', [CardapioCategoriaController::class, 'update']);
     
-    Route::post('/cardapio/categoria/item', [CategoriaItemController::class, 'store']);
+    Route::post('/cardapio/categoria/item', [CategoriaItemController::class, 'storeOrUpdate']);
     Route::get('/cardapio/categoria/item', [CategoriaItemController::class, 'show']);
     Route::post('/cardapio/categoria/item/destroy', [CategoriaItemController::class, 'destroy']);
     Route::post('/cardapio/categoria/item/imagem', [CategoriaItemController::class, 'destroyImg']);

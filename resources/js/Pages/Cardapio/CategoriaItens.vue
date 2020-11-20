@@ -26,10 +26,34 @@
         </div>
         <div class="w-1/5 flex justify-end">
           <form class="mr-2" @submit.prevent="destroy(item.id)">
-            <!-- <jet-button :title="'Esconder'"> -->
             <button
-              title="Esconder"
+              v-if="item.visivel"
+              @click="toggleVisible(item)"
+              title="Ocultar"
               type="button"
+              class="inline-flex items-center px-1 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150"
+            >
+              <svg
+                class="h-3 md:h-5"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z"
+                  clip-rule="evenodd"
+                />
+                <path
+                  d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z"
+                />
+              </svg>
+            </button>
+            <button
+              @click="toggleVisible(item)"
+              title="Deixar visível"
+              type="button"
+              v-else
               class="inline-flex items-center px-1 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150"
             >
               <svg
@@ -46,12 +70,10 @@
                 />
               </svg>
             </button>
-
-            <!-- </jet-button> -->
           </form>
-          <form  @submit.prevent="destroy(item.id)">
+          <form @submit.prevent="destroy(item.id)">
             <button
-            title="Remover"
+              title="Remover"
               type="button"
               class="inline-flex items-center px-1 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150"
             >
@@ -230,15 +252,29 @@ export default {
       fetch(`/cardapio/categoria/item?id=${id}`)
         .then((res) => res.json())
         .then((res) => {
-          this.form.nome = res.nome;
-          this.form.id = res.id;
-          this.form.cardapio_categoria_id = res.cardapio_categoria_id;
-          this.form.descricao = res.descricao;
-          this.form.nome_foto_prato = res.nome_foto_prato;
-          this.form.preco = res.preco ?? 0;
+          this.form = this.$inertia.form(res, {
+            resetOnSuccess: true,
+          });
         });
     },
-
+    toggleVisible(categoriaItem) {
+      let mensagem = "";
+      if (categoriaItem.visivel == 1) {
+        categoriaItem.visivel = 0;
+        mensagem = "Item da categoria ocultado.";
+      } else {
+        categoriaItem.visivel = 1;
+        mensagem = "Item da categoria vísivel.";
+      }
+      this.$inertia.post("/cardapio/categoria/item", categoriaItem, {
+        preserveScroll: true,
+        onSuccess: (page) => {
+          if (Object.keys(this.errors).length == 0) {
+            this.$toasted.show(mensagem, VueToastedOptions.success);
+          }
+        },
+      });
+    },
     storeOrUpdate() {
       var data = new FormData();
       data.append("nome", this.form.nome || "");

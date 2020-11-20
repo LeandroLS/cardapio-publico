@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class CategoriaItemController extends Controller
 {
-    public function store(Request $request)
+    public function storeOrUpdate(Request $request)
     {
         $request->validate([
             'nome' => 'required',

@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center hover:bg-gray-100 p-1">
-    <div class="w-4/5 mx-2" @click="edit = true">
+    <div class="w-4/5 mx-2 text-sm" @click="edit = true">
       <label v-if="edit == false"> {{ categoria.nome }} </label>
       <input
         class="w-full appearance-none border rounded text-gray-700 p-2 leading-tight focus:outline-none focus:shadow-outline"
