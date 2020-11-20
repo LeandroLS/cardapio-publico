@@ -12,7 +12,7 @@ class CardapioCategoria extends Model
     protected $guarded = ['id'];
     protected static function booted()
     {
-        static::addGlobalScope('estabelecimento_id', function (Builder $builder) {
+        static::addGlobalScope('estabelecimento_id_scope', function (Builder $builder) {
             if(\Auth::user()->estabelecimento()->exists()){
                 $builder->where('estabelecimento_id', '=', \Auth::user()->estabelecimento->id);
             } else {

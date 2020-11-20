@@ -61,7 +61,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      * Essa rota tem que ficar por último.
      * Se ela ficar acima, por exemplo, se ela ficar acima de /cardapio, quando forem acessar /cardapio, vão acabar caindo nessa rota.
      */
-    Route::get('/{cardapiourl?}', function(){
-        return 'aqui';
-    })->name('cardapio.publico');
+    Route::get('/{cardapiourl?}', [CardapioController::class, 'cardapioPublico'])->name('cardapio.publico');
 });

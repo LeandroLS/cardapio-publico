@@ -25,7 +25,7 @@
         <!-- Current Profile Photo -->
         <div class="mt-2" v-show="!photoPreview">
           <img
-            :src="user.profile_photo_url"
+            :src="$page.user.profile_photo_url"
             alt="Current Profile Photo"
             class="rounded-full h-20 w-20 object-cover"
           />
@@ -56,7 +56,7 @@
           type="button"
           class="mt-2"
           @click.native.prevent="deletePhoto"
-          v-if="user.profile_photo_path"
+          v-if="$page.user.profile_photo_path"
         >
           Remover logo
         </jet-secondary-button>
@@ -109,7 +109,7 @@ import JetInputError from "./../../Jetstream/InputError";
 import JetLabel from "./../../Jetstream/Label";
 import JetActionMessage from "./../../Jetstream/ActionMessage";
 import JetSecondaryButton from "./../../Jetstream/SecondaryButton";
-import VueToastedOptions from '../../Modules/vue-toasted-options';
+import VueToastedOptions from "../../Modules/vue-toasted-options";
 
 export default {
   components: {
@@ -122,8 +122,18 @@ export default {
     JetSecondaryButton,
   },
 
-  props: ["estabelecimento", "user", "errors"],
-
+  props: {
+    errors: Object,
+    estabelecimento: {
+      type: Object,
+      default: function () {
+        return {
+          nome: "",
+          descricao: "",
+        };
+      },
+    },
+  },
   data() {
     return {
       form: this.$inertia.form(
@@ -150,8 +160,11 @@ export default {
       this.form.post(route("estabelecimento.store"), {
         preserveScroll: true,
         onSuccess: (page) => {
-          if(Object.keys(this.errors).length == 0){
-            this.$toasted.show("Informações Salvas.", VueToastedOptions.success);
+          if (Object.keys(this.errors).length == 0) {
+            this.$toasted.show(
+              "Informações Salvas.",
+              VueToastedOptions.success
+            );
           }
         },
       });

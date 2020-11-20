@@ -14,9 +14,12 @@
 
             <!-- Navigation Links -->
             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-              <jet-nav-link :href="route('estabelecimento')">
+              <!-- <jet-nav-link
+                :href="route('cardapio.publico', $page.user.estabelecimento.url)"
+                :active="$page.currentRouteName == 'cardapio.publico'"
+              >
                 Visualizar Cardapio
-              </jet-nav-link>
+              </jet-nav-link> -->
               <jet-nav-link
                 :href="route('estabelecimento')"
                 :active="$page.currentRouteName == 'estabelecimento'"
@@ -235,7 +238,6 @@
           >
             Compartilhar
           </jet-responsive-nav-link>
-
         </div>
 
         <!-- Responsive Settings Options -->

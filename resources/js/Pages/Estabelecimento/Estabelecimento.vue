@@ -8,25 +8,24 @@
 
     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
       <estabelecimento-informacoes
-        :user="$page.user"
-        :estabelecimento="estabelecimento"
+        :estabelecimento="estabelecimento || undefined"
         :errors="errors"
       ></estabelecimento-informacoes>
       <jet-section-border />
       <estabelecimento-localizacao
         class="mt-10"
-        :localizacao="estabelecimento"
+        :localizacao="estabelecimento || undefined"
       ></estabelecimento-localizacao>
       <jet-section-border />
       <estabelecimento-contato
         class="mt-10"
-        :contatos="estabelecimento.contatos"
+        :contatos="estabelecimento ? estabelecimento.contatos : undefined"
         :errors="errors"
       ></estabelecimento-contato>
       <jet-section-border />
       <estabelecimento-dias-atendimento
         class="mt-10"
-        :diasAtendimento="estabelecimento.dias_atendimento"
+        :diasAtendimento="estabelecimento ? dias_atendimento : undefined"
         :errors="errors"
       ></estabelecimento-dias-atendimento>
     </div>
@@ -57,15 +56,7 @@ export default {
 
   props: {
     errors: Object,
-    estabelecimento: {
-      type: Object,
-      default: function () {
-        return {
-          nome: "",
-          descricao: "",
-        };
-      },
-    },
+    estabelecimento: Object,
   },
 
   methods: {

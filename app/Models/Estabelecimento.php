@@ -12,7 +12,7 @@ class Estabelecimento extends Model
     protected $guarded = ['id'];
     protected static function booted()
     {
-        static::addGlobalScope('user_id', function (Builder $builder) {
+        static::addGlobalScope('user_id_scope', function (Builder $builder) {
             $builder->where('user_id', '=', \Auth::user()->id);
         });
     }
@@ -26,6 +26,5 @@ class Estabelecimento extends Model
 
     public function cardapioCategorias(){
         return $this->hasMany('App\Models\CardapioCategoria');
-
     }
 }

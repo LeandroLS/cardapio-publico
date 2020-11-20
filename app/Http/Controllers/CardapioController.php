@@ -19,4 +19,11 @@ class CardapioController extends Controller
             'categorias' => $categorias
         ]);
     }
+
+    public function cardapioPublico(){
+        $categorias = CardapioCategoria::with('itens')->get();
+        return Inertia::render('Cardapio/CardapioPublico', [
+            'categorias' => $categorias
+        ]);
+    }
 }

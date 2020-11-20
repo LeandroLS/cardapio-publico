@@ -51,7 +51,7 @@
         </template>
         <template #actions>
           <jet-button
-            :type="button"
+            :type="'button'"
             v-clipboard:copy="cardapio_url"
             v-clipboard:success="onCopy"
             v-clipboard:error="onError"

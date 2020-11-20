@@ -11,13 +11,9 @@ class EstabelecimentoController extends Controller
         $estabelecimento = Estabelecimento::with('contatos')
         ->with('diasAtendimento')
         ->first();
-        if($estabelecimento){
-            return Inertia::render('Estabelecimento/Estabelecimento', [
-                'estabelecimento' => $estabelecimento,
-            ]);
-        } else {
-            return Inertia::render('Estabelecimento/Estabelecimento');
-        }
+        return Inertia::render('Estabelecimento/Estabelecimento', [
+            'estabelecimento' => $estabelecimento,
+        ]);
        
     }
     public static function nameToUrl($name){
