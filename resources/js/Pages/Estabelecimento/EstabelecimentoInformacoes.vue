@@ -61,7 +61,7 @@
           Remover logo
         </jet-secondary-button>
 
-        <jet-input-error :message="form.error('photo')" class="mt-2" />
+        <jet-input-error :message="$page.errors.photo" class="mt-2" />
       </div>
 
       <!-- Nome do Estabelecimento -->
@@ -75,7 +75,7 @@
           autocomplete="nome"
         />
         <!-- <jet-input-error :message="form.error('nome')" class="mt-2" /> -->
-        <jet-input-error :message="errors.nome" class="mt-2" />
+        <jet-input-error :message="$page.errors.nome" class="mt-2" />
       </div>
 
       <div class="col-span-6 sm:col-span-4">
@@ -123,7 +123,7 @@ export default {
   },
 
   props: {
-    errors: Object,
+
     estabelecimento: {
       type: Object,
       default: function () {
@@ -160,7 +160,7 @@ export default {
       this.form.post(route("estabelecimento.store"), {
         preserveScroll: true,
         onSuccess: (page) => {
-          if (Object.keys(this.errors).length == 0) {
+          if (Object.keys(this.$page.errors).length == 0) {
             this.$toasted.show(
               "Informações Salvas.",
               VueToastedOptions.success

@@ -55,7 +55,7 @@
             {{ tipo }}
           </option>
         </select>
-        <jet-input-error :message="errors.tipo_contato" class="mt-2" />
+        <jet-input-error :message="$page.errors.tipo_contato" class="mt-2" />
       </div>
       <div class="col-span-6 sm:col-span-3 mt-3">
         <jet-label>Contato</jet-label>
@@ -64,7 +64,7 @@
           :placeholder="'Ex: email@email.com.br'"
           v-model="form.contato"
         />
-        <jet-input-error :message="errors.contato" class="mt-2" />
+        <jet-input-error :message="$page.errors.contato" class="mt-2" />
       </div>
     </template>
     <template #actions>
@@ -95,7 +95,7 @@ export default {
         return [];
       },
     },
-    errors: Object,
+   
   },
   data() {
     return {
@@ -116,7 +116,7 @@ export default {
       this.form.post("/estabelecimento/contato", {
         preserveScroll: true,
         onSuccess: (page) => {
-          if (Object.keys(this.errors).length == 0) {
+          if (Object.keys(this.$page.errors).length == 0) {
             this.$toasted.show(
               "Informações Salvas.",
               VueToastedOptions.success

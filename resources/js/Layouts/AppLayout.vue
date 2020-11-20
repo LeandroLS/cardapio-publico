@@ -14,12 +14,12 @@
 
             <!-- Navigation Links -->
             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-              <!-- <jet-nav-link
-                :href="route('cardapio.publico', $page.user.estabelecimento.url)"
+              <jet-nav-link
+                :href="route('cardapio.publico', $page.estabelecimento.url)"
                 :active="$page.currentRouteName == 'cardapio.publico'"
               >
                 Visualizar Cardapio
-              </jet-nav-link> -->
+              </jet-nav-link>
               <jet-nav-link
                 :href="route('estabelecimento')"
                 :active="$page.currentRouteName == 'estabelecimento'"
@@ -216,7 +216,10 @@
         class="sm:hidden"
       >
         <div class="pt-2 pb-3 space-y-1">
-          <jet-responsive-nav-link :href="route('estabelecimento')">
+          <jet-responsive-nav-link
+            :href="route('cardapio.publico', $page.estabelecimento.url)"
+            :active="$page.currentRouteName == 'cardapio.publico'"
+          >
             Visualizar Cardapio
           </jet-responsive-nav-link>
           <jet-responsive-nav-link

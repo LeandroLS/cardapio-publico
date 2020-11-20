@@ -5,11 +5,9 @@
         Informações do Estabelecimento
       </h2>
     </template>
-
     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
       <estabelecimento-informacoes
         :estabelecimento="estabelecimento || undefined"
-        :errors="errors"
       ></estabelecimento-informacoes>
       <jet-section-border />
       <estabelecimento-localizacao
@@ -20,13 +18,13 @@
       <estabelecimento-contato
         class="mt-10"
         :contatos="estabelecimento ? estabelecimento.contatos : undefined"
-        :errors="errors"
       ></estabelecimento-contato>
       <jet-section-border />
       <estabelecimento-dias-atendimento
         class="mt-10"
-        :diasAtendimento="estabelecimento ? dias_atendimento : undefined"
-        :errors="errors"
+        :diasAtendimento="
+          estabelecimento ? estabelecimento.dias_atendimento : undefined
+        "
       ></estabelecimento-dias-atendimento>
     </div>
   </app-layout>
@@ -55,7 +53,6 @@ export default {
   },
 
   props: {
-    errors: Object,
     estabelecimento: Object,
   },
 

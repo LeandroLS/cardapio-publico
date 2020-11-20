@@ -59,17 +59,17 @@
             {{ dia }}
           </option>
         </select>
-        <jet-input-error :message="errors.dia_semana" class="mt-2" />
+        <jet-input-error :message="$page.errors.dia_semana" class="mt-2" />
       </div>
       <div class="col-span-6 sm:col-span-2 mt-3">
         <jet-label>Abre às</jet-label>
         <jet-input type="text" v-model="form.abre" />
-        <jet-input-error :message="errors.abre" class="mt-2" />
+        <jet-input-error :message="$page.errors.abre" class="mt-2" />
       </div>
       <div class="col-span-6 sm:col-span-2 mt-3">
         <jet-label>Fecha às</jet-label>
         <jet-input type="text" v-model="form.fecha" />
-        <jet-input-error :message="errors.fecha" class="mt-2" />
+        <jet-input-error :message="$page.errors.fecha" class="mt-2" />
       </div>
     </template>
     <template #actions>
@@ -92,7 +92,7 @@ export default {
         return [];
       },
     },
-    errors: Object,
+
   },
   components: {
     JetFormSection,
@@ -132,7 +132,7 @@ export default {
       this.form.post("/estabelecimento/horario-atendimento", {
         preserveScroll: true,
         onSuccess: (page) => {
-          if (Object.keys(this.errors).length == 0) {
+          if (Object.keys(this.$form.erros).length == 0) {
             this.$toasted.show(
               "Informações Salvas.",
               VueToastedOptions.success
