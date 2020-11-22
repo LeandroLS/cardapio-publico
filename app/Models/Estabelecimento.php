@@ -13,7 +13,12 @@ class Estabelecimento extends Model
     protected static function booted()
     {
         static::addGlobalScope('user_id_scope', function (Builder $builder) {
-            $builder->where('user_id', '=', \Auth::user()->id);
+            //verifica se tem usuário logado
+            if(\Auth::user()){
+                $builder->where('user_id', '=', \Auth::user()->id);
+            } else {
+                $builder->where('user_id', '=', null);
+            }
         });
     }
     public function contatos(){
