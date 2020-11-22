@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <h1>aqui</h1>
+  <div class="container">
+    <div class="flex flex-col">
+      <div class="h-48 shadow rounded-md">estabelecimento</div>
+      <div>Menu</div>
+    </div>
   </div>
 </template>
 
