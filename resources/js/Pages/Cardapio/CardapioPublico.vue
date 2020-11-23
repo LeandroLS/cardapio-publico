@@ -1,18 +1,16 @@
 <template>
-  <div class="container mx-auto">
-    <div
-      class="flex flex-col justify-center h-48 w-full shadow rounded-md p-2 bg-gray-200"
-    >
+  <div>
+    <div class="flex flex-col justify-center h-48 w-full p-2 container mx-auto">
       <div class="text-3xl font-bold">{{ estabelecimento.nome }}</div>
-      <div class="text-lg">{{ estabelecimento.descricao }}</div>
+      <div class="text-2xl text-gray-600">{{ estabelecimento.descricao }}</div>
 
-      <div class="text-lg">
+      <div class="text-lg text-gray-600">
         {{ estabelecimento.endereco }}, {{ estabelecimento.numero }},
         {{ estabelecimento.bairro }} - {{ estabelecimento.municipio.nome }}
       </div>
       <div class="text-lg">
         <div
-          class="mr-2 inline-block"
+          class="mr-15 inline-block text-gray-600"
           v-for="atendimento in estabelecimento.dias_atendimento"
           :key="atendimento.id"
         >
@@ -20,9 +18,9 @@
           {{ atendimento.fecha }}
         </div>
       </div>
-      <div class="text-lg">
+      <div class="text-lg text-gray-600">
         <div
-          class="mr-2 inline-block"
+          class="mr-15 inline-block text-gray-600"
           v-for="contato in estabelecimento.contatos"
           :key="contato.id"
         >
@@ -30,9 +28,7 @@
         </div>
       </div>
     </div>
-    <div
-      class="flex flex-col lg:flex-row justify-center h-48 w-full shadow rounded-md p-2 bg-gray-200"
-    >
+    <div class="flex flex-col lg:flex-row justify-center w-full bg-gray-100">
       <div class="lg:w-2/6 mx-4 my-4">
         <div class="w-full bg-white">
           <div class="rounded-md overflow-hidden shadow-lg">
@@ -43,7 +39,7 @@
             <div
               v-for="categoria in estabelecimento.cardapio_categorias"
               :key="categoria.id"
-              class="border-b border-grey-500 cursor-pointer mx-2"
+              class="border-b p-4 border-grey-500 cursor-pointer mx-2"
             >
               {{ categoria.nome }}
             </div>
@@ -64,13 +60,25 @@
             v-for="item in categoria.itens"
             :key="item.id"
           >
-            <div class="w-4/5 flex cursor-pointer text-sm">
-              <div class="flex-1"> <image-input
-                :url="'/storage/' + item.nome_foto_prato"
-              ></image-input></div>
-              <div class="flex-1">{{ item.nome }}</div>
-              <div class="flex-1" v-if="item.preco">R$ {{ item.preco }}</div>
-              <div class="flex-1">{{ item.descricao }}</div>
+            <div class="w-full grid grid-cols-4 cursor-pointer text-sm">
+              <div class="col-span-4 lg:col-span-1">
+                <image-input
+                  v-if="item.nome_foto_prato"
+                  :url="'/storage/' + item.nome_foto_prato"
+                ></image-input>
+
+                <image-input
+                  v-else
+                  :url="'https://via.placeholder.com/150x150?text=Sem Imagem'"
+                ></image-input>
+              </div>
+              <div class="col-span-4 lg:col-span-3">
+                <div class="font-bold my-2">{{ item.nome }}</div>
+                <div class="my-2 text-gray-600" v-if="item.preco">
+                  R$ {{ item.preco }}
+                </div>
+                <div class="my-2 text-gray-600">{{ item.descricao }}</div>
+              </div>
             </div>
           </div>
         </div>

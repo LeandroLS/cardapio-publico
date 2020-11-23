@@ -63,12 +63,26 @@
       </div>
       <div class="col-span-6 sm:col-span-2 mt-3">
         <jet-label>Abre às</jet-label>
-        <jet-input type="text" v-model="form.abre" />
+        <input
+          type="time"
+          v-model="form.abre"
+          class="form-input w-full rounded-md shadow-sm"
+          min="00:00"
+          max="23:59"
+        />
         <jet-input-error :message="$page.errors.abre" class="mt-2" />
       </div>
       <div class="col-span-6 sm:col-span-2 mt-3">
         <jet-label>Fecha às</jet-label>
-        <jet-input type="text" v-model="form.fecha" />
+
+        <input
+          type="time"
+          v-model="form.fecha"
+          class="form-input w-full rounded-md shadow-sm"
+          min="00:00"
+          max="23:59"
+        />
+
         <jet-input-error :message="$page.errors.fecha" class="mt-2" />
       </div>
     </template>
@@ -92,7 +106,6 @@ export default {
         return [];
       },
     },
-
   },
   components: {
     JetFormSection,
