@@ -107,13 +107,11 @@ import JetFormSection from "./../../Jetstream/FormSection";
 import JetInput from "./../../Jetstream/Input";
 import JetInputError from "./../../Jetstream/InputError";
 import JetLabel from "./../../Jetstream/Label";
-import JetActionMessage from "./../../Jetstream/ActionMessage";
 import JetSecondaryButton from "./../../Jetstream/SecondaryButton";
 import VueToastedOptions from "../../Modules/vue-toasted-options";
 
 export default {
   components: {
-    JetActionMessage,
     JetButton,
     JetFormSection,
     JetInput,
@@ -123,7 +121,6 @@ export default {
   },
 
   props: {
-
     estabelecimento: {
       type: Object,
       default: function () {

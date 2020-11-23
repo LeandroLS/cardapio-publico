@@ -56,12 +56,15 @@
             <div class="font-bold text-xl mb-2 w-3/4">{{ categoria.nome }}</div>
           </div>
           <div
-            class="mx-2 border-b border-grey-500 p-1 items-center flex justify-between hover:bg-gray-100"
+            class="mx-2 border-b border-grey-500 p-1 items-center flex justify-between"
             v-for="item in categoria.itens"
             :key="item.id"
           >
-            <div class="w-full grid grid-cols-4 cursor-pointer text-sm">
-              <div class="col-span-4 lg:col-span-1">
+            <div class="w-full grid grid-cols-4 text-sm">
+              <div
+                class="col-span-4 lg:col-span-1 cursor-pointer"
+                @click="showModal = true"
+              >
                 <image-input
                   v-if="item.nome_foto_prato"
                   :url="'/storage/' + item.nome_foto_prato"
@@ -84,15 +87,36 @@
         </div>
       </div>
     </div>
+    <jet-dialog-modal :show="showModal">
+      <template #title> Imagem do Prato </template>
+
+      <template #content>
+        <h1>aqui</h1>
+      </template>
+
+      <template #footer>
+        <!-- <jet-secondary-button @click.native="showModal = false">
+            Fechar
+          </jet-secondary-button> -->
+      </template>
+    </jet-dialog-modal>
   </div>
 </template>
 
 <script>
 import ImageInput from "./../../Components/ImageInput";
+import JetDialogModal from "./../../Jetstream/DialogModal";
+import JetSecondaryButton from "./../../Jetstream/SecondaryButton";
+
 export default {
-  components: { ImageInput },
+  components: { ImageInput, JetDialogModal, JetSecondaryButton },
   props: {
     estabelecimento: Object,
+  },
+  data() {
+    return {
+      showModal: false,
+    };
   },
 };
 </script>
