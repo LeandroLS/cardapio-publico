@@ -287,13 +287,13 @@ export default {
       data.append("descricao", this.form.descricao || "");
       data.append("preco", this.form.preco || "");
       data.append("foto_prato", this.form.foto_prato || "");
-
+      let message = this.form.id ? 'Prato atualizado' : 'Prato adicionado';
       this.$inertia.post("/cardapio/categoria/item", data, {
         preserveScroll: true,
         onSuccess: (page) => {
           if (Object.keys(this.errors).length == 0) {
             this.$toasted.show(
-              "Novo prato adicionado na categoria.",
+              message,
               VueToastedOptions.success
             );
             this.showModal = false;

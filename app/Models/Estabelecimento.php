@@ -32,4 +32,8 @@ class Estabelecimento extends Model
     public function cardapioCategorias(){
         return $this->hasMany('App\Models\CardapioCategoria');
     }
+
+    public function municipio(){
+        return $this->hasOne('App\Models\Municipio', 'codigo_ibge', 'codigo_ibge');
+    }
 }

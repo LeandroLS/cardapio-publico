@@ -19,11 +19,13 @@ class CardapioController extends Controller
             'categorias' => $categorias
         ]);
     }
-
-    public function cardapioPublico(){
-        $categorias = CardapioCategoria::with('itens')->get();
+    /**
+     * Precisa criar um método para verificar se a url recebida realmente existe no banco de dados
+     */
+    public function cardapioPublico(Request $request){
+        $estabelecimento = \App\Models\Estabelecimento::with('contatos')->with('diasAtendimento')->with('cardapioCategorias.itens')->with('municipio')->with('diasAtendimento')->where('url', $request->cardapiourl)->first();
         return Inertia::render('Cardapio/CardapioPublico', [
-            'categorias' => $categorias
+            'estabelecimento' => $estabelecimento
         ]);
     }
 }
