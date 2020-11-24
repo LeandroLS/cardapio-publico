@@ -10,10 +10,12 @@ class CAtegoriaItem extends Model
     use HasFactory;
     protected $table = 'categoria_itens';
     protected $guarded = ['id'];
+    
     public function categoria()
     {
         return $this->belongsTo('App\Models\CardapioCategoria');
     }
+
     public function getPrecoAttribute($value)
     {
         return number_format($value , 2);

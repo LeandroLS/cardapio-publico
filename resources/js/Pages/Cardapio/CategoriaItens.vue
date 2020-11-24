@@ -27,6 +27,9 @@
               :src="'/storage/' + item.nome_foto_prato"
             />
           </div>
+           <div class="flex-1" v-else>
+            
+          </div>
           <div class="flex-1">{{ item.nome }}</div>
           <div class="flex-1" v-if="item.preco">R$ {{ item.preco }}</div>
         </div>
@@ -59,7 +62,7 @@
             title="Deixar visível"
             type="button"
             v-else
-            class="inline-flex items-center px-1 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150"
+            class="inline-flex items-center mr-2 px-1 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150"
           >
             <svg
               class="h-3 md:h-5"
@@ -256,9 +259,12 @@ export default {
       fetch(`/cardapio/categoria/item?id=${id}`)
         .then((res) => res.json())
         .then((res) => {
+          // res.preco = 50.50;
           this.form = this.$inertia.form(res, {
             resetOnSuccess: true,
           });
+          // this.form.preco = 50;
+          // console.log(this.form);
         });
     },
     toggleVisible(categoriaItem) {

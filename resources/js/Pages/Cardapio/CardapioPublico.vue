@@ -74,7 +74,7 @@
           </div>
           <div
             class="mx-2 border-b border-grey-500 p-1 items-center flex justify-between"
-            v-for="item in categoria.itens"
+            v-for="item in categoria.itens.filter(el => el.visivel == 1)"
             :key="item.id"
           >
             <div class="w-full grid grid-cols-4 text-sm">
