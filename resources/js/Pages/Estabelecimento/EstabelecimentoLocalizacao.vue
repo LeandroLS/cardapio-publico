@@ -111,11 +111,15 @@ export default {
     "localizacao.cep": async function (newLocalizacao, oldLocalizacao) {
       if (newLocalizacao.length == 9) {
         this.getCep(newLocalizacao).then((res) => {
-          this.localizacao.cep = res.data.cep;
-          this.localizacao.endereco = res.data.logradouro;
-          this.localizacao.bairro = res.data.bairro;
-          this.localizacao.codigo_ibge = res.data.codigo_ibge;
-          this.getMunicipioByCodIBGE(res.data.ibge);
+          if (res.data.erro) {
+            this.$toasted.show("CEP não encontrado.", VueToastedOptions.danger);
+          } else {
+            this.localizacao.cep = res.data.cep;
+            this.localizacao.endereco = res.data.logradouro;
+            this.localizacao.bairro = res.data.bairro;
+            this.localizacao.codigo_ibge = res.data.codigo_ibge;
+            this.getMunicipioByCodIBGE(res.data.ibge);
+          }
         });
       }
     },

@@ -17,7 +17,7 @@
           class="w-4/5 flex items-center cursor-pointer text-sm"
           @click="
             getCategoriaItem(item.id);
-            showModal = true;
+            show_modal = true;
           "
         >
           <div class="flex-1" v-if="item.nome_foto_prato">
@@ -105,7 +105,7 @@
       <div class="mx-2">
         <button
           @click="
-            showModal = true;
+            show_modal = true;
             form.cardapio_categoria_id = categoria.id;
           "
           class="w-full my-2 border border-transparent bg-gray-300 rounded-md font-semibold text-black uppercase tracking-widest hover:bg-gray-700 hover:text-white active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150"
@@ -114,8 +114,8 @@
         </button>
       </div>
     </div>
-    <jet-dialog-modal :show="showModal">
-      <template #title>Adicionar Item</template>
+    <jet-dialog-modal :show="show_modal" @close='resetForm'>
+      <template #title></template>
       <template #content>
         <div class="w-full">
           <div class="mb-2">
@@ -131,7 +131,7 @@
             <template v-else>
               <input class="btn-sm" type="file" @change="showImage" />
               <input-image-preview
-                :image="form.foto_prato"
+                :image="foto_prato"
               ></input-image-preview>
             </template>
             <jet-input-error :message="errors.foto_prato" class="mt-2" />
@@ -159,7 +159,7 @@
               placeholder="Ex: Um frango empanado delicioso!"
               class="form-input w-full rounded-md shadow-sm"
               cols="10"
-              rows="4"
+              rows="3"
             ></textarea>
           </div>
         </div>
@@ -170,10 +170,10 @@
         />
       </template>
       <template #footer>
-        <jet-secondary-button @clicked="fecharModal">
+        <jet-secondary-button @clicked="resetForm">
           Fechar
         </jet-secondary-button>
-        <jet-button @clicked="storeOrUpdate">Salvar</jet-button>
+        <jet-button @clicked="storeOrUpdate" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Salvar</jet-button>
       </template>
     </jet-dialog-modal>
     <!-- Button trigger modal -->
@@ -209,7 +209,8 @@ export default {
 
   data() {
     return {
-      showModal: false,
+      show_modal: false,
+       foto_prato: null,
       money: {
         decimal: ",",
         thousands: ".",
@@ -228,7 +229,7 @@ export default {
           cardapio_categoria_id: null,
           descricao: null,
           preco: 0.0,
-          foto_prato: null,
+         
           nome_foto_prato: null,
           id: null,
         },
@@ -250,8 +251,9 @@ export default {
     exluirImgPratoPromise(id) {
       return axios.post("/cardapio/categoria/item/imagem", { id: id });
     },
-    fecharModal() {
-      this.showModal = false;
+    resetForm() {
+      this.show_modal = false;
+      this.foto_prato = undefined;
       this.form = this.emptyFormObject();
     },
 
@@ -289,32 +291,36 @@ export default {
       var data = new FormData();
       data.append("nome", this.form.nome || "");
       data.append("id", this.form.id || "");
-
       data.append(
         "cardapio_categoria_id",
         this.form.cardapio_categoria_id || ""
       );
       data.append("descricao", this.form.descricao || "");
       data.append("preco", this.form.preco || "");
-      data.append("foto_prato", this.form.foto_prato || "");
+      data.append("foto_prato", this.foto_prato || "");
       let message = this.form.id ? "Prato atualizado" : "Prato adicionado";
+      this.form.processing = true;
       this.$inertia.post("/cardapio/categoria/item", data, {
         preserveScroll: true,
         onSuccess: (page) => {
           if (Object.keys(this.errors).length == 0) {
             this.$toasted.show(message, VueToastedOptions.success);
-            this.showModal = false;
+            this.show_modal = false;
           } else {
             this.$toasted.show(
               "Verifique os campos obrigatórios.",
               VueToastedOptions.danger
             );
           }
+          this.form.processing = false;
+          //após concluir reseta o formlário e o campo de seleção imagem
+          this.resetForm();
         },
       });
+
     },
     showImage(e) {
-      this.form.foto_prato = e.target.files[0];
+      this.foto_prato = e.target.files[0];
     },
     destroy(id) {
       this.$inertia.post(

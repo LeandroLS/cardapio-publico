@@ -16,12 +16,24 @@ class EstabelecimentoController extends Controller
         ]);
        
     }
-    public static function nameToUrl($name){
+    protected function nameToUrl($name){
         $nameTrimed = strtolower(trim($name));
         $stringWithOneSpace = preg_replace('/[ ]{2,}/','', $nameTrimed);
         $stringWithTrace = preg_replace('/[^a-zA-Z0-9]/','-', $stringWithOneSpace);
         $stringWithOneTrace = preg_replace('/[-]{2,}/','-', $stringWithTrace);
         return $stringWithOneTrace;
+    }
+
+    /**
+     * Verifica se a url gerada já existe, se já existe, concatena um -2 no nome.
+     */
+    protected function cardapioUrl($nomeEstabelecimento){
+        $url = $this->nameToUrl($nomeEstabelecimento);
+        $estabelecimento = Estabelecimento::where('url', $url)->get();
+        if($estabelecimento){
+            $url .= '-2';
+        }
+        return $url;
     }
 
     public function store(Request $request){
@@ -40,7 +52,7 @@ class EstabelecimentoController extends Controller
             $estabelecimento->bairro = $request->bairro;
             $estabelecimento->save();
         } else {
-            $url = $this->nameToUrl($request->nome);
+            $url = $this->cardapioUrl($request->nome);
             Estabelecimento::create([
                 'nome' => $request->nome,
                 'descricao' => $request->descricao,
