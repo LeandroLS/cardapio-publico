@@ -14,4 +14,8 @@ class CAtegoriaItem extends Model
     {
         return $this->belongsTo('App\Models\CardapioCategoria');
     }
+    public function getPrecoAttribute($value)
+    {
+        return number_format($value , 2);
+    }
 }

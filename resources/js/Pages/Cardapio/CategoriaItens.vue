@@ -14,14 +14,21 @@
         :key="item.id"
       >
         <div
-          class="w-4/5 flex cursor-pointer text-sm"
+          class="w-4/5 flex items-center cursor-pointer text-sm"
           @click="
             getCategoriaItem(item.id);
             showModal = true;
           "
         >
+          <div class="flex-1" v-if="item.nome_foto_prato">
+            <img
+              class="object-cover rounded"
+              width="40px"
+              :src="'/storage/' + item.nome_foto_prato"
+              alt=""
+            />
+          </div>
           <div class="flex-1">{{ item.nome }}</div>
-
           <div class="flex-1" v-if="item.preco">R$ {{ item.preco }}</div>
         </div>
         <div class="w-1/5 flex justify-end">
@@ -287,15 +294,12 @@ export default {
       data.append("descricao", this.form.descricao || "");
       data.append("preco", this.form.preco || "");
       data.append("foto_prato", this.form.foto_prato || "");
-      let message = this.form.id ? 'Prato atualizado' : 'Prato adicionado';
+      let message = this.form.id ? "Prato atualizado" : "Prato adicionado";
       this.$inertia.post("/cardapio/categoria/item", data, {
         preserveScroll: true,
         onSuccess: (page) => {
           if (Object.keys(this.errors).length == 0) {
-            this.$toasted.show(
-              message,
-              VueToastedOptions.success
-            );
+            this.$toasted.show(message, VueToastedOptions.success);
             this.showModal = false;
           } else {
             this.$toasted.show(

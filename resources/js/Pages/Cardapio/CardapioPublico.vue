@@ -1,16 +1,28 @@
 <template>
   <div>
-    <div class="flex flex-col justify-center h-48 w-full p-2 container mx-auto">
-      <div class="text-3xl font-bold">{{ estabelecimento.nome }}</div>
-      <div class="text-2xl text-gray-600">{{ estabelecimento.descricao }}</div>
+    <div
+      class="flex flex-col justify-center text-center w-full p-2 container mx-auto"
+    >
+      <img
+        width="200"
+        height="200"
+        class="object-contain md:object-scale-down rounded"
+        v-if="$page.user.profile_photo_url"
+        :src="$page.user.profile_photo_url"
+      />
 
-      <div class="text-lg text-gray-600">
+      <div class="text-3xl font-bold">{{ estabelecimento.nome }}</div>
+      <div class="mb-2 text-2xl text-gray-600">
+        {{ estabelecimento.descricao }}
+      </div>
+
+      <div class="text-sm lg:text-lg text-gray-600">
         {{ estabelecimento.endereco }}, {{ estabelecimento.numero }},
         {{ estabelecimento.bairro }} - {{ estabelecimento.municipio.nome }}
       </div>
-      <div class="text-lg">
+      <div class="text-sm lg:text-lg">
         <div
-          class="mr-15 inline-block text-gray-600"
+          class="mx-auto lg:mr-15 inline-block text-gray-600"
           v-for="atendimento in estabelecimento.dias_atendimento"
           :key="atendimento.id"
         >
@@ -18,9 +30,9 @@
           {{ atendimento.fecha }}
         </div>
       </div>
-      <div class="text-lg text-gray-600">
+      <div class="text-sm lg:text-lg text-gray-600">
         <div
-          class="mr-15 inline-block text-gray-600"
+          class="mx-auto lg:mr-15 inline-block text-gray-600"
           v-for="contato in estabelecimento.contatos"
           :key="contato.id"
         >
