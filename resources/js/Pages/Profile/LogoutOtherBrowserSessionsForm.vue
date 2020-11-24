@@ -1,16 +1,16 @@
 <template>
     <jet-action-section>
         <template #title>
-            Browser Sessions
+            Sessões de navegador
         </template>
 
         <template #description>
-            Manage and logout your active sessions on other browsers and devices.
+            Gerencie e deslogue suas sessões de login em outro navegadores.
         </template>
 
         <template #content>
             <div class="max-w-xl text-sm text-gray-600">
-                If necessary, you may logout of all of your other browser sessions across all of your devices. If you feel your account has been compromised, you should also update your password.
+                Se necessário, você pode deslogar todas suas sessões de login em todos os dispositivos. Se você acha que sua senha foi comprometiva, você deve mudar sua senha.
             </div>
 
             <!-- Other Browser Sessions -->
@@ -45,25 +45,23 @@
 
             <div class="flex items-center mt-5">
                 <jet-button @click.native="confirmLogout">
-                    Logout Other Browser Sessions
+                    Deslogar de todos navegadores.
                 </jet-button>
 
                 <jet-action-message :on="form.recentlySuccessful" class="ml-3">
-                    Done.
+                    Feito.
                 </jet-action-message>
             </div>
 
             <!-- Logout Other Devices Confirmation Modal -->
             <jet-dialog-modal :show="confirmingLogout" @close="confirmingLogout = false">
                 <template #title>
-                    Logout Other Browser Sessions
+                    Deslogar de todos navegadores
                 </template>
-
                 <template #content>
-                    Please enter your password to confirm you would like to logout of your other browser sessions across all of your devices.
-
+                    por favor digite sua senha para confirmar que você gostaria de deslogar de todos os outros navegadores em outros dispositivos.
                     <div class="mt-4">
-                        <jet-input type="password" class="mt-1 block w-3/4" placeholder="Password"
+                        <jet-input type="password" class="mt-1 block w-3/4" placeholder="Senha"
                                     ref="password"
                                     v-model="form.password"
                                     @keyup.enter.native="logoutOtherBrowserSessions" />
@@ -71,14 +69,13 @@
                         <jet-input-error :message="form.error('password')" class="mt-2" />
                     </div>
                 </template>
-
                 <template #footer>
                     <jet-secondary-button @click.native="confirmingLogout = false">
-                        Nevermind
+                        Fechar
                     </jet-secondary-button>
 
                     <jet-button class="ml-2" @click.native="logoutOtherBrowserSessions" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                        Logout Other Browser Sessions
+                        Deslogar de todos navegadores
                     </jet-button>
                 </template>
             </jet-dialog-modal>

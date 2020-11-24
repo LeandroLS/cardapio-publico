@@ -7,7 +7,7 @@
           <div class="flex">
             <!-- Logo -->
             <div class="flex-shrink-0 flex items-center">
-              <inertia-link :href="route('dashboard')">
+              <inertia-link :href="route('cardapio')">
                 <jet-application-mark class="block h-9 w-auto" />
               </inertia-link>
             </div>
@@ -39,13 +39,13 @@
               >
                 Compartilhar
               </jet-nav-link>
-
+<!-- 
               <jet-nav-link
                 :href="route('dashboard')"
                 :active="$page.currentRouteName == 'dashboard'"
               >
                 Dashboard
-              </jet-nav-link>
+              </jet-nav-link> -->
             </div>
           </div>
 
