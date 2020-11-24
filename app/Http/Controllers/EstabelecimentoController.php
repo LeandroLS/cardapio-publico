@@ -37,6 +37,9 @@ class EstabelecimentoController extends Controller
     }
 
     public function store(Request $request){
+        /**
+         * talvez esse método ficaria melhor com um updateOrCreate
+         */
         $request->validate([
             'nome' => 'required',
             'photo' => ['nullable','image', 'max:2048']
