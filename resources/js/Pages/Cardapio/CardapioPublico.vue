@@ -1,42 +1,45 @@
 <template>
   <div>
     <div
-      class="flex flex-col justify-center text-center w-full p-2 container mx-auto"
+      class="grid grid-cols-6 justify-center text-center lg:text-left w-full p-2 container mx-auto"
     >
-      <img
-        width="200"
-        height="200"
-        class="object-contain md:object-scale-down rounded"
-        v-if="$page.user.profile_photo_url"
-        :src="$page.user.profile_photo_url"
-      />
-
-      <div class="text-3xl font-bold">{{ estabelecimento.nome }}</div>
-      <div class="mb-2 text-2xl text-gray-600">
-        {{ estabelecimento.descricao }}
+      <div class="col-span-6 lg:col-span-2 mx-auto">
+        <img
+          width="200"
+          height="200"
+          class="object-contain md:object-scale-down rounded "
+          v-if="$page.user.profile_photo_url"
+          :src="$page.user.profile_photo_url"
+        />
       </div>
-
-      <div class="text-sm lg:text-lg text-gray-600">
-        {{ estabelecimento.endereco }}, {{ estabelecimento.numero }},
-        {{ estabelecimento.bairro }} - {{ estabelecimento.municipio.nome }}
-      </div>
-      <div class="text-sm lg:text-lg">
-        <div
-          class="mx-auto lg:mr-15 inline-block text-gray-600"
-          v-for="atendimento in estabelecimento.dias_atendimento"
-          :key="atendimento.id"
-        >
-          {{ atendimento.dia_semana }} das {{ atendimento.abre }} às
-          {{ atendimento.fecha }}
+      <div class="col-span-6 lg:col-span-4">
+        <div class="text-3xl font-bold">{{ estabelecimento.nome }}</div>
+        <div class="mb-2 text-2xl text-gray-600">
+          {{ estabelecimento.descricao }}
         </div>
-      </div>
-      <div class="text-sm lg:text-lg text-gray-600">
-        <div
-          class="mx-auto lg:mr-15 inline-block text-gray-600"
-          v-for="contato in estabelecimento.contatos"
-          :key="contato.id"
-        >
-          {{ contato.contato }}
+
+        <div class="text-sm lg:text-lg text-gray-600">
+          {{ estabelecimento.endereco }}, {{ estabelecimento.numero }},
+          {{ estabelecimento.bairro }} - {{ estabelecimento.municipio.nome }}
+        </div>
+        <div class="text-sm lg:text-lg text-gray-600">
+          <div
+            class="mx-auto lg:mr-15"
+            v-for="atendimento in estabelecimento.dias_atendimento"
+            :key="atendimento.id"
+          >
+            {{ atendimento.dia_semana }} das {{ atendimento.abre }} às
+            {{ atendimento.fecha }}
+          </div>
+        </div>
+        <div class="text-sm lg:text-lg text-gray-600">
+          
+          <div class="inline-block mr-5"
+            v-for="contato in estabelecimento.contatos"
+            :key="contato.id"
+          >
+            {{ contato.contato }}
+          </div>
         </div>
       </div>
     </div>
@@ -48,13 +51,14 @@
               <div class="font-bold text-xl mb-2">Categorias do Cardápio</div>
             </div>
 
-            <div
+            <a
               v-for="categoria in estabelecimento.cardapio_categorias"
               :key="categoria.id"
-              class="border-b p-4 border-grey-500 cursor-pointer mx-2"
+              :href="'#' + categoria.id"
+              class="border-b p-4 border-grey-500 cursor-pointer mx-2 block"
             >
               {{ categoria.nome }}
-            </div>
+            </a>
           </div>
         </div>
       </div>
@@ -62,6 +66,7 @@
         <div
           v-for="categoria in estabelecimento.cardapio_categorias"
           :key="categoria.id"
+          :id="categoria.id"
           class="rounded-md overflow-hidden shadow-lg mb-2 bg-white"
         >
           <div class="mt-2 mx-2 border-b border-grey-500">
