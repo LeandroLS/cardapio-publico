@@ -3,11 +3,11 @@
     <div
       class="grid grid-cols-6 justify-center text-center lg:text-left w-full p-2 container mx-auto"
     >
-      <div class="col-span-6 lg:col-span-2 mx-auto">
+      <div class="col-span-6 lg:col-span-2 mx-auto my-auto">
         <img
           width="200"
           height="200"
-          class="object-contain md:object-scale-down rounded "
+          class="object-contain md:object-scale-down rounded"
           v-if="$page.user.profile_photo_url"
           :src="$page.user.profile_photo_url"
         />
@@ -19,8 +19,7 @@
         </div>
 
         <div class="text-sm lg:text-lg text-gray-600">
-          {{ estabelecimento.endereco }}, {{ estabelecimento.numero }},
-          {{ estabelecimento.bairro }} - {{ estabelecimento.municipio.nome }}
+          {{ localizacaoEstabelecimento }}
         </div>
         <div class="text-sm lg:text-lg text-gray-600">
           <div
@@ -33,8 +32,8 @@
           </div>
         </div>
         <div class="text-sm lg:text-lg text-gray-600">
-          
-          <div class="inline-block mr-5"
+          <div
+            class="inline-block mr-5"
             v-for="contato in estabelecimento.contatos"
             :key="contato.id"
           >
@@ -43,7 +42,9 @@
         </div>
       </div>
     </div>
-    <div class="flex flex-col lg:flex-row justify-center w-full bg-gray-100">
+    <div
+      class="flex flex-col lg:flex-row justify-center w-full h-screen bg-gray-100"
+    >
       <div class="lg:w-2/6 mx-4 my-4">
         <div class="w-full bg-white">
           <div class="rounded-md overflow-hidden shadow-lg">
@@ -74,13 +75,13 @@
           </div>
           <div
             class="mx-2 border-b border-grey-500 p-1 items-center flex justify-between"
-            v-for="item in categoria.itens.filter(el => el.visivel == 1)"
+            v-for="item in categoria.itens.filter((el) => el.visivel == 1)"
             :key="item.id"
           >
             <div class="w-full grid grid-cols-4 text-sm">
               <div
                 class="col-span-4 lg:col-span-1 cursor-pointer"
-                @click="showModal = true"
+                @click="showModal(item)"
               >
                 <image-input
                   v-if="item.nome_foto_prato"
@@ -104,17 +105,23 @@
         </div>
       </div>
     </div>
-    <jet-dialog-modal :show="showModal">
+    <!-- Modal Portal -->
+    <portal-target name="modal" multiple> </portal-target>
+    <jet-dialog-modal @close="closeModal" :show="modalIsVisible">
       <template #title> Imagem do Prato </template>
 
       <template #content>
-        <h1>aqui</h1>
+        <img v-if="item && item.nome_foto_prato != null" :src="'/storage/' + item.nome_foto_prato" alt="" />
+        <img
+          v-else
+          :src="'https://via.placeholder.com/150x150?text=Sem Imagem'"
+        />
       </template>
 
       <template #footer>
-        <!-- <jet-secondary-button @click.native="showModal = false">
-            Fechar
-          </jet-secondary-button> -->
+        <jet-secondary-button @click.native="closeModal">
+          Fechar
+        </jet-secondary-button>
       </template>
     </jet-dialog-modal>
   </div>
@@ -132,8 +139,37 @@ export default {
   },
   data() {
     return {
-      showModal: false,
+      modalIsVisible: false,
+      item: undefined,
     };
+  },
+  methods: {
+    showModal(item) {
+      this.modalIsVisible = true;
+      this.item = item;
+    },
+    closeModal() {
+      this.modalIsVisible = false;
+      this.item = undefined;
+    },
+  },
+
+  computed: {
+    localizacaoEstabelecimento: function () {
+      let strInfo = this.estabelecimento.endereco
+        ? this.estabelecimento.endereco + ", "
+        : "";
+      strInfo += this.estabelecimento.numero
+        ? this.estabelecimento.numero + ", "
+        : "";
+      strInfo += this.estabelecimento.bairro
+        ? this.estabelecimento.bairro + " - "
+        : "";
+      strInfo += this.estabelecimento.municipio
+        ? this.estabelecimento.municipio.nome
+        : "";
+      return strInfo;
+    },
   },
 };
 </script>
