@@ -30,6 +30,7 @@
           <div class="flex-1" v-else></div>
           <div class="flex-1">{{ item.nome }}</div>
           <div class="flex-1" v-if="item.preco">R$ {{ item.preco }}</div>
+          <div class="flex-1" v-else></div>
         </div>
         <div class="w-1/5 flex justify-end">
           <form action="">
@@ -163,7 +164,7 @@
             <jet-label>Valor</jet-label>
             <money
               class="form-input w-full rounded-md shadow-sm"
-              v-model="form.preco"
+              v-model="VMoneyPrice"
               v-bind="money"
             ></money>
           </div>
@@ -237,6 +238,7 @@ export default {
       categoriaItemSendoDeletado: false,
       show_modal: false,
       foto_prato: null,
+      VMoneyPrice: 0,
       money: {
         decimal: ",",
         thousands: ".",
@@ -254,8 +256,7 @@ export default {
           nome: null,
           cardapio_categoria_id: null,
           descricao: null,
-          preco: 0.0,
-
+          preco: 0,
           nome_foto_prato: null,
           id: null,
         },
@@ -269,12 +270,9 @@ export default {
       fetch(`/cardapio/categoria/item?id=${id}`)
         .then((res) => res.json())
         .then((res) => {
-          // res.preco = 50.50;
           this.form = this.$inertia.form(res, {
             resetOnSuccess: true,
           });
-          // this.form.preco = 50;
-          // console.log(this.form);
         });
     },
 
@@ -287,7 +285,7 @@ export default {
         this.form.cardapio_categoria_id || ""
       );
       data.append("descricao", this.form.descricao || "");
-      data.append("preco", this.form.preco || "");
+      data.append("preco", this.VMoneyPrice || "");
       data.append("foto_prato", this.foto_prato || "");
       let message = this.form.id ? "Prato atualizado" : "Prato adicionado";
       this.form.processing = true;
@@ -369,6 +367,11 @@ export default {
     showImage(e) {
       this.foto_prato = e.target.files[0];
     },
+  },
+  watch: {
+    'form.preco' : function(newValue, oldValue){
+      this.VMoneyPrice = newValue;
+    }
   },
   props: {
     categorias: Array,

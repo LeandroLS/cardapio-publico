@@ -42,9 +42,7 @@
         </div>
       </div>
     </div>
-    <div
-      class="flex flex-col lg:flex-row justify-center w-full h-screen bg-gray-100"
-    >
+    <div class="flex flex-col lg:flex-row justify-center w-full bg-gray-100">
       <div class="lg:w-2/6 mx-4 my-4">
         <div class="w-full bg-white">
           <div class="rounded-md overflow-hidden shadow-lg">
@@ -111,8 +109,15 @@
       <template #title> Imagem do Prato </template>
 
       <template #content>
-        <img v-if="item && item.nome_foto_prato != null" :src="'/storage/' + item.nome_foto_prato" alt="" />
         <img
+          class="rounded"
+          style="max-height: 70vh"
+          v-if="item && item.nome_foto_prato != null"
+          :src="'/storage/' + item.nome_foto_prato"
+        />
+        <img
+          class="rounded"
+          style="max-height: 70vh"
           v-else
           :src="'https://via.placeholder.com/150x150?text=Sem Imagem'"
         />
