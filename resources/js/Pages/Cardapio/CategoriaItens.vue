@@ -78,7 +78,7 @@
               </svg>
             </button>
           </form>
-          <form @submit.prevent="destroy(item.id)">
+          <form @submit.prevent="showModalDeletarItem(item)">
             <button
               title="Remover"
               class="inline-flex items-center px-1 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150"
@@ -113,6 +113,24 @@
         </button>
       </div>
     </div>
+    <jet-confirmation-modal
+      :show="categoriaItemSendoDeletado"
+      @close="closeModalDeletarItem"
+    >
+      <template #title> Deletar Item </template>
+
+      <template #content> Tem certeza que quer excluír esse item ? </template>
+
+      <template #footer>
+        <jet-secondary-button @click.native="closeModalDeletarItem">
+          Cancelar
+        </jet-secondary-button>
+
+        <jet-danger-button class="ml-2" @click.native="destroy">
+          Excluir
+        </jet-danger-button>
+      </template>
+    </jet-confirmation-modal>
     <jet-dialog-modal :show="show_modal" @close="resetForm">
       <template #title></template>
       <template #content>
@@ -191,6 +209,8 @@ import VueToastedOptions from "../../Modules/vue-toasted-options";
 import JetInputError from "./../../Jetstream/InputError";
 import JetDialogModal from "./../../Jetstream/DialogModal";
 import JetLabel from "./../../Jetstream/Label";
+import JetConfirmationModal from "./../../Jetstream/ConfirmationModal";
+import JetDangerButton from "./../../Jetstream/DangerButton";
 import { Money } from "v-money";
 import InputImagePreview from "./../../Components/InputImagePreview";
 import ImageInput from "./../../Components/ImageInput";
@@ -204,6 +224,8 @@ export default {
     JetInputError,
     JetDialogModal,
     JetSecondaryButton,
+    JetConfirmationModal,
+    JetDangerButton,
     Money,
     InputImagePreview,
     ImageInput,
@@ -211,6 +233,8 @@ export default {
 
   data() {
     return {
+      categoria_item_id_deletar: null,
+      categoriaItemSendoDeletado: false,
       show_modal: false,
       foto_prato: null,
       money: {
@@ -240,24 +264,6 @@ export default {
         }
       );
     },
-    exluirImgEResetarForm(form) {
-      this.exluirImgPratoPromise(form.id).then((res) =>
-        this.getCategoriaItem(form.id)
-      );
-      this.$toasted.show(
-        "Imagem excluída com sucesso.",
-        VueToastedOptions.success
-      );
-    },
-
-    exluirImgPratoPromise(id) {
-      return axios.post("/cardapio/categoria/item/imagem", { id: id });
-    },
-    resetForm() {
-      this.show_modal = false;
-      this.foto_prato = undefined;
-      this.form = this.emptyFormObject();
-    },
 
     getCategoriaItem(id) {
       fetch(`/cardapio/categoria/item?id=${id}`)
@@ -271,24 +277,7 @@ export default {
           // console.log(this.form);
         });
     },
-    toggleVisible(categoriaItem) {
-      let mensagem = "";
-      if (categoriaItem.visivel == 1) {
-        categoriaItem.visivel = 0;
-        mensagem = "Item da categoria ocultado.";
-      } else {
-        categoriaItem.visivel = 1;
-        mensagem = "Item da categoria vísivel.";
-      }
-      this.$inertia.post("/cardapio/categoria/item", categoriaItem, {
-        preserveScroll: true,
-        onSuccess: (page) => {
-          if (Object.keys(this.errors).length == 0) {
-            this.$toasted.show(mensagem, VueToastedOptions.success);
-          }
-        },
-      });
-    },
+
     storeOrUpdate() {
       var data = new FormData();
       data.append("nome", this.form.nome || "");
@@ -320,19 +309,65 @@ export default {
         },
       });
     },
-    showImage(e) {
-      this.foto_prato = e.target.files[0];
-    },
-    destroy(id) {
+    destroy() {
       this.$inertia.post(
         "/cardapio/categoria/item/destroy",
-        { id: id },
+        { id: this.categoria_item_id_deletar },
         { preserveScroll: true }
       );
       this.$toasted.show(
         "Item da categoria removido",
         VueToastedOptions.success
       );
+      this.closeModalDeletarItem();
+    },
+    toggleVisible(categoriaItem) {
+      let mensagem = "";
+      if (categoriaItem.visivel == 1) {
+        categoriaItem.visivel = 0;
+        mensagem = "Item da categoria ocultado.";
+      } else {
+        categoriaItem.visivel = 1;
+        mensagem = "Item da categoria vísivel.";
+      }
+      this.$inertia.post("/cardapio/categoria/item", categoriaItem, {
+        preserveScroll: true,
+        onSuccess: (page) => {
+          if (Object.keys(this.errors).length == 0) {
+            this.$toasted.show(mensagem, VueToastedOptions.success);
+          }
+        },
+      });
+    },
+    exluirImgEResetarForm(form) {
+      this.exluirImgPratoPromise(form.id).then((res) =>
+        this.getCategoriaItem(form.id)
+      );
+      this.$toasted.show(
+        "Imagem excluída com sucesso.",
+        VueToastedOptions.success
+      );
+    },
+
+    exluirImgPratoPromise(id) {
+      return axios.post("/cardapio/categoria/item/imagem", { id: id });
+    },
+    resetForm() {
+      this.show_modal = false;
+      this.foto_prato = undefined;
+      this.form = this.emptyFormObject();
+    },
+    showModalDeletarItem(item) {
+      this.categoria_item_id_deletar = item.id;
+      this.categoriaItemSendoDeletado = true;
+    },
+    closeModalDeletarItem() {
+      this.categoria_item_id_deletar = null;
+      this.categoriaItemSendoDeletado = false;
+    },
+
+    showImage(e) {
+      this.foto_prato = e.target.files[0];
     },
   },
   props: {

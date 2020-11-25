@@ -13,7 +13,7 @@
         >
           <click-edit-input
             @updated="update(categoria, $event)"
-            @destroied="destroy($event)"
+            @destroied="showModalDeletarItem($event)"
             :categoria="categoria"
           ></click-edit-input>
         </div>
@@ -50,24 +50,50 @@
         </div>
       </div>
     </form>
+    <jet-confirmation-modal
+      :show="categoriaSendoDeletada"
+      @close="closeModalDeletarItem"
+    >
+      <template #title> Deletar Item </template>
+
+      <template #content> Tem certeza que quer excluír esse item ? </template>
+
+      <template #footer>
+        <jet-secondary-button @click.native="closeModalDeletarItem">
+          Cancelar
+        </jet-secondary-button>
+
+        <jet-danger-button class="ml-2" @click.native="destroy">
+          Excluir
+        </jet-danger-button>
+      </template>
+    </jet-confirmation-modal>
   </div>
 </template>
 
 <script>
 import ClickEditInput from "../../Components/ClickEditInput";
+import VueToastedOptions from "../../Modules/vue-toasted-options";
 import JetInput from "../../Jetstream/Input";
 import JetButton from "./../../Jetstream/Button";
-import VueToastedOptions from "../../Modules/vue-toasted-options";
 import JetInputError from "./../../Jetstream/InputError";
+import JetConfirmationModal from "./../../Jetstream/ConfirmationModal";
+import JetDangerButton from "./../../Jetstream/DangerButton";
+import JetSecondaryButton from "./../../Jetstream/SecondaryButton";
 export default {
   components: {
     ClickEditInput,
     JetInput,
     JetButton,
     JetInputError,
+    JetConfirmationModal,
+    JetDangerButton,
+    JetSecondaryButton
   },
   data() {
     return {
+      categoriaSendoDeletada: false,
+      categoria_id_deletar: null,
       form: this.$inertia.form(
         {
           nome: "",
@@ -117,7 +143,7 @@ export default {
     destroy(id) {
       this.$inertia.post(
         "/cardapio/categoria/destroy",
-        { id: id },
+        { id: this.categoria_id_deletar },
         {
           preserveScroll: true,
           onSuccess: (page) => {
@@ -127,9 +153,17 @@ export default {
                 VueToastedOptions.success
               );
             }
+            this.closeModalDeletarItem();
           },
         }
       );
+    },
+    showModalDeletarItem(itemId) {
+      this.categoria_id_deletar = itemId;
+      this.categoriaSendoDeletada = true;
+    },
+    closeModalDeletarItem() {
+      this.categoriaSendoDeletada = false;
     },
   },
 
