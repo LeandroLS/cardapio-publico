@@ -162,7 +162,7 @@
 
                   <!-- Authentication -->
                   <form @submit.prevent="logout">
-                    <jet-dropdown-link as="button"> Logout </jet-dropdown-link>
+                    <jet-dropdown-link as="button"> Sair </jet-dropdown-link>
                   </form>
                 </template>
               </jet-dropdown>
@@ -283,7 +283,7 @@
             <!-- Authentication -->
             <form method="POST" @submit.prevent="logout">
               <jet-responsive-nav-link as="button">
-                Logout
+                Sair
               </jet-responsive-nav-link>
             </form>
 

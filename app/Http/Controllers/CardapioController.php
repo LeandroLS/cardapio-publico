@@ -23,7 +23,13 @@ class CardapioController extends Controller
      * Precisa criar um método para verificar se a url recebida realmente existe no banco de dados
      */
     public function cardapioPublico(Request $request){
-        $estabelecimento = \App\Models\Estabelecimento::with('contatos')->with('diasAtendimento')->with('cardapioCategorias.itens')->with('municipio')->with('diasAtendimento')->where('url', $request->cardapiourl)->first();
+        $estabelecimento = \App\Models\Estabelecimento::with('contatos')
+        ->with('diasAtendimento')
+        ->with('cardapioCategorias.itens')
+        ->with('municipio')
+        ->with('user')
+        ->with('diasAtendimento')
+        ->where('url', $request->cardapiourl)->first();
         return Inertia::render('Cardapio/CardapioPublico', [
             'estabelecimento' => $estabelecimento
         ]);

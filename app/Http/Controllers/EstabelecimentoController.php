@@ -16,58 +16,38 @@ class EstabelecimentoController extends Controller
         ]);
        
     }
-    protected function nameToUrl($name){
-        $nameTrimed = strtolower(trim($name));
-        $stringWithOneSpace = preg_replace('/[ ]{2,}/','', $nameTrimed);
-        $stringWithTrace = preg_replace('/[^a-zA-Z0-9]/','-', $stringWithOneSpace);
-        $stringWithOneTrace = preg_replace('/[-]{2,}/','-', $stringWithTrace);
-        return $stringWithOneTrace;
-    }
-
-    /**
-     * Verifica se a url gerada já existe, se já existe, concatena um -2 no nome.
-     */
-    protected function cardapioUrl($nomeEstabelecimento){
-        $url = $this->nameToUrl($nomeEstabelecimento);
-        $estabelecimento = Estabelecimento::where('url', $url)->get();
-        if($estabelecimento){
-            $url .= '-2';
-        }
-        return $url;
-    }
 
     public function store(Request $request){
+ 
+        $payload = [
+            'nome' => $request->nome,
+            'descricao' => $request->descricao,
+            'cep' => $request->cep,
+            'user_id' => \Auth::user()->id,
+            'endereco' => $request->endereco,
+            'numero' => $request->numero,
+            'codigo_ibge' => $request->codigo_ibge,
+            'bairro' => $request->bairro,
+            'url' => $request->nome
+        ];
+        $idEstabelecimento = null;
+        if(\Auth::user()->estabelecimento()->exists()){
+            $idEstabelecimento = \Auth::user()->estabelecimento->id;
+            /** Se o user já tem estabelecimento, nao atualiza a url do estabelecimento dele, por isso a remoção da chave 'url'  */
+            unset($payload['url']);
+        }
         /**
-         * talvez esse método ficaria melhor com um updateOrCreate
+         * Verifica se o nome é unico.
          */
         $request->validate([
-            'nome' => 'required',
+            'nome' => 'required|unique:estabelecimentos,nome,' . $idEstabelecimento,
             'photo' => ['nullable','image', 'max:2048']
         ]);
-        $estabelecimento = Estabelecimento::where('user_id', \Auth::user()->id)->first();
-        if($estabelecimento){
-            $estabelecimento->nome = $request->nome;
-            $estabelecimento->descricao = $request->descricao;
-            $estabelecimento->cep = $request->cep;
-            $estabelecimento->endereco = $request->endereco;
-            $estabelecimento->numero = $request->numero;
-            $estabelecimento->codigo_ibge = $request->codigo_ibge;
-            $estabelecimento->bairro = $request->bairro;
-            $estabelecimento->save();
-        } else {
-            $url = $this->cardapioUrl($request->nome);
-            Estabelecimento::create([
-                'nome' => $request->nome,
-                'descricao' => $request->descricao,
-                'cep' => $request->cep,
-                'user_id' => \Auth::user()->id,
-                'url' => $url,
-                'endereco' => $request->endereco,
-                'numero' => $request->numero,
-                'codigo_ibge' => $request->codigo_ibge,
-                'bairro' => $request->bairro,
-            ]);
-        }
+        $estabelecimento = Estabelecimento::updateOrCreate(
+            ['user_id' => \Auth::user()->id],
+            $payload
+        );
+
         if($request->hasFile('photo')){
             \Auth::user()->updateProfilePhoto($request->file('photo'));
         }
