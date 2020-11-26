@@ -19,11 +19,21 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
+        $messages = [
+            'name.required' => 'O nome é obrigatório',
+            'email.required' => 'O e-mail é obrigatório',
+            'email.unique' => 'O e-mail já existe',
+            'password.required' => 'A senha é obrigatória',
+            'password.confirmed' => 'A confirmação de senha não confere',
+            'password.string' => 'A senha deve ter pelo menos 8 caracteres',
+
+
+        ];
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
-        ])->validate();
+        ], $messages)->validate();
 
         return User::create([
             'name' => $input['name'],
