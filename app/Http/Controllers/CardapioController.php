@@ -19,9 +19,7 @@ class CardapioController extends Controller
             'categorias' => $categorias
         ]);
     }
-    /**
-     * Precisa criar um método para verificar se a url recebida realmente existe no banco de dados
-     */
+
     public function cardapioPublico(Request $request){
         $estabelecimento = \App\Models\Estabelecimento::with('contatos')
         ->with('diasAtendimento')
@@ -30,6 +28,10 @@ class CardapioController extends Controller
         ->with('user')
         ->with('diasAtendimento')
         ->where('url', $request->cardapiourl)->first();
+        /**Se não houver nenhum estabelecimento, retorna página não encontrada */
+        if(!$estabelecimento){
+            abort(404);
+        }
         return Inertia::render('Cardapio/CardapioPublico', [
             'estabelecimento' => $estabelecimento
         ]);
