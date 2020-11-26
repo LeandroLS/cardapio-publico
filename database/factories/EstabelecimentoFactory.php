@@ -24,7 +24,7 @@ class EstabelecimentoFactory extends Factory
     {
         return [
             'nome' => $this->faker->name,
-            'url' => EstabelecimentoController::nameToUrl($this->faker->name),
+            'url' => $this->faker->name,
             'descricao' => $this->faker->sentence,
             'user_id' => User::factory(),
             'codigo_ibge' => Municipio::inRandomOrder()->first()->codigo_ibge,

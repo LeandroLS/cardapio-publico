@@ -14,10 +14,8 @@ class Estabelecimento extends Model
     {
         static::addGlobalScope('user_id_scope', function (Builder $builder) {
             //verifica se tem usuário logado
-            if(\Auth::user()){
+            if(\Auth::check()){
                 $builder->where('user_id', '=', \Auth::user()->id);
-            } else {
-                $builder->where('user_id', '=', null);
             }
         });
     }
@@ -35,5 +33,18 @@ class Estabelecimento extends Model
 
     public function municipio(){
         return $this->hasOne('App\Models\Municipio', 'codigo_ibge', 'codigo_ibge');
+    }
+
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function setUrlAttribute($value)
+    {
+        $nameTrimed = strtolower(trim($value));
+        $stringWithOneSpace = preg_replace('/[ ]{2,}/','', $nameTrimed);
+        $stringWithTrace = preg_replace('/[^a-zA-Z0-9]/','-', $stringWithOneSpace);
+        $stringWithOneTrace = preg_replace('/[-]{2,}/','-', $stringWithTrace);
+        $this->attributes['url'] = $stringWithOneTrace;
     }
 }

@@ -8,8 +8,8 @@
           width="200"
           height="200"
           class="object-contain md:object-scale-down rounded"
-          v-if="$page.user.profile_photo_url"
-          :src="$page.user.profile_photo_url"
+          v-if="estabelecimento.user.profile_photo_url"
+          :src="estabelecimento.user.profile_photo_url"
         />
       </div>
       <div class="col-span-6 lg:col-span-4">

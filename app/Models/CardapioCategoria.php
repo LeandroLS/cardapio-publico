@@ -16,10 +16,8 @@ class CardapioCategoria extends Model
             /**
              * O usuário tem que ter um estabelecimento antes de ter categoria
              */
-            if(\Auth::user()->estabelecimento()->exists()){
+            if(\Auth::check() && \Auth::user()->estabelecimento()->exists()){
                 $builder->where('estabelecimento_id', '=', \Auth::user()->estabelecimento->id);
-            } else {
-                $builder->where('estabelecimento_id', '=', null);
             }
         });
     }
