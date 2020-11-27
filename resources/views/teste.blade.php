@@ -26,7 +26,7 @@
     <nav id="header" class="fixed w-full z-30 top-0 text-white">
       <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
         <div class="pl-4 flex items-center">
-          <a class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="#">
+          <a class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl">
             <!--Icon from: http://www.potlabicons.com/ -->
             <svg class="h-8 fill-current inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.005 512.005">
               <rect fill="#2a2a31" x="16.539" y="425.626" width="479.767" height="50.502" transform="matrix(1,0,0,1,0,0)" />
@@ -49,13 +49,13 @@
         <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
           <ul class="list-reset lg:flex justify-end flex-1 items-center">
             <li class="mr-3">
-              <a class="inline-block py-2 px-4 text-black font-bold no-underline" href="#">Active</a>
+              <a class="inline-block py-2 px-4 text-black font-bold no-underline">Active</a>
             </li>
             <li class="mr-3">
-              <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">link</a>
+              <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4">link</a>
             </li>
             <li class="mr-3">
-              <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">link</a>
+              <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4">link</a>
             </li>
           </ul>
           <button
@@ -197,7 +197,7 @@
         </div>
         <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
           <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-            <a href="#" class="flex flex-wrap no-underline hover:no-underline">
+            <a class="flex flex-wrap no-underline hover:no-underline">
               <p class="w-full p-1 text-gray-600 px-6">
                 <svg id="Capa_1" class="h-10" enable-background="new 0 0 497 497"  viewBox="0 0 497 497" xmlns="http://www.w3.org/2000/svg"><g><path d="m270.373 0h-43.745c-8.631 0-15.628 6.997-15.628 15.627 0 4.085 1.6 8.008 4.456 10.928l18.044 18.445h30l18.044-18.445c2.856-2.92 4.456-6.843 4.456-10.928 0-8.63-6.997-15.627-15.627-15.627z" fill="#928bff"/><path d="m233.5 45v84.245h30v-84.245c0-8.284-6.716-15-15-15s-15 6.716-15 15z" fill="#83b3f1"/><path d="m166.427 89.555 32.239 77.832 27.716-11.48-32.239-77.832c-3.17-7.654-11.945-11.288-19.598-8.118-7.654 3.17-11.288 11.945-8.118 19.598z" fill="#98d3f3"/><path d="m88.25 57.318-30.932 30.932c-6.103 6.103-6.103 15.998 0 22.1 2.889 2.889 6.794 4.531 10.879 4.576l25.801.284 21.213-21.213-.284-25.801c-.045-4.085-1.688-7.99-4.576-10.878-6.103-6.103-15.998-6.103-22.101 0z" fill="#928bff"/><path d="m93.997 115.21 59.57 59.57 21.213-21.213-59.57-59.57c-5.858-5.858-15.355-5.858-21.213 0s-5.858 15.355 0 21.213z" fill="#83b3f1"/><path d="m78.075 194.144 77.832 32.239 11.48-27.716-77.832-32.239c-7.654-3.17-16.428.464-19.598 8.118-3.17 7.653.464 16.427 8.118 19.598z" fill="#98d3f3"/><path d="m0 226.627v43.745c0 8.631 6.997 15.628 15.627 15.628 4.085 0 8.008-1.6 10.928-4.456l18.445-18.044v-30l-18.445-18.044c-2.92-2.856-6.843-4.456-10.928-4.456-8.63 0-15.627 6.997-15.627 15.627z" fill="#928bff"/><path d="m45 263.5h84.245v-30h-84.245c-8.284 0-15 6.716-15 15s6.716 15 15 15z" fill="#83b3f1"/><path d="m89.555 330.573 77.832-32.239-11.48-27.716-77.832 32.239c-7.654 3.17-11.288 11.945-8.118 19.598 3.17 7.654 11.945 11.288 19.598 8.118z" fill="#98d3f3"/><path d="m57.318 408.75 30.933 30.933c6.103 6.103 15.998 6.103 22.1 0 2.889-2.889 4.531-6.794 4.576-10.879l.284-25.801-21.214-21.213-25.801.284c-4.085.045-7.99 1.688-10.878 4.576-6.103 6.102-6.103 15.997 0 22.1z" fill="#928bff"/><path d="m115.21 403.003 59.57-59.57-21.213-21.213-59.57 59.57c-5.858 5.858-5.858 15.355 0 21.213s15.355 5.858 21.213 0z" fill="#83b3f1"/><path d="m194.144 418.925 32.239-77.832-27.716-11.48-32.239 77.832c-3.17 7.654.464 16.428 8.118 19.598 7.653 3.17 16.427-.464 19.598-8.118z" fill="#98d3f3"/><path d="m226.627 497h43.745c8.631 0 15.627-6.997 15.627-15.627 0-4.085-1.6-8.008-4.456-10.928l-18.043-18.445h-30l-18.044 18.445c-2.857 2.92-4.456 6.843-4.456 10.928 0 8.63 6.997 15.627 15.627 15.627z" fill="#928bff"/><path d="m263.5 452v-84.245h-30v84.245c0 8.284 6.716 15 15 15s15-6.716 15-15z" fill="#83b3f1"/><path d="m330.573 407.445-32.239-77.832-27.716 11.48 32.239 77.832c3.17 7.654 11.945 11.288 19.598 8.118s11.288-11.945 8.118-19.598z" fill="#98d3f3"/><path d="m408.75 439.682 30.933-30.933c6.103-6.103 6.103-15.997 0-22.1-2.889-2.889-6.794-4.531-10.879-4.576l-25.801-.284-21.213 21.213.284 25.801c.045 4.085 1.688 7.99 4.576 10.879 6.102 6.103 15.997 6.103 22.1 0z" fill="#928bff"/><path d="m403.003 381.79-59.57-59.57-21.213 21.213 59.57 59.57c5.858 5.858 15.355 5.858 21.213 0s5.858-15.355 0-21.213z" fill="#83b3f1"/><path d="m418.925 302.856-77.832-32.239-11.48 27.716 77.832 32.239c7.654 3.17 16.428-.464 19.598-8.118 3.17-7.653-.464-16.427-8.118-19.598z" fill="#98d3f3"/><path d="m497 270.373v-43.745c0-8.631-6.997-15.627-15.627-15.627-4.085 0-8.008 1.6-10.928 4.456l-18.445 18.043v30l18.445 18.044c2.92 2.857 6.843 4.456 10.928 4.456 8.63 0 15.627-6.997 15.627-15.627z" fill="#928bff"/><path d="m452 233.5h-84.245v30h84.245c8.284 0 15-6.716 15-15s-6.716-15-15-15z" fill="#83b3f1"/><path d="m407.445 166.427-77.832 32.239 11.48 27.716 77.832-32.239c7.654-3.17 11.288-11.945 8.118-19.598-3.17-7.654-11.945-11.288-19.598-8.118z" fill="#98d3f3"/><path d="m439.682 88.25-30.932-30.932c-6.103-6.103-15.997-6.103-22.1 0-2.889 2.889-4.531 6.794-4.576 10.879l-.284 25.801 21.213 21.213 25.801-.284c4.085-.045 7.99-1.688 10.879-4.576 6.102-6.103 6.102-15.998-.001-22.101z" fill="#928bff"/><path d="m381.79 93.997-59.57 59.57 21.213 21.213 59.57-59.57c5.858-5.858 5.858-15.355 0-21.213s-15.355-5.858-21.213 0z" fill="#83b3f1"/><path d="m302.856 78.075-32.239 77.832 27.716 11.48 32.239-77.832c3.17-7.654-.464-16.428-8.118-19.598-7.653-3.17-16.427.464-19.598 8.118z" fill="#98d3f3"/><circle cx="248.5" cy="248.5" fill="#83b3f1" r="150"/><path d="m248.5 128.5v240c66.274 0 120-53.726 120-120s-53.726-120-120-120z" fill="#736dd9"/><path d="m338.5 248.5c0-66.274-40.294-120-90-120-66.274 0-120 53.726-120 120s53.726 120 120 120c49.706 0 90-53.726 90-120z" fill="#928bff"/><g fill="#736dd9"><circle cx="248.5" cy="248.5" r="15"/><circle cx="173.5" cy="248.5" r="15"/><circle cx="248.5" cy="173.5" r="15"/><circle cx="248.5" cy="323.5" r="15"/><circle cx="206.074" cy="290.926" r="7.5"/></g><circle cx="290.926" cy="290.926" fill="#554fb2" r="7.5"/><circle cx="308.5" cy="248.5" fill="#736dd9" r="7.5"/><circle cx="206.074" cy="206.074" fill="#554fb2" r="7.5"/></g></svg>
               </p>
@@ -212,7 +212,7 @@
         </div>
         <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
           <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-            <a href="#" class="flex flex-wrap no-underline hover:no-underline">
+            <a class="flex flex-wrap no-underline hover:no-underline">
               <p class="w-full p-1 text-gray-600 px-6">
                 <svg class="h-10" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                   viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -274,7 +274,7 @@
         </div>
         <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
           <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-            <a href="#" class="flex flex-wrap no-underline hover:no-underline">
+            <a class="flex flex-wrap no-underline hover:no-underline">
               <p class="w-full p-1 text-gray-600 px-6">
                 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
                 <svg class="h-10"  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="24" width="24" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
@@ -343,7 +343,7 @@
         </div>
         <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
           <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-            <a href="#" class="flex flex-wrap no-underline hover:no-underline">
+            <a class="flex flex-wrap no-underline hover:no-underline">
               
               <div class="w-full font-bold text-xl text-gray-800 px-6">
                 O que é o Cardapio Público ?
@@ -356,7 +356,7 @@
         </div>
         <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
           <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-            <a href="#" class="flex flex-wrap no-underline hover:no-underline">
+            <a class="flex flex-wrap no-underline hover:no-underline">
              
               <div class="w-full font-bold text-xl text-gray-800 px-6">
                 Pra que serve ?
@@ -369,7 +369,7 @@
         </div>
         <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
           <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-            <a href="#" class="flex flex-wrap no-underline hover:no-underline">
+            <a class="flex flex-wrap no-underline hover:no-underline">
               <p class="w-full text-gray-600 text-xs md:text-sm px-6">
                 
               </p>
@@ -539,7 +539,7 @@
       <div class="container mx-auto px-8">
         <div class="w-full flex flex-col md:flex-row py-6">
           <div class="flex-1 mb-6 text-black">
-            <a class=" no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="#">
+            <a class=" no-underline hover:no-underline font-bold text-2xl lg:text-4xl">
               <!--Icon from: http://www.potlabicons.com/ -->
               <svg class="h-8 fill-current inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.005 512.005">
                 <rect fill="#2a2a31" x="16.539" y="425.626" width="479.767" height="50.502" transform="matrix(1,0,0,1,0,0)" />
@@ -555,10 +555,10 @@
             <p class="uppercase text-gray-500 md:mb-6">Links</p>
             <ul class="list-reset mb-6">
               <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Help</a>
+                <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">Help</a>
               </li>
               <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Support</a>
+                <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">Support</a>
               </li>
             </ul>
           </div>
@@ -566,10 +566,10 @@
             <p class="uppercase text-gray-500 md:mb-6">Legal</p>
             <ul class="list-reset mb-6">
               <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Terms</a>
+                <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">Terms</a>
               </li>
               <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Privacy</a>
+                <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">Privacy</a>
               </li>
             </ul>
           </div>
@@ -577,13 +577,13 @@
             <p class="uppercase text-gray-500 md:mb-6">Social</p>
             <ul class="list-reset mb-6">
               <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Facebook</a>
+                <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">Facebook</a>
               </li>
               <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Linkedin</a>
+                <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">Linkedin</a>
               </li>
               <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Twitter</a>
+                <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">Twitter</a>
               </li>
             </ul>
           </div>
@@ -591,13 +591,13 @@
             <p class="uppercase text-gray-500 md:mb-6">Company</p>
             <ul class="list-reset mb-6">
               <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Official Blog</a>
+                <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">Official Blog</a>
               </li>
               <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">About Us</a>
+                <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">About Us</a>
               </li>
               <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Contact</a>
+                <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">Contact</a>
               </li>
             </ul>
           </div> -->
