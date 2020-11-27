@@ -85,9 +85,9 @@ return [
     'mimes' => 'O campo :attribute tem que ser do tipo :values.',
     'mimetypes' => 'O campo :attributetem que ser do tipo :values.',
     'min' => [
-        'numeric' => 'The :attribute must be at least :min.',
-        'file' => 'The :attribute must be at least :min kilobytes.',
-        'string' => 'The :attribute must be at least :min characters.',
+        'numeric' => 'The :attribute deve ter pelo menos :min.',
+        'file' => 'The :attribute deve ter pelo menos :min kilobytes.',
+        'string' => 'O :attribute deve ter pelo menos :min caracteres.',
         'array' => 'The :attribute must have at least :min items.',
     ],
     'not_in' => 'The selected :attribute is invalid.',

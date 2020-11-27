@@ -25,7 +25,6 @@ class CreateNewUser implements CreatesNewUsers
             'email.unique' => 'O e-mail já existe',
             'password.required' => 'A senha é obrigatória',
             'password.confirmed' => 'A confirmação de senha não confere',
-            'password.string' => 'A senha deve ter pelo menos 8 caracteres',
 
 
         ];
