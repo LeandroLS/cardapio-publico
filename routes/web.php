@@ -31,6 +31,11 @@ Route::get('/entrar', function () {
     return view('/auth/entrar');
 })->name('entrar');
 
+Route::get('/politica-privacidade', function () {
+    return view('/politica-de-privacidade');
+})->name('politica-privacidade');
+
+
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', function(){
         return Inertia\Inertia::render('Dashboard');

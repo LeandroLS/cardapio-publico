@@ -26,14 +26,28 @@
     <nav id="header" class="fixed w-full z-30 top-0 text-white">
         <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
             <div class="pl-4 flex items-center">
-                <a href="{{route('homepage')}}" class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl">
-                    <svg class="h-8 fill-current inline" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 512.005 512.005">
-                        <rect fill="#2a2a31" x="16.539" y="425.626" width="479.767" height="50.502"
-                            transform="matrix(1,0,0,1,0,0)" />
-                        <path class="plane-take-off"
-                            d=" M 510.7 189.151 C 505.271 168.95 484.565 156.956 464.365 162.385 L 330.156 198.367 L 155.924 35.878 L 107.19 49.008 L 211.729 230.183 L 86.232 263.767 L 36.614 224.754 L 0 234.603 L 45.957 314.27 L 65.274 347.727 L 105.802 336.869 L 240.011 300.886 L 349.726 271.469 L 483.935 235.486 C 504.134 230.057 516.129 209.352 510.7 189.151 Z " />
+                <a href="{{route('homepage')}}"
+                    class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl">
+                    <svg class="h-8 fill-current inline" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="45.005px" height="45.005px"
+                        viewBox="0 0 45.005 45.005" style="enable-background:new 0 0 45.005 45.005;"
+                        xml:space="preserve">
+                        <g>
+                            <path d="M30.249,38.414l-7.399,2.664c-0.113,0.041-0.232,0.062-0.35,0.062s-0.237-0.021-0.35-0.062l-7.697-2.771
+		c2.616-2.811,5.431-5.64,8.047-8.45C25.148,32.702,27.6,35.565,30.249,38.414z M44.562,4.052c-0.275-0.192-0.627-0.241-0.941-0.126
+		L22.5,11.53L1.378,3.926C1.063,3.812,0.711,3.86,0.437,4.052C0.163,4.248,0,4.562,0,4.897v27.481c0,0.435,0.272,0.822,0.681,0.969
+		l11.283,4.063c3.099-2.886,6.198-5.771,9.297-8.654c-0.977-1.049-1.953-2.101-2.93-3.148c-2.063,1.479-5.119,0.917-6.957-1.352
+		c-1.976-2.395-3.682-6.674-2.031-8.427c1.753-1.652,6.034,0.056,8.427,2.031c2.269,1.839,2.832,4.893,1.352,6.956
+		c1.062,0.989,2.315,1.944,3.378,2.935c0.996-0.928,1.796-1.818,2.791-2.743c-0.84-1.435-0.283-3.444,1.084-4.591
+		c1.562-1.312,7.357-6.287,7.516-6.129c0.154,0.155-3.91,3.995-6.625,6.718l0.453,0.452c2.898-2.54,6.992-6.35,7.148-6.195
+		c0.154,0.156-3.783,4.122-6.408,6.936l0.449,0.45c2.811-2.629,6.775-6.567,6.932-6.413c0.154,0.157-3.654,4.249-6.195,7.148
+		l0.449,0.449c2.725-2.715,6.562-6.783,6.717-6.626c0.156,0.157-6.117,7.509-6.125,7.52c0-0.001,1.332-1.563-0.004-0.004
+		c-1.275,1.493-3.182,1.945-4.59,1.084c-0.914,0.982-1.826,1.963-2.741,2.944c3.137,2.921,6.274,5.84,9.413,8.761l11.559-4.162
+		c0.41-0.146,0.683-0.534,0.683-0.969V4.897C44.999,4.562,44.837,4.248,44.562,4.052z" />
+                        </g>
+
                     </svg>
+
                     CARDÁPIO PUBLICO
                 </a>
             </div>
@@ -74,24 +88,38 @@
                 <div class="flex-1 mb-6 text-black">
                     <a class=" no-underline hover:no-underline font-bold text-2xl lg:text-4xl">
                         <!--Icon from: http://www.potlabicons.com/ -->
-                        <svg class="h-8 fill-current inline" xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 512.005 512.005">
-                            <rect fill="#2a2a31" x="16.539" y="425.626" width="479.767" height="50.502"
-                                transform="matrix(1,0,0,1,0,0)" />
-                            <path class="plane-take-off"
-                                d=" M 510.7 189.151 C 505.271 168.95 484.565 156.956 464.365 162.385 L 330.156 198.367 L 155.924 35.878 L 107.19 49.008 L 211.729 230.183 L 86.232 263.767 L 36.614 224.754 L 0 234.603 L 45.957 314.27 L 65.274 347.727 L 105.802 336.869 L 240.011 300.886 L 349.726 271.469 L 483.935 235.486 C 504.134 230.057 516.129 209.352 510.7 189.151 Z " />
+
+                        <svg class="h-8 fill-current inline" version="1.1" id="Capa_1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                            y="0px" width="45.005px" height="45.005px" viewBox="0 0 45.005 45.005"
+                            style="enable-background:new 0 0 45.005 45.005;" xml:space="preserve">
+                            <g>
+                                <path d="M30.249,38.414l-7.399,2.664c-0.113,0.041-0.232,0.062-0.35,0.062s-0.237-0.021-0.35-0.062l-7.697-2.771
+		c2.616-2.811,5.431-5.64,8.047-8.45C25.148,32.702,27.6,35.565,30.249,38.414z M44.562,4.052c-0.275-0.192-0.627-0.241-0.941-0.126
+		L22.5,11.53L1.378,3.926C1.063,3.812,0.711,3.86,0.437,4.052C0.163,4.248,0,4.562,0,4.897v27.481c0,0.435,0.272,0.822,0.681,0.969
+		l11.283,4.063c3.099-2.886,6.198-5.771,9.297-8.654c-0.977-1.049-1.953-2.101-2.93-3.148c-2.063,1.479-5.119,0.917-6.957-1.352
+		c-1.976-2.395-3.682-6.674-2.031-8.427c1.753-1.652,6.034,0.056,8.427,2.031c2.269,1.839,2.832,4.893,1.352,6.956
+		c1.062,0.989,2.315,1.944,3.378,2.935c0.996-0.928,1.796-1.818,2.791-2.743c-0.84-1.435-0.283-3.444,1.084-4.591
+		c1.562-1.312,7.357-6.287,7.516-6.129c0.154,0.155-3.91,3.995-6.625,6.718l0.453,0.452c2.898-2.54,6.992-6.35,7.148-6.195
+		c0.154,0.156-3.783,4.122-6.408,6.936l0.449,0.45c2.811-2.629,6.775-6.567,6.932-6.413c0.154,0.157-3.654,4.249-6.195,7.148
+		l0.449,0.449c2.725-2.715,6.562-6.783,6.717-6.626c0.156,0.157-6.117,7.509-6.125,7.52c0-0.001,1.332-1.563-0.004-0.004
+		c-1.275,1.493-3.182,1.945-4.59,1.084c-0.914,0.982-1.826,1.963-2.741,2.944c3.137,2.921,6.274,5.84,9.413,8.761l11.559-4.162
+		c0.41-0.146,0.683-0.534,0.683-0.969V4.897C44.999,4.562,44.837,4.248,44.562,4.052z" />
+                            </g>
+
                         </svg>
-                        CARDAPIO PUBLICO
+
+                        CARDÁPIO PUBLICO
                     </a>
                 </div>
                 <div class="flex-1">
                     <p class="uppercase text-gray-500 md:mb-6">Links</p>
                     <ul class="list-reset mb-6">
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">Help</a>
+                            <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">Contato</a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">Support</a>
+                            <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">Suporte</a>
                         </li>
                     </ul>
                 </div>
@@ -99,10 +127,10 @@
                     <p class="uppercase text-gray-500 md:mb-6">Legal</p>
                     <ul class="list-reset mb-6">
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">Terms</a>
+                            <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">Termos de uso</a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">Privacy</a>
+                            <a href="{{ route('politica-privacidade') }}" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Política de Privacidade</a>
                         </li>
                     </ul>
                 </div>
