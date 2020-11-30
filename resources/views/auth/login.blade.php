@@ -13,6 +13,11 @@
         @endif
 
         <form method="POST" action="{{ route('login') }}">
+            <ul class="mt-3 list-disc list-inside text-sm text-red-600">
+                @foreach ($errors->all() as $message)
+                <li>{{ $message }}</li>
+                @endforeach
+            </ul>
             @csrf
 
             <div>

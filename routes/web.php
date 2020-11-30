@@ -24,12 +24,12 @@ use App\Http\Controllers\{
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home-page');
+})->name('homepage');
 
-Route::get('/teste', function () {
-    return view('teste');
-});
+Route::get('/entrar', function () {
+    return view('/auth/entrar');
+})->name('entrar');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', function(){
