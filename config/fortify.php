@@ -113,4 +113,6 @@ return [
         // ]),
     ],
 
+    'views' => false,
+
 ];

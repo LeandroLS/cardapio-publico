@@ -19,7 +19,7 @@
         </div>
         <!--Right Col-->
         <div class="w-full md:w-2/5 py-6 ">
-            <form method="POST" action="{{ route('register') }}"
+            <form method="POST" action="{{ url('/register') }}"
                 class="rounded p-2 bg-white opacity-75 border shadow text-black">
                 <ul class="mt-3 list-disc list-inside text-sm text-red-600">
                     @foreach ($errors->all() as $message)
@@ -798,7 +798,7 @@
         <div class="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"></div>
     </div>
     <div class="flex justify-center ">
-        <form method="POST" action="{{ route('register') }}"
+        <form method="POST" action="{{ url('/register') }}"
             class="rounded p-2 bg-white opacity-75 border shadow text-black w-3/4 lg:w-2/4">
             <ul class="mt-3 list-disc list-inside text-sm text-red-600">
                 @foreach ($errors->all() as $message)

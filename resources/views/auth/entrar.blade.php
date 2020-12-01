@@ -11,7 +11,7 @@
 @endif
 <div class="pt-24">
     <div class="px-3 my-10 mx-auto flex justify-center">
-        <form method="POST" action="{{ route('login') }}"
+        <form method="POST" action="{{ url('/login') }}"
             class="rounded p-2 bg-white opacity-75 border shadow text-black w-3/4 lg:w-2/5">
             @csrf
             <ul class="mt-3 list-disc list-inside text-sm text-red-600">
