@@ -11,9 +11,13 @@ class CardapioController extends Controller
 {
     public function index()
     {
+        /**
+         * Antes de visualizar o cardápio, o usuário deve ter um estabelecimento atrelado a ele mesmo.
+         */
         if(!\Auth::user()->estabelecimento()->exists()){
-            dd('preencha o estabelecimento primeiro');
+            return Redirect::route('estabelecimento');
         }
+
         $categorias = CardapioCategoria::with('itens')->get();
         return Inertia::render('Cardapio/Cardapio', [
             'categorias' => $categorias

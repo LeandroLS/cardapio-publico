@@ -41,9 +41,6 @@ Route::get('/politica-privacidade', function () {
 
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('/dashboard', function(){
-        return Inertia\Inertia::render('Dashboard');
-    })->name('dashboard');
 
     Route::get('/cardapio', [CardapioController::class, 'index'])->name('cardapio');
     
