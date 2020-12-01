@@ -2,8 +2,6 @@
 
 @section('content')
 
-<x-jet-validation-errors class="mb-4" />
-
 @if (session('status'))
 <div class="mb-4 font-medium text-sm text-green-600">
     {{ session('status') }}
@@ -36,11 +34,11 @@
                 </label>
             </div>
             <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+              
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ url('/senha/resetar') }}">
                     {{ __('Esqueceu sua senha ?') }}
                 </a>
-                @endif
+             
                 <x-jet-button class="ml-4 gradient">
                     {{ __('Entrar') }}
                 </x-jet-button>

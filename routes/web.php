@@ -31,6 +31,9 @@ Route::get('/entrar', function () {
     return view('/auth/entrar');
 })->name('entrar');
 
+Route::get('/senha/resetar', function(){
+    return view('/auth/esqueci-senha');
+});
 
 Route::get('/politica-privacidade', function () {
     return view('/politica-de-privacidade');
