@@ -27,9 +27,14 @@ Route::get('/', function () {
     return view('home-page');
 })->name('homepage');
 
-Route::get('/entrar', function () {
+Route::get('/login', function () {
     return view('/auth/entrar');
-})->name('entrar');
+})->name('login');
+
+/** Necessário retornar 404 pois caso contrário vai cair na tela de registro do scafold do Laravel */
+// Route::get('/register', function(){
+//     abort(404);
+// });
 
 Route::get('/politica-privacidade', function () {
     return view('/politica-de-privacidade');
