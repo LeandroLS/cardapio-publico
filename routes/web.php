@@ -33,7 +33,7 @@ Route::get('/entrar', function () {
 
 Route::get('/senha/resetar', function(){
     return view('/auth/esqueci-senha');
-});
+})->name('password.reset');
 
 Route::get('/politica-privacidade', function () {
     return view('/politica-de-privacidade');
