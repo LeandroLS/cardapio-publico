@@ -9,7 +9,11 @@
         <form method="POST" action="{{ route('password.email') }}"
             class="rounded p-2 bg-white opacity-75 border shadow text-black w-3/4 lg:w-2/5">
             @csrf
-
+            @if (session('status'))
+                <div class="mb-4 font-medium text-sm text-green-600">
+                    {{ __(session('status')) }}
+                </div>
+            @endif
             <div class="mb-4 text-sm text-gray-600">
                 {{ __('Esqueceu sua senha? Sem problemas. Apenas nos informe seu email e nós enviariamos um link para você definir uma nova senha.') }}
             </div>
