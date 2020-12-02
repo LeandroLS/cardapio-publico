@@ -39,7 +39,7 @@ class CategoriaItemController extends Controller
     public function destroyImg(Request $request){
         $request->validate(['id' => 'required']);
         $categoriaItem = CategoriaItem::find($request->id);
-        Storage::disk('public')->delete($categoriaItem->nome_foto_prato);
+        Storage::disk('s3')->delete($categoriaItem->nome_foto_prato);
         $categoriaItem->nome_foto_prato = null;
         $categoriaItem->save();
 
