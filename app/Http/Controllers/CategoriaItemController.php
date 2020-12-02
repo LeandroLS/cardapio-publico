@@ -25,6 +25,9 @@ class CategoriaItemController extends Controller
     public function destroy(Request $request){
         $request->validate(['id' => 'required']);
         $categoriaItem = CategoriaItem::find($request->id);
+        if($categoriaItem->nome_foto_prato){
+            Storage::disk('s3')->delete($categoriaItem->nome_foto_prato);
+        }
         $categoriaItem->delete();
         return Redirect::route('cardapio');
     }
