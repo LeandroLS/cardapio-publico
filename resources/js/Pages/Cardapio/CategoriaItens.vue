@@ -24,7 +24,7 @@
             <img
               class="object-cover"
               width="40px"
-              :src="'/storage/' + item.nome_foto_prato"
+              :src="$page.aws_url + '/' + item.nome_foto_prato"
             />
           </div>
           <div class="flex-1" v-else></div>
@@ -140,7 +140,7 @@
             <jet-label>Imagem do prato</jet-label>
             <template v-if="form.nome_foto_prato">
               <image-input
-                :url="'/storage/' + form.nome_foto_prato"
+                :url="$page.aws_url + '/' + form.nome_foto_prato"
               ></image-input>
               <jet-button @clicked="exluirImgEResetarForm(form)"
                 >Excluir
@@ -294,7 +294,7 @@ export default {
         onSuccess: (page) => {
           if (Object.keys(this.errors).length == 0) {
             this.$toasted.show(message, VueToastedOptions.success);
-            this.show_modal = false;
+            this.resetForm();
           } else {
             this.$toasted.show(
               "Verifique os campos obrigatórios.",
@@ -303,7 +303,6 @@ export default {
           }
           this.form.processing = false;
           //após concluir reseta o formlário e o campo de seleção imagem
-          this.resetForm();
         },
       });
     },

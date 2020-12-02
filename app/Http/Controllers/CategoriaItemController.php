@@ -16,7 +16,7 @@ class CategoriaItemController extends Controller
             'foto_prato' => 'exclude_if:foto_prato,null|mimes:jpeg,png,jpg|max:3240' 
         ]);
         if($request->hasFile('foto_prato')){
-            $request['nome_foto_prato'] = $request->file('foto_prato')->store('fotos-pratos', 'public');
+            $request['nome_foto_prato'] = $request->file('foto_prato')->store('fotos-pratos', 's3');
         }
         CategoriaItem::updateOrCreate(['id' => $request->id], $request->all());
         return Redirect::route('cardapio');

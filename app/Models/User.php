@@ -63,15 +63,4 @@ class User extends Authenticatable
     public function estabelecimento(){
         return $this->hasOne('App\Models\Estabelecimento');
     }
-
-        /**
-     * Send the password reset notification.
-     *
-     * @param  string  $token
-     * @return void
-     */
-    public function sendPasswordResetNotification($token)
-    {
-        $this->notify(new \App\Notifications\CustomResetPasswordNotification($token));
-    }
 }

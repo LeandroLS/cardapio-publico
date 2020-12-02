@@ -38,6 +38,7 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'estabelecimento' => \App\Models\Estabelecimento::first(),
+            'aws_url' => config('filesystems.disks.s3.url'),
         ]);
     }
 }

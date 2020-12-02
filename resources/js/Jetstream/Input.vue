@@ -6,7 +6,7 @@
     export default {
         props: {
             value: [String, Number],
-            placeholder: String
+            placeholder: String,
         },
 
         methods: {
