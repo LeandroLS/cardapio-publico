@@ -18,9 +18,7 @@ class CardapioController extends Controller
             return Redirect::route('estabelecimento');
         }
 
-        $categorias = CardapioCategoria::with(['itens' => function($q){
-            $q->orderBy('ordem', 'asc');
-        }])->get();
+        $categorias = CardapioCategoria::with('itens')->get();
 
         return Inertia::render('Cardapio/Cardapio', [
             'categorias' => $categorias
