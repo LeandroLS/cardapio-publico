@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             EstadosSeeder::class,
-            MunicipiosSeeder::class
+            MunicipiosSeeder::class,
+            CardapioExemploSeeder::class
         ]);
         \App\Models\User::factory()->times(10)
             ->has(

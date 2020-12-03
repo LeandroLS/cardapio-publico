@@ -13,12 +13,15 @@
                 Tenha seu cardápio digital inteiramente online de maneira rápida e fácil. Compartilhe o cardápio com
                 seus clientes e facilite seus pedidos.
             </p>
+            <p class="leading-normal text-2xl mb-8">
+                Clique <a target="_blank" class="underline " href="{{ url('cardapio-publico-exemplo')}}">aqui</a> para ver um exemplo. 
+            </p>
             <!-- <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
             Subscribe
           </button> -->
         </div>
         <!--Right Col-->
-        <div class="w-full md:w-2/5 py-6 ">
+        <div class="w-full md:w-1/5 py-6 mx-auto ">
             <form method="POST" action="{{ url('/register') }}"
                 class="rounded p-2 bg-white opacity-75 border shadow text-black">
                 <ul class="mt-3 list-disc list-inside text-sm text-red-600">

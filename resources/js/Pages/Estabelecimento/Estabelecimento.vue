@@ -5,7 +5,7 @@
                 Informações do Estabelecimento
             </h2>
         </template>
-        {{userRecemCriado}}
+       
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
             <div v-if="userRecemCriado"
                 class="flex justify-center items-center m-1 font-medium py-1 px-2 mb-10 bg-white rounded-md text-green-100 bg-green-400 border border-green-400 ">

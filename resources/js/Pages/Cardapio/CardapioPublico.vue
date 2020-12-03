@@ -14,14 +14,14 @@
       </div>
       <div class="col-span-6 lg:col-span-4">
         <div class="text-3xl font-bold">{{ estabelecimento.nome }}</div>
-        <div class="mb-2 text-2xl text-gray-600">
+        <div class="my-2 text-xl text-gray-600">
           {{ estabelecimento.descricao }}
         </div>
 
-        <div class="text-sm lg:text-lg text-gray-600">
+        <div class="my-2 text-sm lg:text-lg text-gray-600">
           {{ localizacaoEstabelecimento }}
         </div>
-        <div class="text-sm lg:text-lg text-gray-600">
+        <div class="my-2 text-sm lg:text-lg text-gray-600">
           <div
             class="mx-auto lg:mr-15"
             v-for="atendimento in estabelecimento.dias_atendimento"
