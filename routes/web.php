@@ -66,8 +66,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/cardapio/categoria/item', [CategoriaItemController::class, 'show']);
     Route::post('/cardapio/categoria/item/destroy', [CategoriaItemController::class, 'destroy']);
     Route::post('/cardapio/categoria/item/imagem', [CategoriaItemController::class, 'destroyImg']);
+    Route::post('/cardapio/categoria/sort', [CategoriaItemController::class, 'updateOrder']);
 
-   
 });
 /**
  * Essa rota tem que ficar por último.

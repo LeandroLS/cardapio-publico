@@ -57,18 +57,21 @@ class CardapioExemploSeeder extends Seeder
             'nome' => 'Salada de alfaçe e tomate.',
             'descricao' => 'Salada com ingredientes frescos',
             'preco' => 8.30,
+            'ordem' => 1
         ]);
 
         $categoria->itens()->create([
             'nome' => 'Bolinho de bacalhau',
             'descricao' => 'Receita bem portuguesa, super saborosa e fácil de fazer',
             'preco' => 15.74,
+            'ordem' => 2
         ]);
 
         $categoria->itens()->create([
             'nome' => 'Pão caseiro recheado',
             'descricao' => 'Pão caseiro sem sova',
             'preco' => 7,
+            'ordem' => 3
         ]);
 
         $categoria = $estabelecimento->cardapioCategorias()->create([
@@ -79,6 +82,7 @@ class CardapioExemploSeeder extends Seeder
             'nome' => 'Picanha',
             'descricao' => 'Acompanha arroz,salada,farofa,fritas, pão na manteiga',
             'preco' => 45,
+            'ordem' => 1
         ]);
 
         
@@ -86,12 +90,14 @@ class CardapioExemploSeeder extends Seeder
             'nome' => 'Contra Filé',
             'descricao' => 'Acompanha arroz,salada,farofa,fritas',
             'preco' => 33,
+            'ordem' => 2
         ]);
 
         $categoria->itens()->create([
             'nome' => 'Parmegiana Classico',
             'descricao' => 'Acompanha arroz,salada,farofa,fritas',
             'preco' => 28.90,
+            'ordem' => 3
         ]);
 
         $categoria = $estabelecimento->cardapioCategorias()->create([
@@ -102,12 +108,14 @@ class CardapioExemploSeeder extends Seeder
             'nome' => 'Bolo de Pote',
             'descricao' => 'Chocolate e morango',
             'preco' => 6.50,
+            'ordem' => 1
         ]);
 
         $categoria->itens()->create([
             'nome' => 'Mini Churros',
             'descricao' => 'Com doce de leite açúcar e canela',
             'preco' => 6.50,
+            'ordem' => 2
         ]);
     }
 }

@@ -22,6 +22,15 @@ class CategoriaItemController extends Controller
         return Redirect::route('cardapio');
     }
 
+    public function updateOrder(Request $request){
+        foreach ($request->categoria_itens as $key => $value) {
+            $item = CategoriaItem::find($value['id']);
+            $item->ordem = $key + 1;
+            $item->save();
+        }
+        return Redirect::route('cardapio');
+    }
+
     public function destroy(Request $request){
         $request->validate(['id' => 'required']);
         $categoriaItem = CategoriaItem::find($request->id);
@@ -45,6 +54,5 @@ class CategoriaItemController extends Controller
         Storage::disk('s3')->delete($categoriaItem->nome_foto_prato);
         $categoriaItem->nome_foto_prato = null;
         $categoriaItem->save();
-
     }
 }

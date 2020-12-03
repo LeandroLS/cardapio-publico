@@ -22,6 +22,7 @@ class Categoriaitens extends Migration
             $table->text('nome_foto_prato')->nullable();
             $table->double('preco', 10, 2)->nullable();
             $table->boolean('visivel')->default(1);
+            $table->integer('ordem');
             $table->timestamps();
         });
     }

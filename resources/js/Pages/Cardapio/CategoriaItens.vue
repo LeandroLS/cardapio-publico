@@ -8,6 +8,17 @@
       <div class="mt-2 mx-2 flex justify-between border-b border-grey-500">
         <div class="font-bold text-xl mb-2 w-3/4">{{ categoria.nome }}</div>
       </div>
+      <draggable
+        v-model="categoria.itens"
+        :move="onMoveCallback"
+        @end="onEndDrag"
+      >
+        <transition-group>
+          <div v-for="element in categoria.itens" :key="element.id">
+            {{ element.nome }}
+          </div>
+        </transition-group>
+      </draggable>
       <div
         class="mx-2 border-b border-grey-500 p-1 items-center flex justify-between hover:bg-gray-100"
         v-for="item in categoria.itens"
@@ -215,6 +226,7 @@ import JetDangerButton from "./../../Jetstream/DangerButton";
 import { Money } from "v-money";
 import InputImagePreview from "./../../Components/InputImagePreview";
 import ImageInput from "./../../Components/ImageInput";
+import draggable from "vuedraggable";
 
 export default {
   components: {
@@ -230,10 +242,12 @@ export default {
     Money,
     InputImagePreview,
     ImageInput,
+    draggable,
   },
 
   data() {
     return {
+      itemDragged: null,
       categoria_item_id_deletar: null,
       categoriaItemSendoDeletado: false,
       show_modal: false,
@@ -259,6 +273,7 @@ export default {
           preco: 0,
           nome_foto_prato: null,
           id: null,
+          ordem: null,
         },
         {
           resetOnSuccess: true,
@@ -366,11 +381,33 @@ export default {
     showImage(e) {
       this.foto_prato = e.target.files[0];
     },
+    onMoveCallback(evt, originalEvent) {
+      this.itemDragged = evt.draggedContext.element;
+    },
+    onEndDrag(evt) {
+      /** retorna a categoria do item selecionado */
+      let categoria = this.categorias.filter(
+        (el) => el.id == this.itemDragged.cardapio_categoria_id
+      )[0];
+      this.$inertia.post(
+        "/cardapio/categoria/sort",
+        { categoria_itens: categoria.itens },
+        {
+          preserveScroll: true,
+          onSuccess: (page) => {
+            if (Object.keys(this.errors).length == 0) {
+              this.$toasted.show('Ordem do item modificada', VueToastedOptions.success);
+            }
+          },
+        }
+      );
+    },
   },
+
   watch: {
-    'form.preco' : function(newValue, oldValue){
+    "form.preco": function (newValue, oldValue) {
       this.VMoneyPrice = newValue;
-    }
+    },
   },
   props: {
     categorias: Array,

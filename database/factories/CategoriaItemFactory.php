@@ -25,7 +25,8 @@ class CategoriaItemFactory extends Factory
             'nome' => $this->faker->name,
             'descricao' => $this->faker->sentence,
             'cardapio_categoria_id' => CardapioCategoria::factory(),
-            'preco' => 10.10
+            'preco' => 10.10,
+            'ordem' => $this->faker->numberBetween(1, 100)
         ];
     }
 }
