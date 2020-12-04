@@ -27,7 +27,7 @@
                 show_modal = true;
               "
             >
-              <div class="flex handle cursor-move">
+              <div class="flex mr-3 handle cursor-move">
                 <svg
                   title="Mover de posição"
                   class="h-3 md:h-5"

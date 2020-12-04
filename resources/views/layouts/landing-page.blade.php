@@ -11,6 +11,10 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="author" content="" />
+    <meta name="description" content="Crie seu cardápio online e compartilhe com seus clientes via whatsapp, facebook">
+    <link rel="canonical" href="https://cardapiopublico.com.br" />
+    <meta property="og:title" content="CRIE SEU CARDÁPIO ONLINE E COMPARTILHE COM CLIENTES!" />
+    <meta property="og:description" content="Crie seu cardápio online e compartilhe com seus clientes via whatsapp, facebook" />
     <!--Replace with your tailwind.css once created-->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
     <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
@@ -75,7 +79,7 @@
                 </ul>
                
                 @auth
-                    <a href="{{ url('/cardapio') }}" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">{{ \Auth::user()->estabelecimento->nome}}</a>
+                    <a href="{{ url('/cardapio') }}" id="navAction" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">{{ \Auth::user()->estabelecimento->nome}}</a>
                 @else
                     <a href="{{route('entrar')}}" id="navAction"
                         class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">

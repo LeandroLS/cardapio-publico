@@ -5,11 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-class CAtegoriaItem extends Model
+use Illuminate\Support\Facades\Storage;
+class CategoriaItem extends Model
 {
     use HasFactory;
     protected $table = 'categoria_itens';
     protected $guarded = ['id'];
+
+
 
     protected static function booted()
     {
@@ -17,6 +20,10 @@ class CAtegoriaItem extends Model
             //verifica se tem usuário logado
             $builder->orderBy('ordem', 'asc');
             
+        });
+
+        static::deleting(function ($categoriaItem) {
+            Storage::disk('s3')->delete($categoriaItem->nome_foto_prato);
         });
     }
 

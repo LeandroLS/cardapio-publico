@@ -24,6 +24,17 @@ class CardapioCategoria extends Model
         static::addGlobalScope('estabelecimento_order_by_ordeem_scope', function (Builder $builder) {
             $builder->orderBy('ordem', 'asc');
         });
+
+        /**
+        * Quando estiver sendo deletado, exclui todos os itens da categoria
+        * Isso é necessário pra disparar o evendo 'deleting' na CategoriaItem Model
+        */
+        static::deleting(function($categoria)
+        {
+            foreach($categoria->itens as $item){
+                $item->delete();
+            }
+        });
     }
      public function itens()
     {
