@@ -18,6 +18,8 @@ class CategoriaItemController extends Controller
         if($request->hasFile('foto_prato')){
             $request['nome_foto_prato'] = $request->file('foto_prato')->store('fotos-pratos', 's3');
         }
+        $ordemMaxima = CategoriaItem::max('ordem');
+        $request['ordem']  = $ordemMaxima + 1;
         CategoriaItem::updateOrCreate(['id' => $request->id], $request->all());
         return Redirect::route('cardapio');
     }

@@ -16,6 +16,8 @@ class CardapioCategoriaController extends Controller
         $cardapioCategoria = new CardapioCategoria();
         $cardapioCategoria->nome = $request->nome;
         $cardapioCategoria->estabelecimento_id = \Auth::user()->estabelecimento->id;
+        $ordemMaxima = CardapioCategoria::max('ordem');
+        $cardapioCategoria->ordem = $ordemMaxima + 1;
         $cardapioCategoria->save();
         return Redirect::route('cardapio');
     }
