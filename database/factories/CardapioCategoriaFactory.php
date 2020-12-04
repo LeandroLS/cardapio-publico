@@ -23,7 +23,8 @@ class CardapioCategoriaFactory extends Factory
     {
         return [
             'nome' => $this->faker->name,
-            'estabelecimento_id' => Estabelecimento::factory()
+            'estabelecimento_id' => Estabelecimento::factory(),
+            'ordem' => $this->faker->numberBetween(1, 100)
         ];
     }
 }

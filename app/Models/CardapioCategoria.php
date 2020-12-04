@@ -20,6 +20,10 @@ class CardapioCategoria extends Model
                 $builder->where('estabelecimento_id', '=', \Auth::user()->estabelecimento->id);
             }
         });
+
+        static::addGlobalScope('estabelecimento_order_by_ordeem_scope', function (Builder $builder) {
+            $builder->orderBy('ordem', 'asc');
+        });
     }
      public function itens()
     {

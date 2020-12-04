@@ -29,6 +29,17 @@ class CardapioCategoriaController extends Controller
         $categoria->save();
         return Redirect::route('cardapio');
     }
+
+    public function updateOrder(Request $request){
+        foreach ($request->categorias as $key => $value) {
+            $item = CardapioCategoria::find($value['id']);
+            $item->ordem = $key + 1;
+            $item->save();
+        }
+        return Redirect::route('cardapio');
+    }
+    
+
     public function destroy(Request $request)
     {
         $request->validate([

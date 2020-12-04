@@ -51,6 +51,7 @@ class CardapioExemploSeeder extends Seeder
         
         $categoria = $estabelecimento->cardapioCategorias()->create([
             'nome' => 'Entradas',
+            'ordem' => 1,
         ]);
 
         $categoria->itens()->create([
@@ -76,6 +77,7 @@ class CardapioExemploSeeder extends Seeder
 
         $categoria = $estabelecimento->cardapioCategorias()->create([
             'nome' => 'Pratos principais',
+            'ordem' => 2
         ]);
 
         $categoria->itens()->create([
@@ -102,6 +104,7 @@ class CardapioExemploSeeder extends Seeder
 
         $categoria = $estabelecimento->cardapioCategorias()->create([
             'nome' => 'Sobremesas',
+            'ordem' => 3
         ]);
 
         $categoria->itens()->create([

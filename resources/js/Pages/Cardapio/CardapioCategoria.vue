@@ -6,17 +6,24 @@
           <div class="font-bold text-xl mb-2">Categorias do Cardápio</div>
         </div>
 
-        <div
-          v-for="categoria in categorias"
-          :key="categoria.id"
-          class="border-b border-grey-500 cursor-pointer mx-2"
+        <draggable
+          v-model="categorias"
+          @end="onEndDrag"
         >
-          <click-edit-input
-            @updated="update(categoria, $event)"
-            @destroied="showModalDeletarItem($event)"
-            :categoria="categoria"
-          ></click-edit-input>
-        </div>
+          <transition-group>
+            <div
+              v-for="categoria in categorias"
+              :key="categoria.id"
+              class="border-b border-grey-500 cursor-pointer mx-2"
+            >
+              <click-edit-input
+                @updated="update(categoria, $event)"
+                @destroied="showModalDeletarItem($event)"
+                :categoria="categoria"
+              ></click-edit-input>
+            </div>
+          </transition-group>
+        </draggable>
 
         <div class="flex p-1">
           <div class="w-3/4">
@@ -80,6 +87,7 @@ import JetInputError from "./../../Jetstream/InputError";
 import JetConfirmationModal from "./../../Jetstream/ConfirmationModal";
 import JetDangerButton from "./../../Jetstream/DangerButton";
 import JetSecondaryButton from "./../../Jetstream/SecondaryButton";
+import draggable from "vuedraggable";
 export default {
   components: {
     ClickEditInput,
@@ -88,7 +96,8 @@ export default {
     JetInputError,
     JetConfirmationModal,
     JetDangerButton,
-    JetSecondaryButton
+    JetSecondaryButton,
+    draggable,
   },
   data() {
     return {
@@ -165,6 +174,23 @@ export default {
     closeModalDeletarItem() {
       this.categoriaSendoDeletada = false;
     },
+    onEndDrag(){
+      this.$inertia.post(
+        "/cardapio/categoria/sort",
+        { categorias: this.categorias },
+        {
+          preserveScroll: true,
+          onSuccess: (page) => {
+            if (Object.keys(this.errors).length == 0) {
+              this.$toasted.show(
+                "Ordem do item modificada",
+                VueToastedOptions.success
+              );
+            }
+          },
+        }
+      );
+    }
   },
 
   props: {
