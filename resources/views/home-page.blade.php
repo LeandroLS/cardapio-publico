@@ -46,7 +46,7 @@
                 <div>
                     <label for="name" class="font-bold"> Seu Nome </label>
                     <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
-                        required autofocus autocomplete="name" />
+                        required autocomplete="name" />
                     @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -827,7 +827,7 @@
             <div>
                 <label for="name" class="font-bold"> Seu Nome </label>
                 <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
-                    autofocus autocomplete="name" />
+                    autocomplete="name" />
                 @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
