@@ -1,3 +1,4 @@
+
 @extends('layouts.landing-page')
 
 @section('content')
@@ -554,7 +555,7 @@
             <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
                 <a class="flex flex-wrap no-underline hover:no-underline">
                     <p class="w-full p-1 text-gray-600 px-6">
-                        <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+                      
                         <svg class="h-10" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
                             xmlns="http://www.w3.org/2000/svg" height="24" width="24" version="1.1"
                             xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
