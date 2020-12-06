@@ -113,7 +113,7 @@
           class="rounded"
           style="max-height: 70vh"
           v-if="item && item.nome_foto_prato != null"
-          :src="'/storage/' + item.nome_foto_prato"
+          :src="$page.aws_url + '/' + item.nome_foto_prato"
         />
         <img
           class="rounded"
