@@ -83,7 +83,7 @@
               >
                 <image-input
                   v-if="item.nome_foto_prato"
-                  :url="'/storage/' + item.nome_foto_prato"
+                 :url="$page.aws_url + '/' + item.nome_foto_prato"
                 ></image-input>
 
                 <image-input
