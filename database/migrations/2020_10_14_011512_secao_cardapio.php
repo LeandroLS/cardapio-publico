@@ -17,7 +17,7 @@ class SecaoCardapio extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('estabelecimento_id');
             $table->foreign('estabelecimento_id')->references('id')->on('estabelecimentos')->onDelete('cascade');
-            $table->text('nome');
+            $table->string('nome');
             $table->integer('ordem');
             $table->timestamps();
         });

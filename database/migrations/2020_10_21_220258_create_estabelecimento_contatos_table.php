@@ -17,8 +17,8 @@ class CreateEstabelecimentoContatosTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('estabelecimento_id');
             $table->foreign('estabelecimento_id')->references('id')->on('estabelecimentos')->onDelete('cascade');
-            $table->text('tipo_contato', 100);
-            $table->text('contato');
+            $table->string('tipo_contato', 100);
+            $table->string('contato');
             $table->timestamps();
         });
     }

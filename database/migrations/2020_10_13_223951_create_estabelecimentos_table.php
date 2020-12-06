@@ -15,17 +15,17 @@ class CreateEstabelecimentosTable extends Migration
     {
         Schema::create('estabelecimentos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('nome');
+            $table->string('nome');
             $table->string('url')->unique();
-            $table->text('descricao')->nullable();
+            $table->string('descricao')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('codigo_ibge')->nullable();
             $table->foreign('codigo_ibge')->references('codigo_ibge')->on('municipios');
-            $table->text('cep', 8)->nullable();
-            $table->text('endereco')->nullable();
-            $table->text('numero', 20)->nullable();
-            $table->text('bairro')->nullable();
+            $table->string('cep', 8)->nullable();
+            $table->string('endereco')->nullable();
+            $table->string('numero', 20)->nullable();
+            $table->string('bairro')->nullable();
             $table->timestamps();
         });
     }

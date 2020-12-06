@@ -17,9 +17,9 @@ class CreateEstabelecimentoHorarioAtendimentosTable extends Migration
           $table->bigIncrements('id');
             $table->unsignedBigInteger('estabelecimento_id');
             $table->foreign('estabelecimento_id')->references('id')->on('estabelecimentos')->onDelete('cascade');
-            $table->text('dia_semana', 100);
-            $table->text('abre', 50);
-            $table->text('fecha', 50);
+            $table->string('dia_semana', 100);
+            $table->string('abre', 50);
+            $table->string('fecha', 50);
             $table->timestamps();
         });
     }
