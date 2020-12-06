@@ -20,7 +20,7 @@ class CreateEstabelecimentosTable extends Migration
             $table->text('descricao')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('codigo_ibge')->nullable();
+            $table->unsignedBigInteger('codigo_ibge')->nullable();
             $table->foreign('codigo_ibge')->references('codigo_ibge')->on('municipios');
             $table->text('cep', 8)->nullable();
             $table->text('endereco')->nullable();
