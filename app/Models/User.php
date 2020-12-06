@@ -63,4 +63,9 @@ class User extends Authenticatable
     public function estabelecimento(){
         return $this->hasOne('App\Models\Estabelecimento');
     }
+
+    protected function profilePhotoDisk()
+    {
+        return 's3';
+    }
 }
