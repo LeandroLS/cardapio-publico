@@ -25,7 +25,7 @@ class Estados extends Migration
          Schema::create('estados', function (Blueprint $table) {
             $table->bigIncrements('codigo_uf');
             $table->string('uf', 2);
-            $table->string('nome', 2);
+            $table->string('nome', 100);
             $table->float('latitude', 8);
             $table->float('longitude', 8);
         });

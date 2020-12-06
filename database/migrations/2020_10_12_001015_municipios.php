@@ -26,7 +26,7 @@ class Municipios extends Migration
     //     );");
         Schema::create('municipios', function (Blueprint $table) {
             $table->bigIncrements('codigo_ibge');
-            $table->string('nome');
+            $table->string('nome', 100);
             $table->float('latitude', 8);
             $table->float('longitude', 8);
             $table->boolean('capital');
