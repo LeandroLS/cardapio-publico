@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>
-        Cardapio Publico
+        Cardápio Público
     </title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <meta name="description" content="" />
@@ -52,7 +52,7 @@
 
                     </svg>
 
-                    CARDÁPIO PUBLICO
+                    CARDÁPIO PÚBLICO
                 </a>
             </div>
             <div class="block lg:hidden pr-4">
@@ -118,7 +118,7 @@
 
                         </svg>
 
-                        CARDÁPIO PUBLICO
+                        CARDÁPIO PÚBLICO
                     </a>
                 </div>
                 <div class="flex-1">
