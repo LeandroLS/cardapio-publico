@@ -16,7 +16,7 @@ class CreateEstabelecimentosTable extends Migration
         Schema::create('estabelecimentos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('nome');
-            $table->text('url')->unique();
+            $table->string('url')->unique();
             $table->text('descricao')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
