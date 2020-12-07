@@ -30,4 +30,14 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
         ];
     }
+    public function configure()
+    {
+        return $this->afterMaking(function (User $user) {
+            //
+        })->afterCreating(function (User $user) {
+            // $user->assinatura()->create(\App\Models\UserAssinatura::factory()->toArray());
+        });
+    }
+ 
+
 }

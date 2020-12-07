@@ -59,13 +59,17 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+ 
+    protected function profilePhotoDisk()
+    {
+        return 's3';
+    }
 
     public function estabelecimento(){
         return $this->hasOne('App\Models\Estabelecimento');
     }
 
-    protected function profilePhotoDisk()
-    {
-        return 's3';
+    public function assinatura(){
+        return $this->hasOne('App\Models\UserAssinatura');
     }
 }
