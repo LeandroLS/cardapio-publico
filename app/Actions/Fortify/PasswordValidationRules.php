@@ -15,6 +15,7 @@ trait PasswordValidationRules
     {
         $pass = new Password;
         $pass->length(6);
+        $pass->withMessage('A senha deve ter pelo menos 6 caracteres');
         return ['required', 'string', $pass, 'confirmed'];
     }
 }
