@@ -28,7 +28,7 @@
 
                     </svg>
 
-                    CARDÁPIO PUBLICO
+                    CARDÁPIO PÚBLICO
               </inertia-link>
             </div>
 

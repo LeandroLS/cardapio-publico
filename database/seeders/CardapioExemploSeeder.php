@@ -22,7 +22,7 @@ class CardapioExemploSeeder extends Seeder
         );
 
         $estabelecimento = $user->estabelecimento()->create([
-            'nome' => 'Cardápio Publico',
+            'nome' => 'Cardápio Público',
             'url' => 'cardapio-publico-exemplo',
             'descricao' =>  'Pratos especiais com carnes variadas e tempero caseiro. Opções ao gosto do cliente e preços populares. Atendemos no almoço com as mesmas opções.',
             'codigo_ibge' => 1500107,
