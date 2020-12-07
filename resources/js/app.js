@@ -2,6 +2,7 @@ require('./bootstrap');
 import Vue from 'vue';
 import Toasted from 'vue-toasted'; //toast vue lib
 import VueClipboard from 'vue-clipboard2'; //clipboard copy lib
+import VTooltip from 'v-tooltip'
 import { InertiaApp } from '@inertiajs/inertia-vue';
 import { InertiaForm } from 'laravel-jetstream';
 import PortalVue from 'portal-vue';
@@ -11,6 +12,8 @@ Vue.use(InertiaForm);
 Vue.use(PortalVue);
 Vue.use(Toasted);
 Vue.use(VueClipboard);
+Vue.use(VTooltip);
+
 const app = document.getElementById('app');
 
 new Vue({

@@ -16,6 +16,7 @@
               <div class="flex items-center hover:bg-gray-100">
                 <div class="handle ml-1 cursor-move w-1/5">
                   <svg
+                    v-tooltip="'Mover de posição'"
                     title="Mover de posição"
                     class="h-3 md:h-5"
                     xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +56,7 @@
           </div>
           <div class="w-1/4 mr-1 text-right">
             <div class="mx-2 pt-2 pb-2 h-5">
-              <jet-button
+              <jet-button v-tooltip="'Adicionar categoria'"
                 ><svg
                   class="h-6"
                   xmlns="http://www.w3.org/2000/svg"

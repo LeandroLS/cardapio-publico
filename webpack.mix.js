@@ -15,5 +15,8 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         require('postcss-import'),
         require('tailwindcss'),
-    ]);
+    ])
+    .styles([
+        'resources/css/tooltip.css'
+    ], 'public/css/tooltip.css');
 mix.browserSync('localhost:8000');

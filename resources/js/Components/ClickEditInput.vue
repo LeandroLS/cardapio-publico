@@ -10,7 +10,7 @@
     </div>
     <div v-if="edit == false" class="w-1/5 text-right mx-2 my-2">
       <form @submit.prevent="$emit('destroied', categoria.id)">
-        <jet-button>
+        <jet-button  v-tooltip="'Excluir'">
           <svg
             class="h-5 w-5"
             xmlns="http://www.w3.org/2000/svg"

@@ -29,6 +29,7 @@
             >
               <div class="flex mr-3 handle cursor-move">
                 <svg
+                  v-tooltip="'Move de posição'"
                   title="Mover de posição"
                   class="h-3 md:h-5"
                   xmlns="http://www.w3.org/2000/svg"
@@ -58,11 +59,12 @@
               <div class="flex-1" v-else></div>
             </div>
             <div class="w-1/5 flex justify-end">
-              <form action="">
+              <form>
                 <button
                   v-if="item.visivel"
                   @click="toggleVisible(item)"
                   title="Ocultar"
+                  v-tooltip="'Ocultar item do cardápio'"
                   type="button"
                   class="inline-flex items-center mr-2 px-1 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150"
                 >
@@ -84,6 +86,7 @@
                 </button>
                 <button
                   @click="toggleVisible(item)"
+                  v-tooltip="'Desocultar item do cardápio'"
                   title="Deixar visível"
                   type="button"
                   v-else
@@ -106,6 +109,7 @@
               </form>
               <form @submit.prevent="showModalDeletarItem(item)">
                 <button
+                  v-tooltip="'Excluir'"
                   title="Remover"
                   class="inline-flex items-center px-1 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150"
                 >
