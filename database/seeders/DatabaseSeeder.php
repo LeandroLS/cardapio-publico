@@ -24,22 +24,9 @@ class DatabaseSeeder extends Seeder
                     \App\Models\CardapioCategoria::factory()->count(10)
                     ->hasItens(3)
                 )->count(1)
+            )
+            ->hasAssinatura(
+                \App\Models\UserAssinatura::factory()->count(1)
             )->create();
-
-        // foreach ($users as $user) {
-        //     repeat:
-        //     try {
-        //          \App\Models\UserAssinatura::factory()
-        //         ->count(1)
-        //         ->for(\App\Models\User::factory())
-        //         ->create();
-        //     } catch (\Illuminate\Database\QueryException $e) {
-        //         goto repeat;
-        //     }
-        // }
-            // \App\Models\UserAssinatura::factory()
-            // ->count(10)
-            // ->for(\App\Models\User::factory())
-            // ->create();
     }
 }
