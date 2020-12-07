@@ -1,4 +1,4 @@
-<html lang="pt_BR">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8" />
