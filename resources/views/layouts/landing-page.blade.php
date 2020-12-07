@@ -15,6 +15,7 @@
     <link rel="canonical" href="https://cardapiopublico.com.br" />
     <meta property="og:title" content="CRIE SEU CARDÁPIO ONLINE E COMPARTILHE COM CLIENTES!" />
     <meta property="og:description" content="Crie seu cardápio online e compartilhe com seus clientes via whatsapp, facebook" />
+    <link rel="icon" href="{{ url('favicon.jpg') }}">
     <!--Replace with your tailwind.css once created-->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
     <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
