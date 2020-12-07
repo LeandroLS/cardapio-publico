@@ -14,6 +14,7 @@ trait PasswordValidationRules
     protected function passwordRules()
     {
         $pass = new Password;
-        return ['required', 'string', $pass->withMessage('A senha deve ter pelo menos 8 caracteres'), 'confirmed'];
+        $pass->length(6);
+        return ['required', 'string', $pass, 'confirmed'];
     }
 }
