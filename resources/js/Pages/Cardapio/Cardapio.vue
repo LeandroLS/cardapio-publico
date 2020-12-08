@@ -7,7 +7,7 @@
     </template>
 
     <div class="container mx-auto">
-      <div class="flex flex-col  lg:flex-row">
+      <div class="flex flex-col lg:flex-row">
         <div class="lg:w-2/6 mx-4 my-4">
           <cardapio-categoria
             :categorias="categorias"

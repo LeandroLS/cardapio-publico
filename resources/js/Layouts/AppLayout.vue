@@ -119,7 +119,9 @@
                   <jet-dropdown-link :href="route('profile.show')">
                     Perfil
                   </jet-dropdown-link>
-
+                  <jet-dropdown-link :href="route('assinatura')">
+                    Assinatura
+                  </jet-dropdown-link>
                   <jet-dropdown-link
                     :href="route('api-tokens.index')"
                     v-if="$page.jetstream.hasApiFeatures"
@@ -296,7 +298,12 @@
             >
               Perfil
             </jet-responsive-nav-link>
-
+            <jet-responsive-nav-link
+              :href="route('assinatura')"
+              :active="$page.currentRouteName == 'assinatura'"
+            >
+              Assinatura
+            </jet-responsive-nav-link>
             <jet-responsive-nav-link
               :href="route('api-tokens.index')"
               :active="$page.currentRouteName == 'api-tokens.index'"

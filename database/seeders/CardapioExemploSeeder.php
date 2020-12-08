@@ -21,6 +21,11 @@ class CardapioExemploSeeder extends Seeder
             ]
         );
 
+        $user->assinatura()->create([
+            'start_at' => \Carbon\Carbon::now(),
+            'end_at' => \Carbon\Carbon::now()->addMonths(1)
+        ]);
+
         $estabelecimento = $user->estabelecimento()->create([
             'nome' => 'Cardápio Público',
             'url' => 'cardapio-publico-exemplo',

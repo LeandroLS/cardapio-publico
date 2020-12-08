@@ -9,7 +9,8 @@ use App\Http\Controllers\{
     EstabelecimentoContatoController, 
     EstabelecimentoController,
     MunicipioController, 
-    CardapioLinksController
+    CardapioLinksController,
+    AssinaturaController
 };
 
 /*
@@ -54,6 +55,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     
     Route::post('/estabelecimento/contato', [EstabelecimentoContatoController::class, 'store']);
     Route::post('/estabelecimento/contato/destroy', [EstabelecimentoContatoController::class, 'destroy']);
+
+    Route::get('/assinatura', [AssinaturaController::class, 'index'])->name('assinatura');
 
     Route::post('/estabelecimento/horario-atendimento', [EstabelecimentoAtendimentoController::class, 'store']);
     Route::post('/estabelecimento/horario-atendimento/destroy', [EstabelecimentoAtendimentoController::class, 'destroy']);
