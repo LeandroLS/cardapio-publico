@@ -73,6 +73,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/cardapio/categoria/item/sort', [CategoriaItemController::class, 'updateOrder']);
 
 });
+Route::get('/teste-pagseguro', function(Request $request){
+    Log::info('Chamaram /teste-pagseguro');
+});
 /**
  * Essa rota tem que ficar por último.
  * Se ela ficar acima, por exemplo, se ela ficar acima de /cardapio, quando forem acessar /cardapio, vão acabar caindo nessa rota.
