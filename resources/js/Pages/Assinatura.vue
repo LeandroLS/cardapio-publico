@@ -7,8 +7,8 @@
     </template>
     <div class="container mx-auto mt-5">
       <success-message v-if="$page.assinatura.active">
-        <template #title>Teste</template>
-        <template #text>Teste texto</template>
+        <template #title>Você já assinou nosso plano!</template>
+        <template #text>Sua assinatura vence em {{ fimAssinatura() }}</template>
       </success-message>
     </div>
   </app-layout>
@@ -22,5 +22,10 @@ export default {
     AppLayout,
     SuccessMessage,
   },
+  methods: {
+    fimAssinatura(){
+      return moment(this.$page.assinatura.end_at).format('DD/MM/YYYY');
+    }
+  }
 };
 </script>

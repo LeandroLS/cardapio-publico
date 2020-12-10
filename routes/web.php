@@ -73,8 +73,42 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/cardapio/categoria/item/sort', [CategoriaItemController::class, 'updateOrder']);
 
 });
-Route::get('/teste-pagseguro', function(Request $request){
-    Log::info('Chamaram /teste-pagseguro');
+Route::get('/success-payment-return', function(Request $request){
+    return 'success aprovado';
+});
+Route::get('/failure-payment-return', function(Request $request){
+    return 'failure';
+});
+Route::get('/pending-payment-return', function(Request $request){
+    return 'pending';
+});
+
+Route::get('/teste-mercadopago', function(Request $request){
+    \MercadoPago\SDK::setAccessToken('APP_USR-7136015048027149-120922-289d0e549beb40adbbeeadf528fa7ac6-685308681');
+    // Cria um objeto de preferência
+    $preference = new MercadoPago\Preference();
+    $preference->back_urls = array(
+        "success" => "localhost:8000/success-payment-return",
+        "failure" => "localhost:8000/failure-payment-return",
+        "pending" => "localhost:8000/pending-payment-return"
+    );
+    $preference->auto_return = "approved";
+    $payer = new MercadoPago\Payer();
+    $payer->name = "Joao";
+    $payer->surname = "Silva";
+    $payer->email = "test_user_96547458@testuser.com";
+
+    // Cria um item na preferência
+    $item = new MercadoPago\Item();
+    $item->title = 'Meu produto';
+    $item->quantity = 1;
+    $item->unit_price = 5.00;
+    $preference->external_reference = 'teste';
+    $preference->items = array($item);
+    $preference->payer = $payer;
+    $preference->save();
+
+    return view('teste-mercado-pago')->with('preference_id', $preference->id);
 });
 /**
  * Essa rota tem que ficar por último.
