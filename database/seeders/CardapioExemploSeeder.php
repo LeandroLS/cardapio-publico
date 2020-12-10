@@ -23,7 +23,7 @@ class CardapioExemploSeeder extends Seeder
 
         $user->assinatura()->create([
             'start_at' => \Carbon\Carbon::now(),
-            'end_at' => \Carbon\Carbon::now()->addMonths(1)
+            'end_at' => \Carbon\Carbon::now()->addYears(10)
         ]);
 
         $estabelecimento = $user->estabelecimento()->create([
