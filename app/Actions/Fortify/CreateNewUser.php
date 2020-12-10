@@ -34,10 +34,17 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
         ], $messages)->validate();
 
-        return User::create([
+        $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
+
+        $user->assinatura()->create([
+            'start_at' => \Carbon\Carbon::now(),
+            'end_at' => \Carbon\Carbon::now()->addMonths(1)
+        ]);
+
+        return $user;
     }
 }

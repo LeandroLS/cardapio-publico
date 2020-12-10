@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserAssinatura extends Model
 {
-    protected $appends = ['active'];
     use HasFactory;
+    protected $appends = ['active'];
+    protected $guarded = ['id'];
     public function user(){
         return $this->belongsTo('App\Models\User');
     }
