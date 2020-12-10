@@ -126,19 +126,19 @@
                     <p class="uppercase text-gray-500 md:mb-6">Links</p>
                     <ul class="list-reset mb-6">
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">Contato</a>
+                            <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">cardapiopublico@cardapiopublico.com.br</a>
                         </li>
-                        <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                        <!-- <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">Suporte</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <div class="flex-1">
                     <p class="uppercase text-gray-500 md:mb-6">Legal</p>
                     <ul class="list-reset mb-6">
-                        <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                        <!-- <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">Termos de uso</a>
-                        </li>
+                        </li> -->
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a href="{{ route('politica-privacidade') }}" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Política de Privacidade</a>
                         </li>

@@ -14,6 +14,9 @@
                 Tenha seu cardápio digital inteiramente online de maneira rápida e fácil. Compartilhe o cardápio com
                 seus clientes e facilite seus pedidos.
             </p>
+             <p class="leading-normal text-2xl mb-8">
+                O primeiro mês da sua conta você ganha automáticamente um mês de acesso pago de <span class="font-bold text-4xl">graça</span>.
+            </p>
             <p class="leading-normal text-2xl mb-8">
                 Clique <a target="_blank" class="underline " href="{{ url('cardapio-publico-exemplo')}}">aqui</a> para
                 ver um exemplo.
@@ -388,7 +391,7 @@
         <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
             <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
                 <a class="flex flex-wrap no-underline hover:no-underline">
-                    <p class="w-full p-1 text-gray-600 px-6">
+                    <p class="w-full p-2 text-gray-600 px-6">
                         <svg id="Capa_1" class="h-10" enable-background="new 0 0 497 497" viewBox="0 0 497 497"
                             xmlns="http://www.w3.org/2000/svg">
                             <g>
@@ -491,7 +494,7 @@
         <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
             <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
                 <a class="flex flex-wrap no-underline hover:no-underline">
-                    <p class="w-full p-1 text-gray-600 px-6">
+                    <p class="w-full p-2 text-gray-600 px-6">
                         <svg class="h-10" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
                             style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -554,7 +557,7 @@
         <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
             <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
                 <a class="flex flex-wrap no-underline hover:no-underline">
-                    <p class="w-full p-1 text-gray-600 px-6">
+                    <p class="w-full p-2 text-gray-600 px-6">
                       
                         <svg class="h-10" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
                             xmlns="http://www.w3.org/2000/svg" height="24" width="24" version="1.1"
@@ -739,7 +742,7 @@
               <div class="h-1 w-full gradient my-0 py-0 rounded-t"></div>
               <ul class="w-full text-center text-base font-bold">
                 <li class="border-b py-4">Categorias ilimitadas</li>
-                <li class="border-b py-4">Prattos ilimitados</li>
+                <li class="border-b py-4">Pratos ilimitados</li>
                 <li class="border-b py-4">Totalmente digital</li>
                 
               </ul>
