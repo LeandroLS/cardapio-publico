@@ -14,7 +14,8 @@
     <meta name="description" content="Crie seu cardápio online e compartilhe com seus clientes via whatsapp, facebook">
     <link rel="canonical" href="https://cardapiopublico.com.br" />
     <meta property="og:title" content="CRIE SEU CARDÁPIO ONLINE E COMPARTILHE COM CLIENTES!" />
-    <meta property="og:description" content="Crie seu cardápio online e compartilhe com seus clientes via whatsapp, facebook" />
+    <meta property="og:description"
+        content="Crie seu cardápio online e compartilhe com seus clientes via whatsapp, facebook" />
     <link rel="icon" href="{{ url('favicon.jpg') }}">
     <!--Replace with your tailwind.css once created-->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
@@ -25,6 +26,20 @@
         }
 
     </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-134144408-6">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-134144408-6');
+
+    </script>
 </head>
 
 <body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
@@ -78,14 +93,15 @@
                     <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4">link</a>
                     </li> -->
                 </ul>
-               
+
                 @auth
-                    <a href="{{ url('/cardapio') }}" id="navAction" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">{{ \Auth::user()->estabelecimento->nome}}</a>
+                <a href="{{ url('/cardapio') }}" id="navAction"
+                    class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">{{ \Auth::user()->estabelecimento->nome}}</a>
                 @else
-                    <a href="{{route('entrar')}}" id="navAction"
-                        class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                        Entrar
-                    </a>
+                <a href="{{route('entrar')}}" id="navAction"
+                    class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                    Entrar
+                </a>
                 @endif
             </div>
         </div>
@@ -126,7 +142,8 @@
                     <p class="uppercase text-gray-500 md:mb-6">Links</p>
                     <ul class="list-reset mb-6">
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">cardapiopublico@cardapiopublico.com.br</a>
+                            <a
+                                class="no-underline hover:underline text-gray-800 hover:text-pink-500">cardapiopublico@cardapiopublico.com.br</a>
                         </li>
                         <!-- <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">Suporte</a>
@@ -140,7 +157,9 @@
                             <a class="no-underline hover:underline text-gray-800 hover:text-pink-500">Termos de uso</a>
                         </li> -->
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a href="{{ route('politica-privacidade') }}" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Política de Privacidade</a>
+                            <a href="{{ route('politica-privacidade') }}"
+                                class="no-underline hover:underline text-gray-800 hover:text-pink-500">Política de
+                                Privacidade</a>
                         </li>
                     </ul>
                 </div>
