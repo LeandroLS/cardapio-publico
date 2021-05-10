@@ -17,7 +17,7 @@ class CardapioExemploSeeder extends Seeder
             [
                 'name' => 'Cardápio Público',
                 'email' => 'exemplo@exemplo.com.br',
-                'password' => bcrypt('6dLfvSTS'),
+                'password' => bcrypt('123456'),
             ]
         );
 
